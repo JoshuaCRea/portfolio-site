@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Three-Card-Poker</title>
+    <link rel="stylesheet" href="three-card-poker.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Acme&family=Arvo&family=Barlow:wght@400;700&family=Merriweather:wght@300;400;700;900&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div class="interactive-container">
+        <div id="table-border"></div>
+        <div id="table"></div>
+        <div id="dealer-hand-runner" class="hand-runner"></div>
+        <div id="dealer-runner-text" class="runner-text">DEALER CARDS</div>
+        <div id="dealer-card-display"></div>
+        <div id="infoBox"></div>
+        <div id="player-hand-runner" class="hand-runner"></div>
+        <div id="player-runner-text" class="runner-text">YOUR CARDS</div>
+        <div id="player-card-display"></div>
+        <div id="play-diamond" class="wager-diamond">
+            <div id="play-diamond-label" class="wager-diamond-label">PLAY</div>
+        </div>
+        <div id="play-bet-chipstack" class="chip-stack">
+            <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+        </div>
+        <div id="play-chiptally" class="chip-tally">&nbsp;</div>
+        <div id="ante-diamond" class="wager-diamond">
+            <div id="ante-diamond-label" class="wager-diamond-label">ANTE</div>
+        </div>
+        <div id="ante-bet-chipstack" class="chip-stack">
+            <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+        </div>
+        <div id="ante-chiptally" class="chip-tally">&nbsp;</div>
+        <div id="pair-plus-wager-circle" class="wager-circle">
+            <div id="pair-plus-label" class="wager-circle-label">PAIR<br>PLUS</div>
+        </div>
+        <div id="pp-bet-chipstack" class="chip-stack">
+            <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+        </div>
+        <div id="pp-chiptally" class="chip-tally">&nbsp;</div>
+        <div id="six-card-wager-circle" class="wager-circle">
+            <div id="six-card-label" class="wager-circle-label">6 CARD<br>BONUS</div>
+        </div>
+        <div id="sixcb-bet-chipstack" class="chip-stack">
+            <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+        </div>
+        <div id="sixcb-chiptally" class="chip-tally">&nbsp;</div>
+        <button id="deal-button" class="btn">Deal</button>
+        <button id="play-button" class="btn">Play</button>
+        <button id="fold-button" class="btn">Fold</button>
+        <button id="rebet-button" class="btn">Rebet</button>
+        <table id="pair-plus-payout-table" class="payout-table">
+            <thead>
+                <tr>
+                    <th class="headline" colspan="2">PAIR PLUS BONUS</th>
+                </tr>
+                <tr>
+                    <th>HAND</th>
+                    <th>PAYOUT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="pprow1">
+                    <td class="table-hand-name">Straight Flush</td>
+                    <td>40:1</td>
+                </tr>
+                <tr id="pprow2">
+                    <td class="table-hand-name">Three Of A Kind</td>
+                    <td>30:1</td>
+                </tr>
+                <tr id="pprow3">
+                    <td class="table-hand-name">Straight</td>
+                    <td>5:1</td>
+                </tr>
+                <tr id="pprow4">
+                    <td class="table-hand-name">Flush</td>
+                    <td>4:1</td>
+                </tr>
+                <tr id="pprow5">
+                    <td class="table-hand-name">Pair</td>
+                    <td>1:1</td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="six-card-payout-table" class="payout-table">
+            <thead>
+                <tr>
+                    <th class="headline" colspan="2">SIX CARD BONUS</th>
+                </tr>
+                <tr>
+                    <th>HAND</th>
+                    <th>PAYOUT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="sixcbrow1">
+                    <td class="table-hand-name">Royal Flush</td>
+                    <td>1000:1</td>
+                </tr>
+                <tr id="sixcbrow2">
+                    <td class="table-hand-name">Straight Flush</td>
+                    <td>200:1</td>
+                </tr>
+                <tr id="sixcbrow3">
+                    <td class="table-hand-name">Four Of A Kind</td>
+                    <td>50:1</td>
+                </tr>
+                <tr id="sixcbrow4">
+                    <td class="table-hand-name">Full House</td>
+                    <td>25:1</td>
+                </tr>
+                <tr id="sixcbrow5">
+                    <td class="table-hand-name">Flush</td>
+                    <td>20:1</td>
+                </tr>
+                <tr id="sixcbrow6">
+                    <td class="table-hand-name">Straight</td>
+                    <td>10:1</td>
+                </tr>
+                <tr id="sixcbrow7">
+                    <td class="table-hand-name">Three Of A Kind</td>
+                    <td>5:1</td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="ante-bonus-table" class="payout-table">
+            <thead>
+                <tr>
+                    <th class="headline" colspan="2">ANTE BONUS</th>
+                </tr>
+                <tr>
+                    <th>HAND</th>
+                    <th>PAYOUT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="abrow1">
+                    <td class="table-hand-name">Straight Flush</td>
+                    <td>5:1</td>
+                </tr>
+                <tr id="abrow2">
+                    <td class="table-hand-name">Three Of A Kind</td>
+                    <td>4:1</td>
+                </tr>
+                <tr id="abrow3">
+                    <td class="table-hand-name">Straight</td>
+                    <td>1:1</td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="https://ucarecdn.com/448c0af0-2fc3-4662-836d-0beb8707bc5c/" alt="title" id="title" />
+        <img src="https://ucarecdn.com/262e95bb-0883-4a9c-8403-78a1c040a98a/" alt="tbglogo" id="logo" />
+        <h1 id="wager-slider-title">Select Wager Amount</h1>
+        <div id="wager-amount-slider">
+            <input type="radio" name="wager-amount" id="1" value="1" required checked />
+            <label for="1" data-wager-amount="$1"></label>
+            <input type="radio" name="wager-amount" id="2" value="5" required />
+            <label for="2" data-wager-amount="$5"></label>
+            <input type="radio" name="wager-amount" id="3" value="10" required />
+            <label for="3" data-wager-amount="$10"></label>
+            <input type="radio" name="wager-amount" id="4" value="25" required />
+            <label for="4" data-wager-amount="$25"></label>
+            <input type="radio" name="wager-amount" id="5" value="100" required />
+            <label for="5" data-wager-amount="$100"></label>
+            <div id="wager-amount-tick"></div>
+            <br>
+        </div>
+        <div id="current-player-balance-display" class="ui-tally">
+            Player Balance: <span id="player-balance-display"></span>
+        </div>
+        <div id="total-current-wager-display" class="ui-tally">
+            Total Amount Wagered: <span id="total-wager-display"></span>
+        </div>
+        <div id="ante-winnings-display" class="ui-tally">ANTE: <span id="anteWinnings"></span></div>
+        <div id="play-winnings-display" class="ui-tally">PLAY: <span id="playWinnings"></span></div>
+        <div id="ante-bonus-winnings-display" class="ui-tally">ANTE BONUS: <span id="anteBonusWinnings"></span></div>
+        <div id="pair-plus-bonus-winnings-display" class="ui-tally">PAIR PLUS BONUS: <span id="pairPlusBonusWinnings"></span></div>
+        <div id="six-card-bonus-winnings-display" class="ui-tally">SIX CARD BONUS WINNINGS: <span id="sixCardBonusWinnings"></span></div>
+        <br />
+        <div id="total-winnings-display" class="ui-tally">TOTAL WINNINGS: <span id="totalWinnings"></span></div>
+    </div>
+    </div>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="module" src="three-card-poker.js"></script>
+
+</html>
