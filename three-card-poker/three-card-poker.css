@@ -1,0 +1,618 @@
+body {
+    background-color: rgb(80, 80, 80);
+}
+
+.interactive-container {
+    height: 1200px;
+    width: 1600px;
+    position: relative;
+    border: 1px solid;
+    border-color: black;
+}
+
+.interactive-container>* {
+    position: absolute;
+    border: 1px solid; 
+    border-color: black;
+    border-style: solid;
+    border-color: transparent;
+}
+
+#table {
+    top: 0px;
+    left: 175px;
+    width: 1200px;
+    height: 800px;
+    background-color: #2A0944;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-style: solid;
+    border-color: #473329;
+    border-width: 25px;
+    border-radius: 50px;
+}
+
+.hand-runner {
+    left: 540px;
+    width: 500px;
+    height: 125px;
+    background-color: #754d94;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-style: solid;
+    border-color: #c294e6;
+    border-width: 10px;
+    border-radius: 50px;
+}
+
+#dealer-hand-runner {
+    top: 50px;
+}
+
+#player-hand-runner {
+    top: 300px;
+}
+
+.runner-text {
+    color: #2A0944;
+    opacity: 12.5%;
+    font-family: 'Arvo', serif;
+}
+
+#player-runner-text {
+    top: 340px;
+    left: 611px;
+    font-size: 42pt;
+}
+
+#dealer-runner-text {
+    top: 93px;
+    left: 610px;
+    font-size: 36pt;
+}
+  
+.wager-diamond {
+    left: 737px;
+    transform: rotate(45deg);
+}
+
+.wager-diamond-label {
+    left: 764px;
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-family: 'Arvo', serif;
+    font-size: 18pt;
+}
+
+#ante-diamond-label {
+    top: 700px;
+    color: #FEC260;
+    color: #FAF5E4;
+    transform: rotate(315deg) translate(-15px, 33px);
+}
+
+#play-diamond {
+    top: 510px;
+    width: 125px;
+    height: 125px;
+    background: #FEC260;
+}
+
+#play-diamond-label {
+    top: 575px;
+    font-weight: 700;
+    color: #2A0944;
+    transform: rotate(315deg) translate(-15px, 55px);
+}
+
+#ante-diamond {
+    top: 635px;
+    width: 95px;
+    height: 95px;
+    background-color: #2A0944;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-style: solid;
+    border-color: #FEC260;
+    border-width: 15px;
+}
+
+#ante-diamond:hover {
+    background-color: #00a2b7;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-color: #ffea00;
+    color: #FAF5E4;
+}
+
+.wager-circle {
+    top: 475px;
+    width: 125px;
+    height: 125px;
+    background: #2A0944;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-style: solid;
+    border-width: 15px;
+    border-radius: 50%;
+}
+
+#six-card-wager-circle:hover {
+    background-color: #00a2b7;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-color: #ffea00;
+}
+
+.wager-circle-label {
+    top: 523px;
+    text-align: center;
+    font-family: 'Arvo', serif;
+    font-size: 18pt;
+    color: #FAF5E4;
+    transform: translate(0px, 33px);
+}
+
+#six-card-wager-circle {
+    left: 480px;
+    border-color: #3FA796;
+}
+
+#six-card-label {
+    left: 511px;
+}
+
+#pair-plus-wager-circle {
+    left: 962px;
+    border-color: #FF6363;
+}
+
+#pair-plus-wager-circle:hover {
+    background-color: #00a2b7;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-color: #ffea00;
+}
+
+#pair-plus-label {
+    left: 1007px;
+}
+
+.btn {
+    top: 735px;
+    background: #1b8676;
+    background-image: linear-gradient(to bottom, #1b8676, #125B50);
+    border-radius: 28px;
+    font-family: 'Merriweather', serif;
+    color: #FAF5E4;
+    font-size: 16pt;
+    padding: 10px 20px 10px 20px;
+    border: solid #0d3a34 4px;
+    transition: all .3s;
+}
+
+.btn:hover {
+    background: #37c4af;
+    background-image: linear-gradient(to bottom, #37c4af, #1f907f);
+    border: solid #09695b 4px;
+    box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, 0.248) 0 3px 5px, rgba(0, 0, 0, 0.258) 0 10px 13px;
+    transform: scale(1.05);
+}
+
+#deal-button {
+    left: 916px;
+    padding: 10px 30px 10px 30px;
+    background: #ce4170;
+    background-image: linear-gradient(to bottom, #ce4170, #A10035);
+    border: solid #6f0025 4px;
+}
+
+#deal-button:hover {
+    background: #d3849e;
+    background-image: linear-gradient(to bottom, #d3849e, #d30046);
+    border: solid #882144 4px;
+}
+
+#play-button {
+    left: 1037px;
+    padding: 10px 30px 10px 30px;
+}
+
+#fold-button {
+    left: 1155px;
+    padding: 10px 30px 10px 30px;
+}
+
+#rebet-button {
+    left: 1275px;
+    color: #150f1b;
+    background: #ffcc40;
+    background-image: linear-gradient(to bottom, #ffd76a, #F8B400);
+    border: solid #b58500 4px;
+}
+
+#rebet-button:hover {
+    background: #ffe395;
+    background-image: linear-gradient(to bottom, #ffe395, #fbcc4c);
+    border: solid #ba983b 4px;
+}
+
+.payout-table {
+    width: 251px;
+    font-size: 0.9em;
+    font-family: 'Merriweather', serif;;
+    min-width: 175px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.797);
+    border-collapse: collapse;
+}
+
+.payout-table th,
+.payout-table td {
+    text-align: center;
+    padding: 5px 15px;
+}
+
+.payout-table tbody tr {
+    border-bottom: 1px solid #FAF5E4;
+}
+
+.payout-table tbody tr:nth-of-type(even) {
+    background-color: #FAF5E4;
+}
+
+.headline {
+    min-width: 100px;
+}
+
+#pair-plus-payout-table {
+    top: 475px;
+    left: 1137px;
+}
+
+#pair-plus-payout-table thead tr {
+    background-color: #FF6363;
+    color: #FAF5E4;
+}
+
+#pair-plus-payout-table tbody tr:nth-of-type(odd) {
+    background-color: #f1c5c5;
+}
+
+#pair-plus-payout-table tbody tr:last-of-type {
+    border-bottom: 5px solid #FF6363;
+}
+
+#six-card-payout-table {
+    top: 475px;
+    left: 210px;
+}
+
+#six-card-payout-table thead tr {
+    background-color: #3FA796;
+    color: #FAF5E4;
+}
+
+#six-card-payout-table tbody tr:nth-of-type(odd) {
+    background-color: #a3f6e8;
+}
+
+#six-card-payout-table tbody tr:last-of-type {
+    border-bottom: 5px solid #3FA796;
+}
+
+#ante-bonus-table {
+    top: 653px;
+    left: 450px;
+}
+
+#ante-bonus-table thead tr {
+    background-color: #FEC260;
+    color: #150f1b;
+}
+
+#ante-bonus-table tbody tr:nth-of-type(odd) {
+    background-color: #ffdda6;
+}
+
+#ante-bonus-table tbody tr:last-of-type {
+    border-bottom: 5px solid #FEC260;
+}
+
+#title {
+    width: 250px;
+    top: 44px;
+    left: 1104px;
+    top: 50px;
+    left: 245px;
+    opacity: 50%;
+}
+
+#logo {
+    width: 325px;
+    top: 55px;
+    left: 205px;
+    top: 74px;
+    left: 1070px;
+    opacity: 50%;
+}
+
+.chip-stack img {
+    width: 50px;
+}
+
+#ante-bet-chipstack {
+    visibility: hidden;
+    top: 720px;
+    left: 745px;
+}
+
+#play-bet-chipstack {
+    visibility: hidden;
+    top: 585px;
+    left: 725px;
+}
+
+#sixcb-bet-chipstack {
+    visibility: hidden;
+    top: 585px;
+    left: 500px;
+}
+
+#pp-bet-chipstack {
+    visibility: hidden;
+    top: 585px;
+    left: 975px;
+}
+
+.chip-tally {
+    visibility: hidden;
+    font-size: 20pt;
+    padding-right: 5px;
+    font-family: "Arvo", serif;
+    color: #FAF5E4;
+    border-radius: 15px;
+    z-index: 1;
+    background-color: #0000006c;
+}
+
+#ante-chiptally {
+    top: 730px;
+    left: 800px;
+    text-shadow: 2px 2px #000000;
+}
+
+#play-chiptally {
+    top: 590px;
+    left: 780px;
+    text-shadow: 2px 2px #000000;
+}
+
+#sixcb-chiptally {
+    top: 595px;
+    left: 555px;
+    text-shadow: 2px 2px #000000;
+
+}
+
+#pp-chiptally {
+    top: 595px;
+    left: 1030px;
+    text-shadow: 2px 2px #000000;
+}
+
+#wager-slider-title {
+    top: 840px;
+    left: 635px;
+    font-weight: 400;
+    text-align: center;
+    font-family: "Merriweather", serif;
+    color: #FAF5E4;
+    font-style: italic;
+}
+
+#wager-amount-slider {
+    top: 910px;
+    left: 500px;
+    display: flex;
+    position: relative;
+    width: 50%;
+    height: 50px;
+}
+
+#wager-amount-slider::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: calc(100% * (4 / 5));
+    top: 50%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    background: #000;
+}
+
+#wager-amount-slider label {
+    position: relative;
+    width: 20%;
+}
+
+#wager-amount-slider label::before {
+    content: attr(data-wager-amount);
+    position: absolute;
+    left: 50%;
+    padding-top: 10px;
+    transform: translate(-115px, 40px);
+    font-size: 16px;
+    font-family: 'Arvo', serif;
+}
+
+#wager-amount-slider label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translate(-38px, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid #000;
+    background: #fff;
+    border-radius: 50%;
+}
+
+#wager-amount-slider label:hover::after {top: -65%; left: 34%; transform: translate(-93px, 40px) scale(1.25);}
+#wager-amount-slider input {display: none;}
+#wager-amount-slider input:checked:nth-child(1)~#wager-amount-tick {left: -2.6%;}
+#wager-amount-slider input:checked:nth-child(3)~#wager-amount-tick {left: 17.4%;}
+#wager-amount-slider input:checked:nth-child(5)~#wager-amount-tick {left: 37.4%;}
+#wager-amount-slider input:checked:nth-child(7)~#wager-amount-tick {left: 57.4%;}
+#wager-amount-slider input:checked:nth-child(9)~#wager-amount-tick {left: 77.4%;}
+
+#wager-amount-tick {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    transition: all 0.15s ease-in-out;
+    transform: translate(-50%, -50%);
+    border: 2px solid #fff;
+}
+
+.ui-tally {
+    font-family: "Merriweather", serif;
+    font-size: 16pt;
+    color: #FAF5E4;
+    max-height: 30px;
+}
+
+#current-player-balance-display {
+    top: 990px;
+    left: 620px;
+}
+
+#total-current-wager-display {
+    top: 1015px;
+    left: 520px;
+}
+
+#total-wager-display {
+    color: #3FA796;
+    font-family: "Arvo", serif;
+    font-size: 20pt;
+}
+
+#player-balance-display {
+    color: #a2ffa2;
+    font-family: "Arvo", serif;
+    font-size: 20pt;
+}
+
+#player-card-display {
+    top: 285px;
+    left: 606px;
+    height: 125px;
+    width: 500px;
+    position: absolute;
+    visibility: hidden;
+}
+
+#dealer-card-display {
+    top: 32px;
+    left: 606px;
+    height: 125px;
+    width: 500px;
+    position: absolute;
+    visibility: hidden;
+}
+
+#ante-winnings-display {
+    top: 1045px;
+    left: 703px;
+}
+
+#play-winnings-display {
+    top: 1070px;
+    left: 708px;
+}
+
+#ante-bonus-winnings-display {
+    top: 1095px;
+    left: 623px;
+}
+
+#pair-plus-bonus-winnings-display {
+    top: 1120px;
+    left: 570px;
+}
+
+#six-card-bonus-winnings-display {
+    top: 1147px;
+    left: 460px;
+}
+
+#total-winnings-display {
+    top: 1175px;
+    left: 567px;
+}
+
+#anteWinnings {
+    color: #ffdda6;
+    font-family: "Arvo", serif;
+    font-size: 16pt;
+}
+
+#playWinnings {
+    color: #ffdda6;
+    font-family: "Arvo", serif;
+    font-size: 16pt;
+}
+
+#anteBonusWinnings {
+    color: #ffdda6;
+    font-family: "Arvo", serif;
+    font-size: 16pt;
+}
+
+#pairPlusBonusWinnings {
+    color: #f1c5c5;
+    font-family: "Arvo", serif;
+    font-size: 16pt;
+}
+
+#sixCardBonusWinnings {
+    color: #a3f6e8;
+    font-family: "Arvo", serif;
+    font-size: 16pt;
+}
+
+#totalWinnings {
+    color: #3FA796;
+    font-family: "Arvo", serif;
+    font-size: 16pt;
+}
+
+.card {
+    width: 120px;
+    margin: 5px;
+}
+
+#infoBox {
+    top: 195px;
+    left: 525px;
+    width: 543px;
+    text-align: center;
+    padding-top: 30px;
+    height: 85px;
+    font-size: 36px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    color: #ffd798;
+    border-width: 2px;
+    border-style: solid;
+    /* border-color: #000000; */
+    border-color: transparent;
+}
+
+.table-hand-name {
+    text-align: left;
+}
+
+.highlight {
+    font-weight: 900;
+    font-size: 12pt;
+    padding: 0px 0px;
+}
