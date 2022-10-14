@@ -130,13 +130,13 @@ p {
   }
 
   #VOTSW-button {
-    top: 200px;
+    top: 260px;
     transform: rotate(-3deg);
     font-size: 16pt;
   }
 
   #resume-button {
-    top: 300px;
+    top: 350px;
     transform: rotate(1deg);
     background-color: #439688;
     color: #CFD2CF;
@@ -185,7 +185,7 @@ p {
   }
 
   #apple-button {
-    top: 485px;
+    top: 525px;
     left: 1010px;
     width: 75px;
     height: 65px;
@@ -213,7 +213,7 @@ p {
   }
 
   #spotify-button {
-    top: 485px;
+    top: 525px;
     left: 1120px;
     width: 75px;
     height: 65px;
