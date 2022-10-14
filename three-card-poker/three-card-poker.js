@@ -10,6 +10,11 @@ let deck = [];
 let tempAnteWager = 0;
 let tempPairPlusWager = 0;
 let tempSixCardBonusWager = 0;
+let anteWinnings = 0;
+let playWinnings = 0;
+let anteBonusWinnings = 0;
+let pairPlusWinnings = 0;
+let sixCardBonusWinnings = 0;
 
 class Counter {
     constructor(array) {
@@ -56,6 +61,14 @@ function placeWager(wagerAmount, wagerType) {
         $("#pp-chiptally").css("visibility", "hidden");
         $("#sixcb-bet-chipstack").css("visibility", "hidden");
         $("#sixcb-chiptally").css("visibility", "hidden");
+        $("#play-bet-winstack").css("visibility", "hidden");
+        $("#play-wintally").css("visibility", "hidden");
+        $("#ante-bet-winstack").css("visibility", "hidden");
+        $("#ante-wintally").css("visibility", "hidden");
+        $("#pp-bet-winstack").css("visibility", "hidden");
+        $("#pp-wintally").css("visibility", "hidden");
+        $("#sixcb-bet-winstack").css("visibility", "hidden");
+        $("#sixcb-wintally").css("visibility", "hidden");
         $("player-card-display").css("visibility", "hidden");
         $("dealer-card-display").css("visibility", "hidden");
         _hideHands();
@@ -503,11 +516,6 @@ function _removeHighlights() {
 function payout() {
     const handType = _determineHandType(playerHand);
     const sixCardHandType = _determineFiveCardHandType(playerHand, dealerHand);
-    let anteWinnings = 0;
-    let playWinnings = 0;
-    let anteBonusWinnings = 0;
-    let pairPlusWinnings = 0;
-    let sixCardBonusWinnings = 0;
     let totalWinnings = 0;
     const ANTE_BONUS_MULTIPLIER = {
         "straightFlush": 5,
@@ -563,6 +571,32 @@ function payout() {
     $("#pairPlusBonusWinnings").html(`$${pairPlusWinnings}`);
     $("#sixCardBonusWinnings").html(`$${sixCardBonusWinnings}`);
     $("#totalWinnings").html(`$${totalWinnings}`);
+    if (anteWinnings > 0) {
+        setTimeout(_showWinChips("ante"), 1500);
+    }
+    if (playWinnings > 0) {
+        setTimeout(_showWinChips("play"), 2000);
+    }
+    if (pairPlusWinnings > 0) {
+        setTimeout(_showWinChips("pp"), 2500);
+    }
+    if (sixCardBonusWinnings > 0) {
+        setTimeout(_showWinChips("sixcb"), 3000);
+    } 
+}
+
+function _showWinChips(bet) {
+    const BETS_AND_WINS = {
+        "ante": anteWinnings + anteBonusWinnings,
+        "play": playWinnings,
+        "pp": pairPlusWinnings,
+        "sixcb": sixCardBonusWinnings,
+    }
+    $(`#${bet}-bet-winstack`).css("visibility", "visible");
+    $(`#${bet}-wintally`).css("visibility", "visible");
+    $(`#${bet}-wintally`).html(`$${BETS_AND_WINS[bet]}`);
+    $(`#${bet}-bet-chipstack`).css("visibility", "hidden");
+    $(`#${bet}-chiptally`).css("visibility", "hidden");
 }
 
 function playGame() {
@@ -572,7 +606,7 @@ function playGame() {
     hasThePlayerRebet = false;
     placeWager(WAGER_COUNTERS.anteWager, "PLAY");
     $("#player-balance").html(`$${playerBalance}`);
-    dealerHand = ["7C", "TH", "8C"];
+    dealerHand = ["7C", "KH", "8C"];
     // dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
     let infoBoxMessage;

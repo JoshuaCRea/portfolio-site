@@ -341,10 +341,22 @@ body {
     left: 745px;
 }
 
+#ante-bet-winstack {
+    visibility: hidden;
+    top: 630px;
+    left: 815px;
+}
+
 #play-bet-chipstack {
     visibility: hidden;
     top: 585px;
     left: 725px;
+}
+
+#play-bet-winstack {
+    visibility: hidden;
+    top: 500px;
+    left: 815px;
 }
 
 #sixcb-bet-chipstack {
@@ -353,10 +365,22 @@ body {
     left: 500px;
 }
 
+#sixcb-bet-winstack {
+    visibility: hidden;
+    top: 470px;
+    left: 580px;
+}
+
 #pp-bet-chipstack {
     visibility: hidden;
     top: 585px;
     left: 975px;
+}
+
+#pp-bet-winstack {
+    visibility: hidden;
+    top: 470px;
+    left: 1025px;
 }
 
 .chip-tally {
@@ -376,23 +400,58 @@ body {
     text-shadow: 2px 2px #000000;
 }
 
+#ante-wintally {
+    visibility: hidden;
+    top: 640px;
+    left: 870px;
+    text-shadow: 2px 2px #000000;
+    text-align: right;
+    align-items: right;
+}
+
 #play-chiptally {
     top: 590px;
     left: 780px;
     text-shadow: 2px 2px #000000;
 }
 
+#play-wintally {
+    visibility: hidden;
+    top: 510px;
+    left: 870px;
+    text-shadow: 2px 2px #000000;
+    text-align: right;
+    align-items: right;
+}
+
 #sixcb-chiptally {
     top: 595px;
     left: 555px;
     text-shadow: 2px 2px #000000;
-
 }
 
 #pp-chiptally {
     top: 595px;
     left: 1030px;
     text-shadow: 2px 2px #000000;
+}
+
+#pp-wintally {
+    visibility: hidden;
+    top: 480px;
+    left: 1080px;
+    text-shadow: 2px 2px #000000;
+    text-align: right;
+    align-items: right;
+}
+
+#sixcb-wintally {
+    visibility: hidden;
+    top: 480px;
+    left: 635px;
+    text-shadow: 2px 2px #000000;
+    text-align: right;
+    align-items: right;
 }
 
 #wager-slider-title {
