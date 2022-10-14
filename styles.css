@@ -1,0 +1,414 @@
+body {
+    background-color: #D7C0AE;
+    align-items: center;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.interactive-container {
+    height: 800px;
+    width: 1400px;
+    position: relative;
+    border: 1px solid;
+    border-color: black;
+    border-color: transparent;
+}
+
+.interactive-container>* {
+    position: absolute;
+    border: 1px solid; 
+    border-color: black;
+    border-style: solid;
+    border-color: transparent;
+}
+h4 {
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 20pt;
+}
+a { text-decoration: none; }
+
+.container {
+    width: 1400px;
+}
+
+#social-buttons-wrapper {
+    position: sticky;
+    left: 875px;
+    transform: translate(0, 25px);
+    padding: 18px 15px 0px 15px;
+    width: 475px;
+    height: 100px;
+    z-index: 2;
+    background-image: url(https://ucarecdn.com/caa501b1-5a6c-441a-95b2-6351df521280/scribbleforsocials.png);
+    background-size: 100% 100%;
+}
+
+#social-links {
+    position: absolute;
+    top: 25px;
+    left: 80px;
+}
+
+#email-icon {
+    transform: translate(75px, 75px) scale(.45)
+}
+
+#name {
+    left: 50px;
+    width: 700px;
+    font-size: 100pt;
+    font-family: 'Seaweed Script', cursive;
+    color: #353535;
+    z-index: 2;
+}
+
+h2 {
+    z-index: 2;
+    font-size: 36pt;
+    font-family: 'Nanum Brush Script', cursive;
+    color: #353535;
+}
+
+p {
+    top: 225px;
+    left: 325px;
+    font-size: 18pt;
+    font-family: 'Nanum Pen Script', cursive;
+    color: #353535;
+}
+
+#subheading {
+    top: 125px;
+    left: 300px;
+}
+
+#period {
+    top: 115px;
+    left: 848px;
+}
+
+#name-back {
+    position: absolute;
+    display: absolute;
+    width: 800px;
+    top: -40px;
+    max-height: 250px;
+}
+
+.button {
+    top: 100px;
+    left: 980px;
+    background-color: #FA9494;
+    border: 0 solid #E5E7EB;
+    box-sizing: border-box;
+    color: #000000;
+    display: flex;
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 20pt;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1.75rem;
+    padding: .75rem 1.65rem;
+    position: relative;
+    text-align: center;
+    /* text-decoration: none #000000 solid;
+    text-decoration-thickness: auto; */
+    width: 250px;
+    max-width: 460px;
+    position: relative;
+    cursor: pointer;
+    transform: rotate(-2deg);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    z-index: 1;
+  }
+
+  #ChuckALuck-button {
+    top: 180px;
+    transform: rotate(2deg)
+  }
+
+  #VOTSW-button {
+    top: 200px;
+    transform: rotate(-3deg);
+    font-size: 16pt;
+  }
+
+  #resume-button {
+    top: 300px;
+    transform: rotate(1deg);
+    background-color: #439688;
+    color: #CFD2CF;
+  }
+
+  #listen-music {
+    top: 560px;
+    left: 1005px;
+    font-size: 24pt;
+  }
+
+  #observe-websites {
+    top: 125px;
+    left: 1000px;
+    font-size: 24pt;
+  }
+
+  #purple-scribble {
+    top: 450px;
+    left: 535px;
+    height: 200px;
+    width: 400px;
+    z-index: 0;
+    opacity: 50%;
+  }
+
+  #htmlcsslogo {
+    top: 450px;
+    left: 650px;
+    width: 150px;
+    z-index: 1;
+  }
+
+  #javascriptlogo {
+    top: 465px;
+    left: 560px;
+    width: 70px;
+    z-index: 1;
+  }
+
+  #pythonlogo {
+    top: 455px;
+    left: 815px;
+    width: 85px;
+    z-index: 1;
+  }
+
+  #apple-button {
+    top: 485px;
+    left: 1010px;
+    width: 75px;
+    height: 65px;
+    background-color: #EB1D36;
+  }
+
+  #apple-logo {
+    position: absolute;
+    top: 6px;
+    left: 17px;
+    width: 40px;
+    transform: rotate(-3deg);
+    z-index: 2;
+    color: #CFD2CF;
+  }
+
+  #spotify-logo {
+    position: absolute;
+    top: 8px;
+    left: 17px;
+    width: 45px;
+    transform: rotate(3deg);
+    z-index: 2;
+    color: #CFD2CF;
+  }
+
+  #spotify-button {
+    top: 485px;
+    left: 1120px;
+    width: 75px;
+    height: 65px;
+    transform: rotate(2deg);
+    background-color: #B5B35C;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg);
+  }
+
+  #head {
+    top: -150px;
+    left: -475px;
+    display: absolute;
+    position: absolute;
+    box-shadow: ;
+    width: 1200px;
+    opacity: 100%;
+    transform: rotate(-5deg);
+    z-index: 1;
+  }
+  
+  .button:focus {
+    outline: 0;
+  }
+  
+  .button:after {
+    content: '';
+    position: absolute;
+    border: 1px solid #000000;
+    bottom: 4px;
+    left: 4px;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+  }
+  
+  .button:hover:after {
+    bottom: 2px;
+    left: 2px;
+  }
+  
+  @media (min-width: 768px) {
+    .button {
+      padding: .75rem 2rem;
+    }
+  }
+
+#button-back {
+    top: 150px;
+    left: 900px;
+    transform: rotate(75deg);
+    width: 400px;
+    height: 400px;
+    opacity: 75%;
+}
+
+#separator {
+    display: absolute;
+    position: absolute;
+    top: 560px;
+    left: 1035px;
+    border-style: dotted none none;
+    border-color: #967E76;
+    border-width: 15px;
+    width: 10%;
+    z-index: 2;
+}
+
+table {
+    align-items: center;
+}
+
+.btn {
+    top: 400px;
+    left: 400px;
+    width: 100px;
+    height: 25px;
+    background: #7cc0ed;
+    background-image: -webkit-linear-gradient(top, #7cc0ed, #5d9fc2);
+    background-image: -moz-linear-gradient(top, #7cc0ed, #5d9fc2);
+    background-image: -ms-linear-gradient(top, #7cc0ed, #5d9fc2);
+    background-image: -o-linear-gradient(top, #7cc0ed, #5d9fc2);
+    background-image: linear-gradient(to bottom, #7cc0ed, #5d9fc2);
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #666666;
+    font-family: 'Playfair Display', serif;
+    color: #F5EDDC;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border: solid #a3dcff 4px;
+}
+
+.btn:hover {
+    background: #a3dcff;
+    background-image: -webkit-linear-gradient(top, #a3dcff, #9ac6e3);
+    background-image: -moz-linear-gradient(top, #a3dcff, #9ac6e3);
+    background-image: -ms-linear-gradient(top, #a3dcff, #9ac6e3);
+    background-image: -o-linear-gradient(top, #a3dcff, #9ac6e3);
+    background-image: linear-gradient(to bottom, #a3dcff, #9ac6e3);
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 800px;
+    height: 600px;
+    transition: all 0.4s ease-out;
+  }
+  .wrapper__links {
+    display: flex;
+    align-items: center;
+    width: 70%;
+  }
+  
+  .social-link--linkedin {
+    color: #2d76b0;
+  }
+  .social-link--github {
+    color: #000;
+  }
+  .social-link--instagram {
+    color: #9a2970;
+  }
+  .social-link--email {
+    color: #439688;
+  }
+  .social-link .social-svg {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+  .social-link .social-svg .social-group__icon {
+    fill: #F5EDDC;
+    transition: all 0.2s;
+  }
+  .social-link .social-svg .social-group__inner-circle {
+    fill: transparent;
+    transition: all 0.2s;
+  }
+  .social-link .social-svg .social-group__outline {
+    stroke: #F5EDDC;
+    transform-origin: 50% 50%;
+    transition: all 0.2s;
+  }
+  .social-link .social-svg:hover .social-group__icon, .social-link .social-svg:active .social-group__icon, .social-link .social-svg:focus .social-group__icon {
+    fill: #F5EDDC;
+    transition: all 0.45s;
+  }
+  .social-link .social-svg:hover .social-group__inner-circle, .social-link .social-svg:active .social-group__inner-circle, .social-link .social-svg:focus .social-group__inner-circle {
+    fill: currentColor;
+    transition: all 0.45s;
+  }
+  .social-link .social-svg:hover .social-group__inner-circle--instagram, .social-link .social-svg:active .social-group__inner-circle--instagram, .social-link .social-svg:focus .social-group__inner-circle--instagram {
+    fill: url(#simpleInsta) !important;
+  }
+  .social-link .social-svg:hover .social-group__outline, .social-link .social-svg:active .social-group__outline, .social-link .social-svg:focus .social-group__outline .social-link--linkedin {
+    stroke: currentColor;
+    transform: scale(1.1);
+    transition: all 0.45s;
+  }
+
+  .social-link .social-svg:focus .social-group__outline .social-link--github {
+    stroke: #F5EDDC;
+    transform: scale(1.1);
+    transition: all 0.45s;
+  }
+
+
+/* font-family: 'Cabin Sketch', cursive;
+font-family: 'Londrina Sketch', cursive;
+font-family: 'Playfair Display', serif; 
+font-family: 'Gochi Hand', cursive;
+font-family: 'Nanum Brush Script', cursive;
+font-family: 'Nanum Pen Script', cursive;
+font-family: 'Redacted Script', cursive;
+font-family: 'Seaweed Script', cursive;
+*/
+
+/* #F5EDDC
+#B7C4CF
+#CFD2CF
+#FA9494
+#EB1D36
+#D7C0AE
+#967E76 
+#B5B35C
+#439688
+#353535
+#C98474
+#874C62
+#F2D388
+*/
+
+<!-- HTML !-->
+<button class="button-53" role="button">Button 53</button>
+
+/* CSS */
+
+
+<img src="https://www.kindpng.com/picc/m/62-626046_transparent-graffiti-clipart-scribble-png-png-download.png" alt="Transparent Graffiti Clipart - Scribble Png, Png Download@kindpng.com">
