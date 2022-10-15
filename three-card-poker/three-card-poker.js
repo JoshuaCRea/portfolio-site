@@ -632,8 +632,7 @@ function fold() {
     if (!isRoundActive) {
         return;
     }
-    dealerHand = ["7C", "KH", "8C"];
-    // dealerHand = deck.slice(3, 6);
+    dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
     $("#anteWager").html(WAGER_COUNTERS.anteWager);
     $("#pairPlusWager").html(WAGER_COUNTERS.pairPlusWager);
