@@ -574,8 +574,10 @@ function payout() {
                 playWinnings = WAGER_COUNTERS.playWager * 2;
             }
         } else {
-            anteWinnings = WAGER_COUNTERS.anteWager;
-    }}
+            anteWinnings = WAGER_COUNTERS.anteWager * 2;
+            playWinnings = WAGER_COUNTERS.playWager;
+        }
+    }
     totalWinnings = anteWinnings + playWinnings + pairPlusWinnings + anteBonusWinnings + sixCardBonusWinnings;
     playerBalance += totalWinnings;
     $("#player-balance-display").html(`$${playerBalance}`);
@@ -586,17 +588,25 @@ function payout() {
     $("#sixCardBonusWinnings").html(`$${sixCardBonusWinnings - WAGER_COUNTERS.sixCardBonusWager}`);
     $("#totalWinnings").html(`$${totalWinnings}`);
     if (anteWinnings > 0) {
-        setTimeout(_showWinChips("ante"), 1500);
+        if (_doesDealerQualify(dealerHand)) {
+            setTimeout(_showWinChips("ante"), 1500);
+        } else {
+            $("#ante-bet-winstack").css("visibility", "visible");
+            $("#ante-wintally").css("visibility", "visible");
+            $("#ante-wintally").html(`$${anteWinnings - WAGER_COUNTERS.anteWager}`);
+        }
     }
     if (playWinnings > 0) {
-        setTimeout(_showWinChips("play"), 2000);
+        if (_doesDealerQualify(dealerHand)) {
+            setTimeout(_showWinChips("play"), 2000);
+        }
     }
     if (pairPlusWinnings > 0) {
         setTimeout(_showWinChips("pp"), 2500);
     }
     if (sixCardBonusWinnings > 0) {
         setTimeout(_showWinChips("sixcb"), 3000);
-    } 
+    }
 }
 
 function _showWinChips(bet) {
@@ -663,6 +673,10 @@ function fold() {
     $("#pairPlusWager").html(WAGER_COUNTERS.pairPlusWager);
     $("#sixCardBonusWager").html(WAGER_COUNTERS.sixCardBonusWager);
     $("#infoBox").html("You folded.");
+    $("#ante-bet-chipstack").css("visibility", "hidden");
+    $("#ante-chiptally").css("visibility", "hidden");
+    $("#pp-bet-chipstack").css("visibility", "hidden");
+    $("#pp-chiptally").css("visibility", "hidden");
     payout();
     _reset();
 }
