@@ -6,6 +6,7 @@ let playerBalance = initialPlayerBalance;
 let totalWagerAmount = 0;
 let isRoundActive = false;
 let hasThePlayerRebet = false;
+let playerFolded = false;
 let deck = [];
 let tempAnteWager = 0;
 let tempPairPlusWager = 0;
@@ -538,30 +539,38 @@ function payout() {
         "fiveCardStraight": 10,
         "fiveCardThreeOfAKind": 5,
     };
-    if (handType) {
-        if (ANTE_BONUS_MULTIPLIER[handType]) {
-            _highlightTables(handType, "ante");
-            anteBonusWinnings = WAGER_COUNTERS.anteWager * ANTE_BONUS_MULTIPLIER[handType];
-        }
-        if (WAGER_COUNTERS.pairPlusWager > 0) {
-            _highlightTables(handType, "pairPlus");
-            pairPlusWinnings = WAGER_COUNTERS.pairPlusWager + WAGER_COUNTERS.pairPlusWager * PAIR_PLUS_BONUS_MULTIPLIER[handType];
-        }
-    }
-    if (sixCardHandType) {
-        if (WAGER_COUNTERS.sixCardBonusWager > 0) {
-            _highlightTables(sixCardHandType, "sixCB");
-            sixCardBonusWinnings = WAGER_COUNTERS.sixCardBonusWager + WAGER_COUNTERS.sixCardBonusWager * SIX_CARD_BONUS_MULTIPLIER[sixCardHandType];
-        }
-    }
-    if (_doesDealerQualify(dealerHand)) {
-        if (_didPlayerHaveBetterHand(playerHand, dealerHand)) {
-            anteWinnings = WAGER_COUNTERS.anteWager * 2;
-            playWinnings = WAGER_COUNTERS.playWager * 2;
+    if (playerFolded) {
+        if (sixCardHandType) {
+            if (WAGER_COUNTERS.sixCardBonusWager > 0) {
+                _highlightTables(sixCardHandType, "sixCB");
+                sixCardBonusWinnings = WAGER_COUNTERS.sixCardBonusWager + WAGER_COUNTERS.sixCardBonusWager * SIX_CARD_BONUS_MULTIPLIER[sixCardHandType];
+            }
         }
     } else {
-        anteWinnings = WAGER_COUNTERS.anteWager;
-    }
+        if (handType) {
+            if (ANTE_BONUS_MULTIPLIER[handType]) {
+                _highlightTables(handType, "ante");
+                anteBonusWinnings = WAGER_COUNTERS.anteWager * ANTE_BONUS_MULTIPLIER[handType];
+            }
+            if (WAGER_COUNTERS.pairPlusWager > 0) {
+                _highlightTables(handType, "pairPlus");
+                pairPlusWinnings = WAGER_COUNTERS.pairPlusWager + WAGER_COUNTERS.pairPlusWager * PAIR_PLUS_BONUS_MULTIPLIER[handType];
+            }
+        }
+        if (sixCardHandType) {
+            if (WAGER_COUNTERS.sixCardBonusWager > 0) {
+                _highlightTables(sixCardHandType, "sixCB");
+                sixCardBonusWinnings = WAGER_COUNTERS.sixCardBonusWager + WAGER_COUNTERS.sixCardBonusWager * SIX_CARD_BONUS_MULTIPLIER[sixCardHandType];
+            }
+        }
+        if (_doesDealerQualify(dealerHand)) {
+            if (_didPlayerHaveBetterHand(playerHand, dealerHand)) {
+                anteWinnings = WAGER_COUNTERS.anteWager * 2;
+                playWinnings = WAGER_COUNTERS.playWager * 2;
+            }
+        } else {
+            anteWinnings = WAGER_COUNTERS.anteWager;
+    }}
     totalWinnings = anteWinnings + playWinnings + pairPlusWinnings + anteBonusWinnings + sixCardBonusWinnings;
     playerBalance += totalWinnings;
     $("#player-balance-display").html(`$${playerBalance}`);
@@ -604,6 +613,7 @@ function playGame() {
         return;
     }
     hasThePlayerRebet = false;
+    playerFolded = false;
     placeWager(WAGER_COUNTERS.anteWager, "PLAY");
     $("#player-balance").html(`$${playerBalance}`);
     dealerHand = ["7C", "KH", "8C"];
@@ -632,6 +642,7 @@ function fold() {
     if (!isRoundActive) {
         return;
     }
+    playerFolded = true;
     dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
     $("#anteWager").html(WAGER_COUNTERS.anteWager);
