@@ -9,6 +9,7 @@ let hasThePlayerRebet = false;
 let playerFolded = false;
 let deck = [];
 let tempAnteWager = 0;
+let tempPlayWager = 0;
 let tempPairPlusWager = 0;
 let tempSixCardBonusWager = 0;
 let anteWinnings = 0;
@@ -137,7 +138,7 @@ function rebet() {
     _removeHighlights();
     _hideHands();
     _hideWinChips();
-    const infoBoxMessage = "";
+    const infoBoxMessage = 'Finalize bets and click "Deal."';
     $("#infoBox").html(infoBoxMessage);
     $("#player-balance-display").html(`$${playerBalance}`);
     $("#total-wager-display").html(`$${totalWagerAmount}`);
@@ -589,7 +590,9 @@ function payout() {
     $("#totalWinnings").html(`$${totalWinnings}`);
     if (anteWinnings > 0) {
         if (_doesDealerQualify(dealerHand)) {
-            setTimeout(_showWinChips("ante"), 1500);
+            setTimeout(() => {
+                _showWinChips("ante")
+            }, 750);
         } else {
             $("#ante-bet-winstack").css("visibility", "visible");
             $("#ante-wintally").css("visibility", "visible");
@@ -598,23 +601,29 @@ function payout() {
     }
     if (playWinnings > 0) {
         if (_doesDealerQualify(dealerHand)) {
-            setTimeout(_showWinChips("play"), 2000);
+            setTimeout(() => {
+                _showWinChips("play")
+            }, 1000)
         }
     }
     if (pairPlusWinnings > 0) {
-        setTimeout(_showWinChips("pp"), 2500);
+        setTimeout(() => {
+            _showWinChips("pp")
+        }, 1250);
     }
     if (sixCardBonusWinnings > 0) {
-        setTimeout(_showWinChips("sixcb"), 3000);
+        setTimeout(() => {
+            _showWinChips("sixcb")
+        }, 1500);
     }
 }
 
 function _showWinChips(bet) {
     const BETS_AND_WINS = {
-        "ante": (anteWinnings + anteBonusWinnings) - WAGER_COUNTERS.anteWager,
-        "play": playWinnings - WAGER_COUNTERS.playWager,
-        "pp": pairPlusWinnings - WAGER_COUNTERS.pairPlusWager,
-        "sixcb": sixCardBonusWinnings - WAGER_COUNTERS.sixCardBonusWager,
+        "ante": (anteWinnings + anteBonusWinnings) - tempAnteWager,
+        "play": playWinnings - tempPlayWager,
+        "pp": pairPlusWinnings - tempPairPlusWager,
+        "sixcb": sixCardBonusWinnings - tempSixCardBonusWager,
     }
     $(`#${bet}-bet-winstack`).css("visibility", "visible");
     $(`#${bet}-wintally`).css("visibility", "visible");
@@ -648,6 +657,7 @@ function playGame() {
     hasThePlayerRebet = false;
     playerFolded = false;
     placeWager(WAGER_COUNTERS.anteWager, "PLAY");
+    tempPlayWager = WAGER_COUNTERS.playWager;
     $("#player-balance").html(`$${playerBalance}`);
     dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
