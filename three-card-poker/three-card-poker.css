@@ -8,6 +8,7 @@ body {
     position: relative;
     border: 1px solid;
     border-color: black;
+    border-color: transparent;
 }
 
 .interactive-container>* {

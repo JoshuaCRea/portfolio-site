@@ -586,7 +586,7 @@ function payout() {
     $("#playWinnings").html(`$${playWinnings}`);
     $("#anteBonusWinnings").html(`$${anteBonusWinnings}`);
     $("#pairPlusBonusWinnings").html(`$${pairPlusWinnings}`);
-    $("#sixCardBonusWinnings").html(`$${sixCardBonusWinnings - WAGER_COUNTERS.sixCardBonusWager}`);
+    $("#sixCardBonusWinnings").html(`$${sixCardBonusWinnings}`);
     $("#totalWinnings").html(`$${totalWinnings}`);
     if (anteWinnings > 0) {
         if (_doesDealerQualify(dealerHand)) {
