@@ -440,16 +440,11 @@ function _didPlayerHaveBetterHand(pHand, dHand) {
         "straight": 3,
         "flush": 2,
         "pair": 1,
-        undefined: 0,
     }
-    let playerHandRank = hierarchy[_determineHandType(pHand)];
-    let dealerHandRank = hierarchy[_determineHandType(dHand)];
-    if (playerHandRank > dealerHandRank) {
-        return true;
-    }
-    if (dealerHandRank > playerHandRank) {
-        return false;
-    }
+    const playerHandRank = hierarchy[_determineHandType(pHand)] ?? 0;
+    const dealerHandRank = hierarchy[_determineHandType(dHand)] ?? 0;
+    if (playerHandRank > dealerHandRank) return true;
+    if (dealerHandRank > playerHandRank) return false;
     if (_isTheHandAStraight(pHand) || _isTheHandAStraightFlush(pHand)) {
         if (!_isTheHandAWheelStraight(pHand) && _isTheHandAWheelStraight(dHand)) {
             return true;
@@ -459,14 +454,11 @@ function _didPlayerHaveBetterHand(pHand, dHand) {
         }
     }
     if (_isTheHandAPair(pHand)) {
-        const playerPair = CARD_RANKS[Object.entries(new Counter(pHand.map(card => card.charAt(0)))).filter(rank => rank[1] === 2).toString(10)[0]];
-        const dealerPair = CARD_RANKS[Object.entries(new Counter(dHand.map(card => card.charAt(0)))).filter(rank => rank[1] === 2).toString(10)[0]];
-        if (playerPair > dealerPair) {
-            return true;
-        }
-        if (playerPair < dealerPair) {
-            return false;
-        }
+        const getPairRank = (hand) => CARD_RANKS[Object.entries(new Counter(hand.map(card => card.charAt(0)))).filter(rank => rank[1] === 2).toString(10)[0]];
+        const playerPair = getPairRank(pHand);
+        const dealerPair = getPairRank(dHand);
+        if (playerPair > dealerPair) return true;
+        if (playerPair < dealerPair) return false;
     }
     return _didPlayerWinHighCardTieBreaker(pHand, dHand);
 }
