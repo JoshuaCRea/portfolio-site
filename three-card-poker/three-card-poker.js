@@ -138,6 +138,7 @@ function rebet() {
     _removeHighlights();
     _hideHands();
     _hideWinChips();
+    _showWagerChips();
     const infoBoxMessage = 'Finalize bets and click "Deal."';
     $("#infoBox").html(infoBoxMessage);
     $("#player-balance-display").html(`$${playerBalance}`);
@@ -596,10 +597,28 @@ function _hideWagerChips() {
         "pp": pairPlusWinnings,
         "sixcb": sixCardBonusWinnings,
     };
+    let delay = 500;
     Object.entries(BETS_AND_WINS).forEach(([key, value]) => {
+        delay += 250;
+        setTimeout(() => {
         if (value === 0) {
             $(`#${key}-bet-chipstack`).css("visibility", "hidden");
             $(`#${key}-chiptally`).css("visibility", "hidden");
+        }}, delay);
+    });
+}
+
+function _showWagerChips() {
+    const BETS_AND_WINS = {
+        "ante": WAGER_COUNTERS.anteWager,
+        "play": WAGER_COUNTERS.playWager,
+        "pp": WAGER_COUNTERS.pairPlusWager,
+        "sixcb": WAGER_COUNTERS.sixCardBonusWager,
+    };
+    Object.entries(BETS_AND_WINS).forEach(([key, value]) => {
+        if (value > 0) {
+            $(`#${key}-bet-chipstack`).css("visibility", "visible");
+            $(`#${key}-chiptally`).css("visibility", "visible");
         }
     });
 }
