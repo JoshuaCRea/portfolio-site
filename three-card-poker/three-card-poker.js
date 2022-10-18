@@ -49,39 +49,42 @@ const WAGER_COUNTERS = {
 
 function _getSelectedWagerAmount() {
     const radioButtons = document.getElementsByName("wager-amount");
-    const wagerValue = parseInt(Array.from(radioButtons).find((x) => x.checked).value, 10);
+    const wagerValue = parseInt(Array.from(radioButtons).find(x => x.checked).value, 10);
     return wagerValue;
 }
 
 function placeWager(wagerAmount, wagerType) {
     if (WAGER_COUNTERS.anteWager === 0 && WAGER_COUNTERS.pairPlusWager === 0 && WAGER_COUNTERS.sixCardBonusWager === 0) {
-        $("#play-bet-chipstack").css("visibility", "hidden");
-        $("#play-chiptally").css("visibility", "hidden");
-        $("#ante-bet-chipstack").css("visibility", "hidden");
-        $("#ante-chiptally").css("visibility", "hidden");
-        $("#pp-bet-chipstack").css("visibility", "hidden");
-        $("#pp-chiptally").css("visibility", "hidden");
-        $("#sixcb-bet-chipstack").css("visibility", "hidden");
-        $("#sixcb-chiptally").css("visibility", "hidden");
-        $("#play-bet-winstack").css("visibility", "hidden");
-        $("#play-wintally").css("visibility", "hidden");
-        $("#ante-bet-winstack").css("visibility", "hidden");
-        $("#ante-wintally").css("visibility", "hidden");
-        $("#pp-bet-winstack").css("visibility", "hidden");
-        $("#pp-wintally").css("visibility", "hidden");
-        $("#sixcb-bet-winstack").css("visibility", "hidden");
-        $("#sixcb-wintally").css("visibility", "hidden");
+        [
+            "#play-bet-chipstack",
+            "#play-chiptally",
+            "#ante-bet-chipstack",
+            "#ante-chiptally",
+            "#pp-bet-chipstack",
+            "#pp-chiptally",
+            "#sixcb-bet-chipstack",
+            "#sixcb-chiptally",
+            "#play-bet-winstack",
+            "#play-wintally",
+            "#ante-bet-winstack",
+            "#ante-wintally",
+            "#pp-bet-winstack",
+            "#pp-wintally",
+            "#sixcb-bet-winstack",
+            "#sixcb-wintally",
+        ].forEach(id => $(id).css("visibility", "hidden"));
         _hideHands();
         WAGER_COUNTERS.playWager = 0;
         totalWagerAmount = 0;
-        $("#anteWinnings").html("$0");
-        $("#playWinnings").html("$0");
-        $("#anteBonusWinnings").html("$0");
-        $("#pairPlusBonusWinnings").html("$0");
-        $("#sixCardBonusWinnings").html("$0");
-        $("#totalWinnings").html("$0");
-        const infoBoxMessage = 'Place your bets, then click "Deal."';
-        $("#infoBox").html(infoBoxMessage);
+        [
+            "#anteWinnings",
+            "#playWinnings",
+            "#anteBonusWinnings",
+            "#pairPlusBonusWinnings",
+            "#sixCardBonusWinnings",
+            "#totalWinnings",
+        ].forEach(id => $(id).html("$0"));
+        $("#infoBox").html('Place your bets, then click "Deal."');
     }
     playerBalance -= wagerAmount;
     totalWagerAmount += wagerAmount;
@@ -119,12 +122,9 @@ function _loadTemps() {
 }
 
 function rebet() {
-    if (isRoundActive) {
-        return;
-    }
-    if (hasThePlayerRebet) {
-        return;
-    }
+    if (isRoundActive) return;
+    if (hasThePlayerRebet) return;
+
     hasThePlayerRebet = true;
     totalWagerAmount = 0;
     WAGER_COUNTERS.playWager = 0;
@@ -154,8 +154,7 @@ function dealToPlayer() {
     if (WAGER_COUNTERS.anteWager === 0 || isRoundActive) {
         return;
     }
-    const infoBoxMessage = 'Click "Play" or "Fold."';
-    $("#infoBox").html(infoBoxMessage);
+    $("#infoBox").html('Click "Play" or "Fold."');
     isRoundActive = true;
     deck = _getShuffledDeck();
     _loadTemps();
@@ -191,9 +190,7 @@ function _didPlayerWinHighCardTieBreaker(pHand, dHand) {
 }
 
 function _isTheHandAFiveCardRoyalFlush(hand) {
-    if (!_isTheHandAFiveCardStraightFlush(hand)) {
-        return false
-    }
+    if (!_isTheHandAFiveCardStraightFlush(hand)) return false;
     const countOfSuits = new Counter(hand.map(card => card.charAt(1)));
     let flushedSuit = "";
     Object.keys(countOfSuits).forEach(suit => {
@@ -210,9 +207,7 @@ function _isTheHandAFiveCardRoyalFlush(hand) {
 }
 
 function _isTheHandAFiveCardStraightFlush(hand) {
-    if (!_isTheHandAFiveCardFlush(hand)) {
-        return false
-    }
+    if (!_isTheHandAFiveCardFlush(hand)) return false;
     const countOfSuits = new Counter(hand.map(card => card.charAt(1)));
     let flushedSuit = "";
     Object.keys(countOfSuits).forEach(suit => {
@@ -548,28 +543,13 @@ function payout() {
             if (_didPlayerHaveBetterHand(playerHand, dealerHand)) {
                 anteWinnings = WAGER_COUNTERS.anteWager * 2;
                 playWinnings = WAGER_COUNTERS.playWager * 2;
-            } 
+            }
         } else {
             anteWinnings = WAGER_COUNTERS.anteWager * 2;
             playWinnings = WAGER_COUNTERS.playWager;
         }
     }
-    if (anteWinnings === 0 && anteBonusWinnings === 0) {
-        $("#ante-bet-chipstack").css("visibility", "hidden");
-        $("#ante-chiptally").css("visibility", "hidden");
-    }
-    if (playWinnings === 0) {
-        $("#play-bet-chipstack").css("visibility", "hidden");
-        $("#play-chiptally").css("visibility", "hidden");
-    }
-    if (pairPlusWinnings === 0) {
-        $("#pp-bet-chipstack").css("visibility", "hidden");
-        $("#pp-chiptally").css("visibility", "hidden");
-    }
-    if (sixCardBonusWinnings === 0) {
-        $("#sixcb-bet-chipstack").css("visibility", "hidden");
-        $("#sixcb-chiptally").css("visibility", "hidden");
-    }
+    _hideWagerChips();
     totalWinnings = anteWinnings + playWinnings + pairPlusWinnings + anteBonusWinnings + sixCardBonusWinnings;
     playerBalance += totalWinnings;
     $("#player-balance-display").html(`$${playerBalance}`);
@@ -607,6 +587,21 @@ function payout() {
             _showWinChips("sixcb")
         }, 1500);
     }
+}
+
+function _hideWagerChips() {
+    const BETS_AND_WINS = {
+        "ante": (anteWinnings + anteBonusWinnings),
+        "play": playWinnings,
+        "pp": pairPlusWinnings,
+        "sixcb": sixCardBonusWinnings,
+    };
+    Object.entries(BETS_AND_WINS).forEach(([key, value]) => {
+        if (value === 0) {
+            $(`#${key}-bet-chipstack`).css("visibility", "hidden");
+            $(`#${key}-chiptally`).css("visibility", "hidden");
+        }
+    });
 }
 
 function _showWinChips(bet) {
