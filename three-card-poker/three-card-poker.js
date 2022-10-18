@@ -548,11 +548,27 @@ function payout() {
             if (_didPlayerHaveBetterHand(playerHand, dealerHand)) {
                 anteWinnings = WAGER_COUNTERS.anteWager * 2;
                 playWinnings = WAGER_COUNTERS.playWager * 2;
-            }
+            } 
         } else {
             anteWinnings = WAGER_COUNTERS.anteWager * 2;
             playWinnings = WAGER_COUNTERS.playWager;
         }
+    }
+    if (anteWinnings === 0 && anteBonusWinnings === 0) {
+        $("#ante-bet-chipstack").css("visibility", "hidden");
+        $("#ante-chiptally").css("visibility", "hidden");
+    }
+    if (playWinnings === 0) {
+        $("#play-bet-chipstack").css("visibility", "hidden");
+        $("#play-chiptally").css("visibility", "hidden");
+    }
+    if (pairPlusWinnings === 0) {
+        $("#pp-bet-chipstack").css("visibility", "hidden");
+        $("#pp-chiptally").css("visibility", "hidden");
+    }
+    if (sixCardBonusWinnings === 0) {
+        $("#sixcb-bet-chipstack").css("visibility", "hidden");
+        $("#sixcb-chiptally").css("visibility", "hidden");
     }
     totalWinnings = anteWinnings + playWinnings + pairPlusWinnings + anteBonusWinnings + sixCardBonusWinnings;
     playerBalance += totalWinnings;
@@ -635,14 +651,18 @@ function playGame() {
     tempPlayWager = WAGER_COUNTERS.playWager;
     $("#player-balance").html(`$${playerBalance}`);
     dealerHand = deck.slice(3, 6);
-    _displayHand(dealerHand, "dealer");
+    setTimeout(() => {
+        _displayHand(dealerHand, "dealer")
+    }, 250);
     let infoBoxMessage;
     if (_doesDealerQualify(dealerHand)) {
         infoBoxMessage = _didPlayerHaveBetterHand(playerHand, dealerHand) ? "Player wins!" : "Dealer wins.";
     } else {
         infoBoxMessage = "Dealer does not qualify.";
     }
-    $("#infoBox").html(infoBoxMessage);
+    setTimeout(() => {
+        $("#infoBox").html(infoBoxMessage);
+    }, 500);
     payout();
     _reset();
 }
