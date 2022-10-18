@@ -2,6 +2,11 @@ body {
     background-color: rgb(80, 80, 80);
 }
 
+@font-face {
+    font-family: Heffer;
+    src: url(Heffer-BqLd.ttf);
+}
+
 .interactive-container {
     height: 1200px;
     width: 1600px;
@@ -9,6 +14,11 @@ body {
     border: 1px solid;
     border-color: black;
     border-color: transparent;
+}
+
+h1 {
+    font-family: Heffer, serif;
+    color: white;
 }
 
 .interactive-container>* {
@@ -456,13 +466,13 @@ body {
 }
 
 #wager-slider-title {
-    top: 840px;
+    top: 830px;
     left: 635px;
     font-weight: 400;
     text-align: center;
-    font-family: "Merriweather", serif;
+    font-family: Heffer, serif;
     color: #FAF5E4;
-    font-style: italic;
+    font-size: 36pt;
 }
 
 #wager-amount-slider {
@@ -488,6 +498,7 @@ body {
 #wager-amount-slider label {
     position: relative;
     width: 20%;
+    color: #FAF5E4;
 }
 
 #wager-amount-slider label::before {
@@ -540,13 +551,13 @@ body {
 }
 
 #current-player-balance-display {
-    top: 990px;
-    left: 620px;
+    top: 987px;
+    left: 645px;
 }
 
 #total-current-wager-display {
     top: 1015px;
-    left: 520px;
+    left: 555px;
 }
 
 #total-wager-display {
@@ -605,8 +616,8 @@ body {
 }
 
 #total-winnings-display {
-    top: 1175px;
-    left: 567px;
+    top: 1043px;
+    left: 635px;
 }
 
 #anteWinnings {
@@ -642,7 +653,7 @@ body {
 #totalWinnings {
     color: #3FA796;
     font-family: "Arvo", serif;
-    font-size: 16pt;
+    font-size: 20pt;
 }
 
 .card {
