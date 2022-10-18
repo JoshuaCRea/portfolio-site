@@ -49,39 +49,42 @@ const WAGER_COUNTERS = {
 
 function _getSelectedWagerAmount() {
     const radioButtons = document.getElementsByName("wager-amount");
-    const wagerValue = parseInt(Array.from(radioButtons).find((x) => x.checked).value, 10);
+    const wagerValue = parseInt(Array.from(radioButtons).find(x => x.checked).value, 10);
     return wagerValue;
 }
 
 function placeWager(wagerAmount, wagerType) {
     if (WAGER_COUNTERS.anteWager === 0 && WAGER_COUNTERS.pairPlusWager === 0 && WAGER_COUNTERS.sixCardBonusWager === 0) {
-        $("#play-bet-chipstack").css("visibility", "hidden");
-        $("#play-chiptally").css("visibility", "hidden");
-        $("#ante-bet-chipstack").css("visibility", "hidden");
-        $("#ante-chiptally").css("visibility", "hidden");
-        $("#pp-bet-chipstack").css("visibility", "hidden");
-        $("#pp-chiptally").css("visibility", "hidden");
-        $("#sixcb-bet-chipstack").css("visibility", "hidden");
-        $("#sixcb-chiptally").css("visibility", "hidden");
-        $("#play-bet-winstack").css("visibility", "hidden");
-        $("#play-wintally").css("visibility", "hidden");
-        $("#ante-bet-winstack").css("visibility", "hidden");
-        $("#ante-wintally").css("visibility", "hidden");
-        $("#pp-bet-winstack").css("visibility", "hidden");
-        $("#pp-wintally").css("visibility", "hidden");
-        $("#sixcb-bet-winstack").css("visibility", "hidden");
-        $("#sixcb-wintally").css("visibility", "hidden");
+        [
+            "#play-bet-chipstack",
+            "#play-chiptally",
+            "#ante-bet-chipstack",
+            "#ante-chiptally",
+            "#pp-bet-chipstack",
+            "#pp-chiptally",
+            "#sixcb-bet-chipstack",
+            "#sixcb-chiptally",
+            "#play-bet-winstack",
+            "#play-wintally",
+            "#ante-bet-winstack",
+            "#ante-wintally",
+            "#pp-bet-winstack",
+            "#pp-wintally",
+            "#sixcb-bet-winstack",
+            "#sixcb-wintally",
+        ].forEach(id => $(id).css("visibility", "hidden"));
         _hideHands();
         WAGER_COUNTERS.playWager = 0;
         totalWagerAmount = 0;
-        $("#anteWinnings").html("$0");
-        $("#playWinnings").html("$0");
-        $("#anteBonusWinnings").html("$0");
-        $("#pairPlusBonusWinnings").html("$0");
-        $("#sixCardBonusWinnings").html("$0");
-        $("#totalWinnings").html("$0");
-        const infoBoxMessage = 'Place your bets, then click "Deal."';
-        $("#infoBox").html(infoBoxMessage);
+        [
+            "#anteWinnings",
+            "#playWinnings",
+            "#anteBonusWinnings",
+            "#pairPlusBonusWinnings",
+            "#sixCardBonusWinnings",
+            "#totalWinnings",
+        ].forEach(id => $(id).html("$0"));
+        $("#infoBox").html('Place your bets, then click "Deal."');
     }
     playerBalance -= wagerAmount;
     totalWagerAmount += wagerAmount;
@@ -119,12 +122,9 @@ function _loadTemps() {
 }
 
 function rebet() {
-    if (isRoundActive) {
-        return;
-    }
-    if (hasThePlayerRebet) {
-        return;
-    }
+    if (isRoundActive) return;
+    if (hasThePlayerRebet) return;
+
     hasThePlayerRebet = true;
     totalWagerAmount = 0;
     WAGER_COUNTERS.playWager = 0;
@@ -138,6 +138,7 @@ function rebet() {
     _removeHighlights();
     _hideHands();
     _hideWinChips();
+    _showWagerChips();
     const infoBoxMessage = 'Finalize bets and click "Deal."';
     $("#infoBox").html(infoBoxMessage);
     $("#player-balance-display").html(`$${playerBalance}`);
@@ -154,8 +155,7 @@ function dealToPlayer() {
     if (WAGER_COUNTERS.anteWager === 0 || isRoundActive) {
         return;
     }
-    const infoBoxMessage = 'Click "Play" or "Fold."';
-    $("#infoBox").html(infoBoxMessage);
+    $("#infoBox").html('Click "Play" or "Fold."');
     isRoundActive = true;
     deck = _getShuffledDeck();
     _loadTemps();
@@ -191,9 +191,7 @@ function _didPlayerWinHighCardTieBreaker(pHand, dHand) {
 }
 
 function _isTheHandAFiveCardRoyalFlush(hand) {
-    if (!_isTheHandAFiveCardStraightFlush(hand)) {
-        return false
-    }
+    if (!_isTheHandAFiveCardStraightFlush(hand)) return false;
     const countOfSuits = new Counter(hand.map(card => card.charAt(1)));
     let flushedSuit = "";
     Object.keys(countOfSuits).forEach(suit => {
@@ -210,9 +208,7 @@ function _isTheHandAFiveCardRoyalFlush(hand) {
 }
 
 function _isTheHandAFiveCardStraightFlush(hand) {
-    if (!_isTheHandAFiveCardFlush(hand)) {
-        return false
-    }
+    if (!_isTheHandAFiveCardFlush(hand)) return false;
     const countOfSuits = new Counter(hand.map(card => card.charAt(1)));
     let flushedSuit = "";
     Object.keys(countOfSuits).forEach(suit => {
@@ -434,25 +430,18 @@ function _determineHandType(hand) {
 };
 
 function _didPlayerHaveBetterHand(pHand, dHand) {
-    if (_isTheHandAStraightFlush(pHand) && !_isTheHandAStraightFlush(dHand)) {
-        return true;
+    const hierarchy = {
+        "straightFlush": 5,
+        "threeOfAKind": 4,
+        "straight": 3,
+        "flush": 2,
+        "pair": 1,
     }
-    if (!_isTheHandAStraightFlush(pHand) && _isTheHandAStraightFlush(dHand)) {
-        return false;
-    }
-    if (_isTheHandAThreeOfAKind(pHand) && !_isTheHandAThreeOfAKind(dHand)) {
-        return true;
-    }
-    if (!_isTheHandAThreeOfAKind(pHand) && _isTheHandAThreeOfAKind(dHand)) {
-        return false;
-    }
-    if (_isTheHandAStraight(pHand) && !_isTheHandAStraight(dHand)) {
-        return true;
-    }
-    if (!_isTheHandAStraight(pHand) && _isTheHandAStraight(dHand)) {
-        return false;
-    }
-    if (_isTheHandAStraight(pHand) && _isTheHandAStraight(dHand)) {
+    const playerHandRank = hierarchy[_determineHandType(pHand)] ?? 0;
+    const dealerHandRank = hierarchy[_determineHandType(dHand)] ?? 0;
+    if (playerHandRank > dealerHandRank) return true;
+    if (dealerHandRank > playerHandRank) return false;
+    if (_isTheHandAStraight(pHand) || _isTheHandAStraightFlush(pHand)) {
         if (!_isTheHandAWheelStraight(pHand) && _isTheHandAWheelStraight(dHand)) {
             return true;
         }
@@ -460,30 +449,12 @@ function _didPlayerHaveBetterHand(pHand, dHand) {
             return false;
         }
     }
-    if (_isTheHandAFlush(pHand) && !_isTheHandAFlush(dHand)) {
-        return true;
-    }
-    if (!_isTheHandAFlush(pHand) && _isTheHandAFlush(dHand)) {
-        return false;
-    }
-    if (_isTheHandAFlush(pHand) && _isTheHandAFlush(dHand)) {
-        return _didPlayerWinHighCardTieBreaker(pHand, dHand);
-    }
-    if (_isTheHandAPair(pHand) && !_isTheHandAPair(dHand)) {
-        return true;
-    }
-    if (!_isTheHandAPair(pHand) && _isTheHandAPair(dHand)) {
-        return false;
-    }
-    if (_isTheHandAPair(pHand) && _isTheHandAPair(dHand)) {
-        const playerPair = CARD_RANKS[Object.entries(new Counter(pHand.map(card => card.charAt(0)))).filter(rank => rank[1] === 2).toString(10)[0]];
-        const dealerPair = CARD_RANKS[Object.entries(new Counter(dHand.map(card => card.charAt(0)))).filter(rank => rank[1] === 2).toString(10)[0]];
-        if (playerPair > dealerPair) {
-            return true;
-        }
-        if (playerPair < dealerPair) {
-            return false;
-        }
+    if (_isTheHandAPair(pHand)) {
+        const getPairRank = (hand) => CARD_RANKS[Object.entries(new Counter(hand.map(card => card.charAt(0)))).filter(rank => rank[1] === 2).toString(10)[0]];
+        const playerPair = getPairRank(pHand);
+        const dealerPair = getPairRank(dHand);
+        if (playerPair > dealerPair) return true;
+        if (playerPair < dealerPair) return false;
     }
     return _didPlayerWinHighCardTieBreaker(pHand, dHand);
 }
@@ -579,6 +550,7 @@ function payout() {
             playWinnings = WAGER_COUNTERS.playWager;
         }
     }
+    _hideWagerChips();
     totalWinnings = anteWinnings + playWinnings + pairPlusWinnings + anteBonusWinnings + sixCardBonusWinnings;
     playerBalance += totalWinnings;
     $("#player-balance-display").html(`$${playerBalance}`);
@@ -616,6 +588,39 @@ function payout() {
             _showWinChips("sixcb")
         }, 1500);
     }
+}
+
+function _hideWagerChips() {
+    const BETS_AND_WINS = {
+        "ante": (anteWinnings + anteBonusWinnings),
+        "play": playWinnings,
+        "pp": pairPlusWinnings,
+        "sixcb": sixCardBonusWinnings,
+    };
+    let delay = 500;
+    Object.entries(BETS_AND_WINS).forEach(([key, value]) => {
+        delay += 250;
+        setTimeout(() => {
+        if (value === 0) {
+            $(`#${key}-bet-chipstack`).css("visibility", "hidden");
+            $(`#${key}-chiptally`).css("visibility", "hidden");
+        }}, delay);
+    });
+}
+
+function _showWagerChips() {
+    const BETS_AND_WINS = {
+        "ante": WAGER_COUNTERS.anteWager,
+        "play": WAGER_COUNTERS.playWager,
+        "pp": WAGER_COUNTERS.pairPlusWager,
+        "sixcb": WAGER_COUNTERS.sixCardBonusWager,
+    };
+    Object.entries(BETS_AND_WINS).forEach(([key, value]) => {
+        if (value > 0) {
+            $(`#${key}-bet-chipstack`).css("visibility", "visible");
+            $(`#${key}-chiptally`).css("visibility", "visible");
+        }
+    });
 }
 
 function _showWinChips(bet) {
@@ -660,14 +665,18 @@ function playGame() {
     tempPlayWager = WAGER_COUNTERS.playWager;
     $("#player-balance").html(`$${playerBalance}`);
     dealerHand = deck.slice(3, 6);
-    _displayHand(dealerHand, "dealer");
+    setTimeout(() => {
+        _displayHand(dealerHand, "dealer")
+    }, 250);
     let infoBoxMessage;
     if (_doesDealerQualify(dealerHand)) {
         infoBoxMessage = _didPlayerHaveBetterHand(playerHand, dealerHand) ? "Player wins!" : "Dealer wins.";
     } else {
         infoBoxMessage = "Dealer does not qualify.";
     }
-    $("#infoBox").html(infoBoxMessage);
+    setTimeout(() => {
+        $("#infoBox").html(infoBoxMessage);
+    }, 500);
     payout();
     _reset();
 }

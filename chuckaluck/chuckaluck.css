@@ -1,0 +1,393 @@
+body {
+    background-color: gainsboro;
+    text-align: center;
+}
+
+.chuckaluck-board {
+    display: inline-block;
+    width: 1200px;
+    height: 725px;
+    border-radius: 15%;
+    background-color: #086100;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+    border-style: solid;
+    border-color: sienna;
+    border-width: 25px;
+    margin-bottom: 25px;
+}
+
+.non-appearance-bet {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100px;
+    width: 200px;
+    border-style: solid;
+    color: #eaf376;
+    border-color: orange;
+    border-radius: 35%;
+    border-width: 5px;
+    line-height: 10px;
+    margin: 10px 10px 0px 10px;
+    padding: 25px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    font-family: "Merriweather", serif;
+    font-size: 14pt;
+}
+
+.non-appearance-bet:hover {
+    color: #533e85;
+    border-color: coral;
+    background-color: #c1f8cf;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+}
+
+.appearance-bet {
+    height: 75px;
+    width: 75px;
+    line-height: 0pt;
+    display: inline-flex;
+    flex-direction: column;
+    border-style: solid;
+    color: #eaf376;
+    border-color: orange;
+    border-radius: 35%;
+    border-width: 5px;
+    padding: 15px;
+    font-family: "Merriweather", serif;
+}
+
+.appearance-bet:hover {
+    color: #533e85;
+    border-color: coral;
+    background-color: #c1f8cf;
+    background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
+}
+
+.top-square-label {
+    font-family: "Arvo", serif;
+    color: white;
+    padding-top: 25px;
+    margin-bottom: 10px;
+    font-size: 24pt;
+}
+
+.appearance-bet-label {
+    margin-top: 25px;
+    font-family: "Arvo", serif;
+    color: white;
+    font-size: xx-large;
+}
+
+.title {
+    font-size: 50pt;
+    color: black;
+    margin: 25px;
+    font-family: "Satisfy", monospace;
+}
+
+.wager-definition {
+    font-size: 12pt;
+    margin-top: 25px;
+}
+
+.payout-number {
+    color: orange;
+    font-size: 20pt;
+}
+
+.info-text {
+    font-family: "Merriweather", serif;
+    font-size: large;
+    padding-top: 25px;
+}
+
+.loose-table-text {
+    font-family: "Merriweather", serif;
+    font-size: large;
+    padding-top: 5px;
+    color: #eaf376;
+}
+
+.chip-stack img {
+    display: inline;
+    visibility: hidden;
+    align-self: left;
+    transform: translate(-35px, 30px);
+    height: 50px;
+    width: 50px;
+}
+
+.appearance-chip-stack img {
+    display: inline;
+    visibility: hidden;
+    align-self: left;
+    transform: translate(-30px, 15px);
+    height: 50px;
+    width: 50px;
+}
+
+.chip-tally {
+    visibility: hidden;
+    font-size: 24pt;
+    transform: translate(25px, 0px);
+    font-family: "Arvo", serif;
+    color: whitesmoke;
+}
+
+.appearance-chip-tally {
+    visibility: hidden;
+    font-size: 16pt;
+    transform: translate(20px, -10px);
+    font-family: "Arvo", serif;
+    color: whitesmoke;
+}
+
+.ui-tally {
+    margin-top: 10px;
+    font-family: "Merriweather", serif;
+    font-size: 18pt;
+}
+
+#total-wager-display {
+    color: green;
+    font-family: "Satisfy", serif;
+    font-size: 24pt;
+}
+
+#player-balance {
+    color: green;
+    font-family: "Satisfy", serif;
+    font-size: 24pt;
+}
+
+#button-container {
+    margin-top: 50px;
+}
+
+.chuck-row {
+    margin: 25px;
+    max-height: 350px;
+}
+
+#chuck-row-2 {
+    margin-top: 50px;
+    transform: translate(0px, -25px);
+    display: absolute;
+    height: 125px;
+    width: 800px;
+}
+
+#chuck-row-3 {
+    margin-top: 75px;
+    transform: translate(740px, -250px);
+    width: 425px;
+}
+
+.info-text {
+    color: orange;
+    margin-top: 10px;
+}
+
+.rolled-die-image {
+    display: inline-block;
+    transform: translate(20px, -150px);
+}
+
+.top-square-win-banner {
+    font-size: 100pt;
+    color: rgba(172, 255, 47, 0.66);
+    margin: 25px 50px 25px 25px;
+    font-family: "Satisfy", cursive;
+    transform: rotate(-20deg) translate(-15px, -150px);
+}
+
+#any-triple {
+    height: 25px;
+}
+
+#any-triple-chipstack {
+    transform: translate(0px, 25px);
+}
+
+#any-triple-chiptally {
+    transform: translate(30px, 25px);
+}
+
+#any-triple-label {
+    transform: translate(0, 15px);
+}
+
+#display {
+    transform: translate(0px, 120px);
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 35pt;
+    color: whitesmoke;
+}
+
+#chuck-row-4 {
+    transform: translate(0px, -350px);
+    max-width: 410px;
+}
+
+#roll-dice-button {
+    background: #f25353;
+    background-image: linear-gradient(to bottom, #f25353, #d10000);
+    border-radius: 28px;
+    font-family: "Arvo", serif;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border: solid #a60000 4px;
+    transform: translate(175px, -235px);
+}
+
+#roll-dice-button:hover {
+    background: #ffadad;
+    background-image: linear-gradient(to bottom, #ffadad, #ff5757);
+}
+
+#triples-payout-text {
+    transform: translate(5px, 50px);
+    margin-top: 25px;
+}
+
+.win-banner {
+    visibility: hidden;
+    display: absolute;
+}
+
+.top-square-win-banner {
+    transform: rotate(-20deg) translate(15px, -150px);
+}
+
+.appearance-win-banner {
+    font-size: 50pt;
+    color: rgb(172, 255, 47);
+    margin: 25px 50px 25px 25px;
+    font-family: "Satisfy", cursive;
+    transform: rotate(-15deg) translate(-20px, -90px);
+}
+
+#any-triple-winbanner {
+    transform: rotate(-15deg) translate(-30px, -150px);
+}
+
+#wager-slider-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#wager-slider-title {
+    margin-top: 0;
+    font-weight: 400;
+    text-align: center;
+    font-family: "Merriweather", serif;
+    color: black;
+}
+
+#wager-amount-slider {
+    display: flex;
+    position: relative;
+    width: 50%;
+    height: 50px;
+}
+
+#wager-amount-slider::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    /* width calculation based on total of 5 radio buttons */
+    width: calc(100% * (4 / 5));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+}
+
+#wager-amount-slider label {
+    position: relative;
+    width: 20%;
+}
+
+#wager-amount-slider label::before {
+    content: attr(data-wager-amount);
+    position: absolute;
+    left: 50%;
+    padding-top: 10px;
+    transform: translate(-50%, 45px);
+    font-size: 20px;
+    font-family: monospace;
+}
+
+#wager-amount-slider label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid #000;
+    background: #fff;
+    border-radius: 50%;
+}
+
+#wager-amount-slider label:hover::after {
+    transform: translate(-50%, -50%) scale(1.25);
+}
+
+#wager-amount-slider input {
+    display: none;
+}
+
+#wager-amount-slider input:checked:nth-child(1)~#wager-amount-tick {
+    left: 10%;
+}
+
+#wager-amount-slider input:checked:nth-child(3)~#wager-amount-tick {
+    left: 30%;
+}
+
+#wager-amount-slider input:checked:nth-child(5)~#wager-amount-tick {
+    left: 50%;
+}
+
+#wager-amount-slider input:checked:nth-child(7)~#wager-amount-tick {
+    left: 70%;
+}
+
+#wager-amount-slider input:checked:nth-child(9)~#wager-amount-tick {
+    left: 90%;
+}
+
+#wager-amount-tick {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    transition: all 0.15s ease-in-out;
+    transform: translate(-50%, -50%);
+    border: 2px solid #fff;
+    z-index: 2;
+}
+
+#total-current-wager-display {
+    margin-top: 0px;
+}
+
+#rolled-dice-images {
+    transform: translate(-200px, -200px)
+}
+
+#clear-all-wagers-button {
+    margin-right: 10px;
+}
+
+#rebet-button {
+    margin-left: 10px;
+}
