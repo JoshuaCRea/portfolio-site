@@ -70,7 +70,7 @@ h2 {
 }
 
 p {
-    top: 225px;
+    top: 215px;
     left: 325px;
     font-size: 18pt;
     font-family: 'Nanum Pen Script', cursive;
@@ -155,9 +155,9 @@ p {
   }
 
   #purple-scribble {
-    top: 450px;
-    left: 535px;
-    height: 200px;
+    top: 425px;
+    left: 525px;
+    height: 250px;
     width: 400px;
     z-index: 0;
     opacity: 50%;
@@ -182,6 +182,41 @@ p {
     left: 815px;
     width: 85px;
     z-index: 1;
+  }
+
+  #reactlogo {
+    top: 540px;
+    left: 770px;
+    width: 75px;
+    z-index: 1;
+  }
+
+  #nodelogo {
+    top: 540px;
+    left: 850px;
+    width: 75px;
+    z-index: 1;
+  }
+
+  #jquerylogo {
+    top: 540px;
+    left: 690px;
+    width: 60px;
+    z-index: 1;
+  }
+
+  #gitlogo {
+    top: 540px;
+    left: 600px;
+    width: 75px;
+    z-index: 1;
+  }
+
+  #mongodblogo {
+    top: 540px;
+    left: 520px;
+    width: 75px;
+    z-index: 2;
   }
 
   #apple-button {
