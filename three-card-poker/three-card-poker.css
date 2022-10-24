@@ -18,7 +18,7 @@ body {
 
 h1 {
     font-family: Heffer, serif;
-    color: white;
+    color: #FAF5E4;
 }
 
 .interactive-container>* {
@@ -335,8 +335,6 @@ h1 {
 
 #logo {
     width: 325px;
-    top: 55px;
-    left: 205px;
     top: 74px;
     left: 1070px;
     opacity: 50%;
