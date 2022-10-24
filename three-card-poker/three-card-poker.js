@@ -159,6 +159,7 @@ function dealToPlayer() {
     isRoundActive = true;
     deck = _getShuffledDeck();
     _loadTemps();
+
     playerHand = deck.slice(0, 3);
     _displayHand(playerHand, "player");
     anteWinnings = 0;
@@ -686,6 +687,7 @@ function fold() {
         return;
     }
     playerFolded = true;
+    hasThePlayerRebet = false;
     dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
     $("#anteWager").html(WAGER_COUNTERS.anteWager);
