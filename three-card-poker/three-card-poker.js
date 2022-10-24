@@ -1,5 +1,4 @@
 const initialPlayerBalance = 1000;
-const testWagerAmount = 1;
 let playerHand = [];
 let dealerHand = [];
 let playerBalance = initialPlayerBalance;
@@ -649,7 +648,7 @@ function _hideWinChips() {
 function _doesDealerQualify(hand) {
     if (_determineHandType(hand) === undefined) {
         const dealerRanks = hand.map(card => CARD_RANKS[card.charAt(0)]).sort((a, b) => a - b);
-        return dealerRanks[2] >= CARD_RANKS["Q"];
+        return dealerRanks[2] >= CARD_RANKS.Q;
     }
     return true;
 }
