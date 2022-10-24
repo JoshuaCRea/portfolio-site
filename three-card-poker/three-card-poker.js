@@ -159,8 +159,7 @@ function dealToPlayer() {
     isRoundActive = true;
     deck = _getShuffledDeck();
     _loadTemps();
-    playerHand = ["TS", "8D", "9H"]
-    // playerHand = deck.slice(0, 3);
+    playerHand = deck.slice(0, 3);
     _displayHand(playerHand, "player");
     anteWinnings = 0;
     playWinnings = 0;
@@ -561,7 +560,7 @@ function payout() {
     // $("#pairPlusBonusWinnings").html(`$${pairPlusWinnings}`);
     // $("#sixCardBonusWinnings").html(`$${sixCardBonusWinnings}`);
     $("#totalWinnings").html(`$${totalWinnings}`);
-    if (anteWinnings > 0) {
+    if (anteWinnings > 0 || anteBonusWinnings > 0) {
         if (_doesDealerQualify(dealerHand)) {
             setTimeout(() => {
                 _showWinChips("ante")
@@ -569,7 +568,7 @@ function payout() {
         } else {
             $("#ante-bet-winstack").css("visibility", "visible");
             $("#ante-wintally").css("visibility", "visible");
-            $("#ante-wintally").html(`$${anteWinnings - WAGER_COUNTERS.anteWager}`);
+            $("#ante-wintally").html(`$${anteBonusWinnings + anteWinnings - WAGER_COUNTERS.anteWager}`);
         }
     }
     if (playWinnings > 0) {
@@ -626,7 +625,7 @@ function _showWagerChips() {
 
 function _showWinChips(bet) {
     const BETS_AND_WINS = {
-        "ante": anteWinnings + anteBonusWinnings - tempAnteWager,
+        "ante": anteWinnings + anteBonusWinnings,
         "play": playWinnings - tempPlayWager,
         "pp": pairPlusWinnings - tempPairPlusWager,
         "sixcb": sixCardBonusWinnings - tempSixCardBonusWager,
@@ -665,8 +664,7 @@ function playGame() {
     placeWager(WAGER_COUNTERS.anteWager, "PLAY");
     tempPlayWager = WAGER_COUNTERS.playWager;
     $("#player-balance").html(`$${playerBalance}`);
-    dealerHand = ["TC", "TH", "TD"];
-    // dealerHand = deck.slice(3, 6);
+    dealerHand = deck.slice(3, 6);
     setTimeout(() => {
         _displayHand(dealerHand, "dealer")
     }, 250);
@@ -680,9 +678,7 @@ function playGame() {
         $("#infoBox").html(infoBoxMessage);
     }, 500);
     payout();
-    console.log(WAGER_COUNTERS);
     _reset();
-    console.log(WAGER_COUNTERS);
 
 }
 
@@ -692,8 +688,7 @@ function fold() {
     }
     playerFolded = true;
     hasThePlayerRebet = false;
-    dealerHand = ["TC", "TH", "TD"];
-    // dealerHand = deck.slice(3, 6);
+    dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
     $("#anteWager").html(WAGER_COUNTERS.anteWager);
     $("#pairPlusWager").html(WAGER_COUNTERS.pairPlusWager);
