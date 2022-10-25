@@ -13,7 +13,7 @@ After the Player receives cards, they may look at their hand, and must choose to
 If the player chooses to "Play," the dealer's hand is revealed and a showdown occurs. If the dealer has a Queen high or better the hand is said to ***qualify.*** The result of the hand is determined as follows with the rank of hands compared only if the dealer qualifies:
 
 **Dealer does not qualify:** Ante bet pays out even money, Play bet is a push.
-**Dealer qualifies, Player's hand wins:** Ante bet pays out even money, Play bet pays out even money.
+<br>**Dealer qualifies, Player's hand wins:** Ante bet pays out even money, Play bet pays out even money.
 **Dealer qualifies, Player's hand ties:** Ante bet is a push, Play bet is a push.
 **Dealer qualifies, Player's hand loses:** Ante bet is lost, Play bet is lost.
 
