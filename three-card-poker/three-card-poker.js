@@ -20,19 +20,19 @@ class Counter {
 }
 
 const CARD_RANKS = {
-    "2": 0,
-    "3": 1,
-    "4": 2,
-    "5": 3,
-    "6": 4,
-    "7": 5,
-    "8": 6,
-    "9": 7,
-    "T": 8,
-    "J": 9,
-    "Q": 10,
-    "K": 11,
-    "A": 12,
+    2: 0,
+    3: 1,
+    4: 2,
+    5: 3,
+    6: 4,
+    7: 5,
+    8: 6,
+    9: 7,
+    T: 8,
+    J: 9,
+    Q: 10,
+    K: 11,
+    A: 12,
 }
 
 const WAGER_COUNTERS = {
@@ -43,10 +43,26 @@ const WAGER_COUNTERS = {
 }
 
 const TEMP_WAGER_HOLDER = {
-    tempAnteWager: 0,
-    tempPlayWager: 0,
-    tempPairPlusWager: 0,
-    tempSixCardBonusWager: 0,
+    anteWager: 0,
+    playWager: 0,
+    pairPlusWager: 0,
+    sixCardBonusWager: 0,
+}
+
+function _getShuffledDeck() {
+    const newDeck = [
+        '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', 'TC', 'JC', 'QC', 'KC', 'AC',
+        '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', 'TH', 'JH', 'QH', 'KH', 'AH',
+        '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', 'TS', 'JS', 'QS', 'KS', 'AS',
+        '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', 'TD', 'JD', 'QD', 'KD', 'AD'
+    ];
+    for (let i = 0; i < newDeck.length; i++) {
+        const tempCard = newDeck[i];
+        const randomIndex = Math.floor(Math.random() * newDeck.length);
+        newDeck[i] = newDeck[randomIndex];
+        newDeck[randomIndex] = tempCard;
+    }
+    return newDeck;
 }
 
 function _getSelectedWagerAmount() {
@@ -112,9 +128,9 @@ function placeWager(wagerAmount, wagerType) {
 }
 
 function _loadTemps() {
-    TEMP_WAGER_HOLDER.tempAnteWager = WAGER_COUNTERS.anteWager;
-    TEMP_WAGER_HOLDER.tempPairPlusWager = WAGER_COUNTERS.pairPlusWager;
-    TEMP_WAGER_HOLDER.tempSixCardBonusWager = WAGER_COUNTERS.sixCardBonusWager;
+    TEMP_WAGER_HOLDER.anteWager = WAGER_COUNTERS.anteWager;
+    TEMP_WAGER_HOLDER.pairPlusWager = WAGER_COUNTERS.pairPlusWager;
+    TEMP_WAGER_HOLDER.sixCardBonusWager = WAGER_COUNTERS.sixCardBonusWager;
 }
 
 function rebet() {
@@ -123,9 +139,9 @@ function rebet() {
 
     hasThePlayerRebet = true;
     WAGER_COUNTERS.playWager = 0;
-    WAGER_COUNTERS.anteWager = TEMP_WAGER_HOLDER.tempAnteWager;
-    WAGER_COUNTERS.pairPlusWager = TEMP_WAGER_HOLDER.tempPairPlusWager;
-    WAGER_COUNTERS.sixCardBonusWager = TEMP_WAGER_HOLDER.tempSixCardBonusWager;
+    WAGER_COUNTERS.anteWager = TEMP_WAGER_HOLDER.anteWager;
+    WAGER_COUNTERS.pairPlusWager = TEMP_WAGER_HOLDER.pairPlusWager;
+    WAGER_COUNTERS.sixCardBonusWager = TEMP_WAGER_HOLDER.sixCardBonusWager;
     const totalWageredAmount = _getTotalWageredAmount();
     playerBalance -= totalWageredAmount;
     $("#play-bet-chipstack").css("visibility", "hidden");
@@ -604,10 +620,10 @@ function _showWagerChips() {
 
 function _showWinChips(bet) {
     const BETS_AND_WINS = {
-        "ante": anteWinnings + anteBonusWinnings - TEMP_WAGER_HOLDER.tempAnteWager,
-        "play": playWinnings - TEMP_WAGER_HOLDER.tempPlayWager,
-        "pp": pairPlusWinnings - TEMP_WAGER_HOLDER.tempPairPlusWager,
-        "sixcb": sixCardBonusWinnings - TEMP_WAGER_HOLDER.tempSixCardBonusWager,
+        "ante": anteWinnings + anteBonusWinnings - TEMP_WAGER_HOLDER.anteWager,
+        "play": playWinnings - TEMP_WAGER_HOLDER.playWager,
+        "pp": pairPlusWinnings - TEMP_WAGER_HOLDER.pairPlusWager,
+        "sixcb": sixCardBonusWinnings - TEMP_WAGER_HOLDER.sixCardBonusWager,
     }
     $(`#${bet}-bet-winstack`).css("visibility", "visible");
     $(`#${bet}-wintally`).css("visibility", "visible");
@@ -640,7 +656,7 @@ function playGame() {
     hasThePlayerRebet = false;
     playerFolded = false;
     placeWager(WAGER_COUNTERS.anteWager, "PLAY");
-    TEMP_WAGER_HOLDER.tempPlayWager = WAGER_COUNTERS.playWager;
+    TEMP_WAGER_HOLDER.playWager = WAGER_COUNTERS.playWager;
     $("#player-balance").html(`$${playerBalance}`);
     dealerHand = deck.slice(3, 6);
     setTimeout(() => {
@@ -689,22 +705,6 @@ function _displayHand(hand, person) {
 function _hideHands() {
     $(`#dealer-card-display`).css("visibility", "hidden");
     $(`#player-card-display`).css("visibility", "hidden");
-}
-
-function _getShuffledDeck() {
-    const newDeck = [
-        '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', 'TC', 'JC', 'QC', 'KC', 'AC',
-        '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', 'TH', 'JH', 'QH', 'KH', 'AH',
-        '2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', 'TS', 'JS', 'QS', 'KS', 'AS',
-        '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', 'TD', 'JD', 'QD', 'KD', 'AD'
-    ];
-    for (let i = 0; i < newDeck.length; i++) {
-        const tempCard = newDeck[i];
-        const randomIndex = Math.floor(Math.random() * newDeck.length);
-        newDeck[i] = newDeck[randomIndex];
-        newDeck[randomIndex] = tempCard;
-    }
-    return newDeck;
 }
 
 window.onload = () => {

@@ -4,7 +4,7 @@ body {
 
 @font-face {
     font-family: Heffer;
-    src: url(Heffer-BqLd.ttf);
+    src: url(/Heffer-BqLd.ttf);
 }
 
 .interactive-container {
@@ -465,12 +465,13 @@ h1 {
 
 #wager-slider-title {
     top: 830px;
-    left: 635px;
+    left: 622px;
     font-weight: 400;
     text-align: center;
     font-family: Heffer, serif;
     color: #FAF5E4;
     font-size: 36pt;
+    letter-spacing: 2px;
 }
 
 #wager-amount-slider {
