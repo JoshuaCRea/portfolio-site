@@ -14,8 +14,8 @@ If the player chooses to "Play," the dealer's hand is revealed and a showdown oc
 
 **Dealer does not qualify:** Ante bet pays out even money, Play bet is a push.
 <br>**Dealer qualifies, Player's hand wins:** Ante bet pays out even money, Play bet pays out even money.
-**Dealer qualifies, Player's hand ties:** Ante bet is a push, Play bet is a push.
-**Dealer qualifies, Player's hand loses:** Ante bet is lost, Play bet is lost.
+<br>**Dealer qualifies, Player's hand ties:** Ante bet is a push, Play bet is a push.
+<br>**Dealer qualifies, Player's hand loses:** Ante bet is lost, Play bet is lost.
 
 If the Player's hand consists of a *straight or better,* an **Ante Bonus** is paid on the Ante bet. This is not dependent on the dealer's hand or whether the player wins or loses. However, if the player folds, they will not receive this bonus.
 
