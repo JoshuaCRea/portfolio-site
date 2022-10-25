@@ -3,7 +3,6 @@ const testWagerAmount = 1;
 let playerHand = [];
 let dealerHand = [];
 let playerBalance = initialPlayerBalance;
-let totalWagerAmount = 0;
 let isRoundActive = false;
 let hasThePlayerRebet = false;
 let playerFolded = false;
@@ -53,8 +52,30 @@ function _getSelectedWagerAmount() {
     return wagerValue;
 }
 
+function _getTotalWageredAmount() {
+    return WAGER_COUNTERS.anteWager + WAGER_COUNTERS.playWager + WAGER_COUNTERS.pairPlusWager + WAGER_COUNTERS.sixCardBonusWager;
+}
+
 function placeWager(wagerAmount, wagerType) {
-    if (WAGER_COUNTERS.anteWager === 0 && WAGER_COUNTERS.pairPlusWager === 0 && WAGER_COUNTERS.sixCardBonusWager === 0) {
+    const WAGER_TYPES = {
+        ANTE: {
+            elementIdPrefix: "ante",
+            wagerCounter: "anteWager",
+        },
+        PLAY: {
+            elementIdPrefix: "play",
+            wagerCounter: "playWager",
+        },
+        PAIR_PLUS: {
+            elementIdPrefix: "pp",
+            wagerCounter: "pairPlusWager",
+        },
+        SIX_CARD_BONUS: {
+            elementIdPrefix: "sixcb",
+            wagerCounter: "sixCardBonusWager",
+        },
+    };
+    if (_getTotalWageredAmount() === 0) {
         [
             "#play-bet-chipstack",
             "#play-chiptally",
@@ -74,41 +95,13 @@ function placeWager(wagerAmount, wagerType) {
             "#sixcb-wintally",
         ].forEach(id => $(id).css("visibility", "hidden"));
         _hideHands();
-        WAGER_COUNTERS.playWager = 0;
-        totalWagerAmount = 0;
-        [
-            "#anteWinnings",
-            "#playWinnings",
-            "#anteBonusWinnings",
-            "#pairPlusBonusWinnings",
-            "#sixCardBonusWinnings",
-            "#totalWinnings",
-        ].forEach(id => $(id).html("$0"));
+        $("#totalWinnings").html("$0");
         $("#infoBox").html('Place your bets, then click "Deal."');
     }
-    playerBalance -= wagerAmount;
-    totalWagerAmount += wagerAmount;
-    $("#player-balance-display").html(`$${playerBalance}`);
-    $("#total-wager-display").html(`$${totalWagerAmount}`);
-    const WAGER_TYPES = {
-        ANTE: {
-            elementIdPrefix: "ante",
-            wagerCounter: "anteWager",
-        },
-        PLAY: {
-            elementIdPrefix: "play",
-            wagerCounter: "playWager",
-        },
-        PAIR_PLUS: {
-            elementIdPrefix: "pp",
-            wagerCounter: "pairPlusWager",
-        },
-        SIX_CARD_BONUS: {
-            elementIdPrefix: "sixcb",
-            wagerCounter: "sixCardBonusWager",
-        },
-    };
     WAGER_COUNTERS[WAGER_TYPES[wagerType].wagerCounter] += wagerAmount;
+    playerBalance -= wagerAmount;
+    $("#player-balance-display").html(`$${playerBalance}`);
+    $("#total-wager-display").html(`$${_getTotalWageredAmount()}`);
     $(`#${WAGER_TYPES[wagerType].elementIdPrefix}-bet-chipstack`).css("visibility", "visible");
     $(`#${WAGER_TYPES[wagerType].elementIdPrefix}-chiptally`).css("visibility", "visible");
     $(`#${WAGER_TYPES[wagerType].elementIdPrefix}-chiptally`).html(`$${WAGER_COUNTERS[WAGER_TYPES[wagerType].wagerCounter]}`);
@@ -126,13 +119,12 @@ function rebet() {
     if (hasThePlayerRebet) return;
 
     hasThePlayerRebet = true;
-    totalWagerAmount = 0;
     WAGER_COUNTERS.playWager = 0;
     WAGER_COUNTERS.anteWager = tempAnteWager;
     WAGER_COUNTERS.pairPlusWager = tempPairPlusWager;
     WAGER_COUNTERS.sixCardBonusWager = tempSixCardBonusWager;
-    totalWagerAmount += (WAGER_COUNTERS.anteWager + WAGER_COUNTERS.pairPlusWager + WAGER_COUNTERS.sixCardBonusWager);
-    playerBalance -= totalWagerAmount;
+    const totalWageredAmount = _getTotalWageredAmount();
+    playerBalance -= totalWageredAmount;
     $("#play-bet-chipstack").css("visibility", "hidden");
     $("#play-chiptally").css("visibility", "hidden");
     _removeHighlights();
@@ -142,12 +134,7 @@ function rebet() {
     const infoBoxMessage = 'Finalize bets and click "Deal."';
     $("#infoBox").html(infoBoxMessage);
     $("#player-balance-display").html(`$${playerBalance}`);
-    $("#total-wager-display").html(`$${totalWagerAmount}`);
-    $("#anteWinnings").html("$0");
-    $("#playWinnings").html("$0");
-    $("#anteBonusWinnings").html("$0");
-    $("#pairPlusBonusWinnings").html("$0");
-    $("#sixCardBonusWinnings").html("$0");
+    $("#total-wager-display").html(`$${totalWageredAmount}`);
     $("#totalWinnings").html("$0");
 }
 
@@ -614,7 +601,7 @@ function _showWagerChips() {
 
 function _showWinChips(bet) {
     const BETS_AND_WINS = {
-        "ante": anteWinnings + anteBonusWinnings,
+        "ante": anteWinnings + anteBonusWinnings - tempAnteWager,
         "play": playWinnings - tempPlayWager,
         "pp": pairPlusWinnings - tempPairPlusWager,
         "sixcb": sixCardBonusWinnings - tempSixCardBonusWager,
@@ -644,9 +631,8 @@ function _doesDealerQualify(hand) {
 }
 
 function playGame() {
-    if (!isRoundActive) {
-        return;
-    }
+    if (!isRoundActive) return;
+
     isRoundActive = false;
     hasThePlayerRebet = false;
     playerFolded = false;
@@ -726,26 +712,18 @@ window.onload = () => {
     };
     Object.keys(CLICK_BEHAVIORS).forEach(elementId => {
         $(elementId).click(function () {
-            if (isRoundActive) {
-                return;
-            }
+            if (isRoundActive) return;
             placeWager(_getSelectedWagerAmount(), CLICK_BEHAVIORS[elementId]);
         });
     });
-    $("#player-balance-display").html(`$${playerBalance}`);
-    $("#total-wager-display").html(`$${totalWagerAmount}`);
     $("#deal-button").click(() => dealToPlayer());
     $("#play-button").click(() => playGame());
     $("#rebet-button").click(() => rebet());
     $("#fold-button").click(() => fold());
-    $("#anteWinnings").html("$0");
-    $("#playWinnings").html("$0");
-    $("#anteBonusWinnings").html("$0");
-    $("#pairPlusBonusWinnings").html("$0");
-    $("#sixCardBonusWinnings").html("$0");
+    $("#player-balance-display").html(`$${playerBalance}`);
+    $("#total-wager-display").html(`${_getTotalWageredAmount()}`);
     $("#totalWinnings").html("$0");
-    const infoBoxMessage = 'Place your bets, then click "Deal."';
-    $("#infoBox").html(infoBoxMessage);
+    $("#infoBox").html('Place your bets, then click "Deal."');
 }
 
 // TESTS
