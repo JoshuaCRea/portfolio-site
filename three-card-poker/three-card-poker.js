@@ -7,10 +7,6 @@ let isRoundActive = false;
 let hasThePlayerRebet = false;
 let playerFolded = false;
 let deck = [];
-let tempAnteWager = 0;
-let tempPlayWager = 0;
-let tempPairPlusWager = 0;
-let tempSixCardBonusWager = 0;
 let anteWinnings = 0;
 let playWinnings = 0;
 let anteBonusWinnings = 0;
@@ -24,22 +20,29 @@ class Counter {
 }
 
 const CARD_RANKS = {
-    "2": 0,
-    "3": 1,
-    "4": 2,
-    "5": 3,
-    "6": 4,
-    "7": 5,
-    "8": 6,
-    "9": 7,
-    "T": 8,
-    "J": 9,
-    "Q": 10,
-    "K": 11,
-    "A": 12,
+    2: 0,
+    3: 1,
+    4: 2,
+    5: 3,
+    6: 4,
+    7: 5,
+    8: 6,
+    9: 7,
+    T: 8,
+    J: 9,
+    Q: 10,
+    K: 11,
+    A: 12,
 }
 
 const WAGER_COUNTERS = {
+    anteWager: 0,
+    playWager: 0,
+    pairPlusWager: 0,
+    sixCardBonusWager: 0,
+}
+
+const TEMP_WAGER_HOLDER = {
     anteWager: 0,
     playWager: 0,
     pairPlusWager: 0,
@@ -356,10 +359,10 @@ function _hideWagerChips() {
 
 function _showWinChips(bet) {
     const BETS_AND_WINS = {
-        "ante": (anteWinnings + anteBonusWinnings) - tempAnteWager,
-        "play": playWinnings - tempPlayWager,
-        "pp": pairPlusWinnings - tempPairPlusWager,
-        "sixcb": sixCardBonusWinnings - tempSixCardBonusWager,
+        "ante": (anteWinnings + anteBonusWinnings) - TEMP_WAGER_HOLDER.anteWager,
+        "play": playWinnings - TEMP_WAGER_HOLDER.playWager,
+        "pp": pairPlusWinnings - TEMP_WAGER_HOLDER.pairPlusWager,
+        "sixcb": sixCardBonusWinnings - TEMP_WAGER_HOLDER.sixCardBonusWager,
     }
     $(`#${bet}-bet-winstack`).css("visibility", "visible");
     $(`#${bet}-wintally`).css("visibility", "visible");
@@ -467,9 +470,9 @@ function _getSelectedWagerAmount() {
 }
 
 function _loadTemps() {
-    tempAnteWager = WAGER_COUNTERS.anteWager;
-    tempPairPlusWager = WAGER_COUNTERS.pairPlusWager;
-    tempSixCardBonusWager = WAGER_COUNTERS.sixCardBonusWager;
+    TEMP_WAGER_HOLDER.anteWager = WAGER_COUNTERS.anteWager;
+    TEMP_WAGER_HOLDER.pairPlusWager = WAGER_COUNTERS.pairPlusWager;
+    TEMP_WAGER_HOLDER.sixCardBonusWager = WAGER_COUNTERS.sixCardBonusWager;
 }
 
 function _reset() {
@@ -551,9 +554,9 @@ function rebet() {
     hasThePlayerRebet = true;
     totalWagerAmount = 0;
     WAGER_COUNTERS.playWager = 0;
-    WAGER_COUNTERS.anteWager = tempAnteWager;
-    WAGER_COUNTERS.pairPlusWager = tempPairPlusWager;
-    WAGER_COUNTERS.sixCardBonusWager = tempSixCardBonusWager;
+    WAGER_COUNTERS.anteWager = TEMP_WAGER_HOLDER.anteWager;
+    WAGER_COUNTERS.pairPlusWager = TEMP_WAGER_HOLDER.pairPlusWager;
+    WAGER_COUNTERS.sixCardBonusWager = TEMP_WAGER_HOLDER.sixCardBonusWager;
     totalWagerAmount += (WAGER_COUNTERS.anteWager + WAGER_COUNTERS.pairPlusWager + WAGER_COUNTERS.sixCardBonusWager);
     playerBalance -= totalWagerAmount;
     $("#play-bet-chipstack").css("visibility", "hidden");
@@ -698,7 +701,7 @@ function playGame() {
     hasThePlayerRebet = false;
     playerFolded = false;
     placeWager(WAGER_COUNTERS.anteWager, "PLAY");
-    tempPlayWager = WAGER_COUNTERS.playWager;
+    TEMP_WAGER_HOLDER.playWager = WAGER_COUNTERS.playWager;
     $("#player-balance").html(`$${playerBalance}`);
     dealerHand = deck.slice(3, 6);
     setTimeout(() => {
