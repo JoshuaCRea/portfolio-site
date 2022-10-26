@@ -7,11 +7,6 @@ let isRoundActive = false;
 let hasThePlayerRebet = false;
 let playerFolded = false;
 let deck = [];
-let anteWinnings = 0;
-let playWinnings = 0;
-let anteBonusWinnings = 0;
-let pairPlusWinnings = 0;
-let sixCardBonusWinnings = 0;
 
 class Counter {
     constructor(array) {
@@ -35,18 +30,52 @@ const CARD_RANKS = {
     A: 12,
 }
 
-const WAGER_COUNTERS = {
-    anteWager: 0,
-    playWager: 0,
-    pairPlusWager: 0,
-    sixCardBonusWager: 0,
-}
-
-const TEMP_WAGER_HOLDER = {
-    anteWager: 0,
-    playWager: 0,
-    pairPlusWager: 0,
-    sixCardBonusWager: 0,
+const BETS = {
+    ante: {
+        wager: 0,
+        tempHold: 0,
+        winnings: 0,
+        bonus: 0,
+        tableRows: {
+            "straightFlush": "#abrow1",
+            "straight": "#abrow3",
+            "threeOfAKind": "#abrow2",
+        },
+    },
+    play: {
+        wager: 0,
+        tempHold: 0,
+        winnings: 0,
+        bonus: 0,
+    },
+    pp: {
+        wager: 0,
+        tempHold: 0,
+        winnings: 0,
+        bonus: 0,
+        tableRows: {
+            "straightFlush": "#pprow1",
+            "flush": "#pprow4",
+            "straight": "#pprow3",
+            "threeOfAKind": "#pprow2",
+            "pair": "#pprow5",
+        },
+    },
+    sixcb: {
+        wager: 0,
+        tempHold: 0,
+        winnings: 0,
+        bonus: 0,
+        tableRows: {
+            "fiveCardRoyalFlush": "#sixcbrow1",
+            "fiveCardStraightFlush": "#sixcbrow2",
+            "fiveCardFourOfAKind": "#sixcbrow3",
+            "fiveCardFullHouse": "#sixcbrow4",
+            "fiveCardFlush": "#sixcbrow5",
+            "fiveCardStraight": "#sixcbrow6",
+            "fiveCardThreeOfAKind": "#sixcbrow7",
+        },
+    },
 }
 
 function _getShuffledDeck() {
@@ -293,30 +322,7 @@ function _hideHands() {
 }
 
 function _addHighlights(handType, bet) {
-    const BONUS_ROWS_FOR_HIGHLIGHT = {
-        pairPlus: {
-            "straightFlush": "#pprow1",
-            "flush": "#pprow4",
-            "straight": "#pprow3",
-            "threeOfAKind": "#pprow2",
-            "pair": "#pprow5",
-        },
-        ante: {
-            "straightFlush": "#abrow1",
-            "straight": "#abrow3",
-            "threeOfAKind": "#abrow2",
-        },
-        sixCB: {
-            "fiveCardRoyalFlush": "#sixcbrow1",
-            "fiveCardStraightFlush": "#sixcbrow2",
-            "fiveCardFourOfAKind": "#sixcbrow3",
-            "fiveCardFullHouse": "#sixcbrow4",
-            "fiveCardFlush": "#sixcbrow5",
-            "fiveCardStraight": "#sixcbrow6",
-            "fiveCardThreeOfAKind": "#sixcbrow7",
-        }
-    }
-    $(BONUS_ROWS_FOR_HIGHLIGHT[bet][handType]).addClass("highlight");
+    $(BETS[bet].tableRows[handType]).addClass("highlight");
 };
 
 function _removeHighlights() {
@@ -325,14 +331,8 @@ function _removeHighlights() {
 }
 
 function _showWagerChips() {
-    const BETS_AND_WINS = {
-        "ante": WAGER_COUNTERS.anteWager,
-        "play": WAGER_COUNTERS.playWager,
-        "pp": WAGER_COUNTERS.pairPlusWager,
-        "sixcb": WAGER_COUNTERS.sixCardBonusWager,
-    };
-    Object.entries(BETS_AND_WINS).forEach(([key, value]) => {
-        if (value > 0) {
+    Object.keys(BETS).forEach(key => {
+        if (BETS[key].wager > 0) {
             $(`#${key}-bet-chipstack`).css("visibility", "visible");
             $(`#${key}-chiptally`).css("visibility", "visible");
         }
@@ -340,34 +340,24 @@ function _showWagerChips() {
 }
 
 function _hideWagerChips() {
-    const BETS_AND_WINS = {
-        "ante": anteWinnings,
-        "play": playWinnings,
-        "pp": pairPlusWinnings,
-        "sixcb": sixCardBonusWinnings,
-    };
     let delay = 100;
-    Object.entries(BETS_AND_WINS).forEach(([key, value]) => {
+    Object.keys(BETS).forEach((key) => {
         delay += 200;
         setTimeout(() => {
-            if (value === 0) {
+            if (BETS[key].winnings === 0) {
                 $(`#${key}-bet-chipstack`).css("visibility", "hidden");
                 $(`#${key}-chiptally`).css("visibility", "hidden");
             }
         }, delay);
-    });
+    }
+    )
 }
 
 function _showWinChips(bet) {
-    const BETS_AND_WINS = {
-        "ante": anteWinnings + anteBonusWinnings,
-        "play": playWinnings - TEMP_WAGER_HOLDER.playWager,
-        "pp": pairPlusWinnings - TEMP_WAGER_HOLDER.pairPlusWager,
-        "sixcb": sixCardBonusWinnings - TEMP_WAGER_HOLDER.sixCardBonusWager,
-    };
     $(`#${bet}-bet-winstack`).css("visibility", "visible");
     $(`#${bet}-wintally`).css("visibility", "visible");
-    $(`#${bet}-wintally`).html(`$${BETS_AND_WINS[bet]}`);
+    $(`#${bet}-wintally`).html(`$${BETS[bet].winnings + BETS[bet].bonus - BETS[bet].wager}`);
+    // $(`#${bet}-wintally`).html(`$${BETS[bet].winnings + BETS[bet].bonus - BETS[bet].tempHold}`);
 }
 
 function _hideWinChips() {
@@ -465,7 +455,7 @@ function _didPlayerWinHighCardTieBreaker(pHand, dHand) {
 // Functions that alter totals and move around money //
 
 function _getTotalWageredAmount() {
-    return WAGER_COUNTERS.anteWager + WAGER_COUNTERS.playWager + WAGER_COUNTERS.pairPlusWager + WAGER_COUNTERS.sixCardBonusWager;
+    return BETS.ante.wager + BETS.play.wager + BETS.pp.wager + BETS.sixcb.wager;
 }
 
 function _getSelectedWagerAmount() {
@@ -475,40 +465,22 @@ function _getSelectedWagerAmount() {
 }
 
 function _loadTemps() {
-    TEMP_WAGER_HOLDER.anteWager = WAGER_COUNTERS.anteWager;
-    TEMP_WAGER_HOLDER.pairPlusWager = WAGER_COUNTERS.pairPlusWager;
-    TEMP_WAGER_HOLDER.sixCardBonusWager = WAGER_COUNTERS.sixCardBonusWager;
+    BETS.ante.tempHold = BETS.ante.wager;
+    BETS.pp.tempHold = BETS.pp.wager;
+    BETS.sixcb.tempHold = BETS.sixcb.wager;
 }
 
 function _reset() {
     isRoundActive = false;
-    WAGER_COUNTERS.anteWager = 0;
-    WAGER_COUNTERS.playWager = 0;
-    WAGER_COUNTERS.pairPlusWager = 0;
-    WAGER_COUNTERS.sixCardBonusWager = 0;
+    BETS.ante.wager = 0;
+    BETS.play.wager = 0;
+    BETS.pp.wager = 0;
+    BETS.sixcb.wager = 0;
 }
 
 // Functions that respond to player actions. //
 
 function placeWager(wagerAmount, wagerType) {
-    const WAGER_TYPES = {
-        ANTE: {
-            elementIdPrefix: "ante",
-            wagerCounter: "anteWager",
-        },
-        PLAY: {
-            elementIdPrefix: "play",
-            wagerCounter: "playWager",
-        },
-        PAIR_PLUS: {
-            elementIdPrefix: "pp",
-            wagerCounter: "pairPlusWager",
-        },
-        SIX_CARD_BONUS: {
-            elementIdPrefix: "sixcb",
-            wagerCounter: "sixCardBonusWager",
-        },
-    };
     if (_getTotalWageredAmount() === 0) {
         [
             "#play-bet-chipstack",
@@ -534,12 +506,12 @@ function placeWager(wagerAmount, wagerType) {
         $("#infoBox").html('Place your bets, then click "Deal."');
     }
     playerBalance -= wagerAmount;
-    WAGER_COUNTERS[WAGER_TYPES[wagerType].wagerCounter] += wagerAmount;
+    BETS[wagerType].wager += wagerAmount;
     $("#player-balance-display").html(`$${playerBalance}`);
     $("#total-wager-display").html(`$${_getTotalWageredAmount()}`);
-    $(`#${WAGER_TYPES[wagerType].elementIdPrefix}-bet-chipstack`).css("visibility", "visible");
-    $(`#${WAGER_TYPES[wagerType].elementIdPrefix}-chiptally`).css("visibility", "visible");
-    $(`#${WAGER_TYPES[wagerType].elementIdPrefix}-chiptally`).html(`$${WAGER_COUNTERS[WAGER_TYPES[wagerType].wagerCounter]}`);
+    $(`#${wagerType}-bet-chipstack`).css("visibility", "visible");
+    $(`#${wagerType}-chiptally`).css("visibility", "visible");
+    $(`#${wagerType}-chiptally`).html(`$${BETS[wagerType].wager}`);
     _removeHighlights();
 }
 
@@ -550,10 +522,10 @@ function rebet() {
     hasThePlayerRebet = true;
     playerFolded = false;
     totalWagerAmount = 0;
-    WAGER_COUNTERS.playWager = 0;
-    WAGER_COUNTERS.anteWager = TEMP_WAGER_HOLDER.anteWager;
-    WAGER_COUNTERS.pairPlusWager = TEMP_WAGER_HOLDER.pairPlusWager;
-    WAGER_COUNTERS.sixCardBonusWager = TEMP_WAGER_HOLDER.sixCardBonusWager;
+    BETS.play.wager = 0;
+    BETS.ante.wager = BETS.ante.tempHold;
+    BETS.pp.wager = BETS.pp.tempHold;
+    BETS.sixcb.wager = BETS.sixcb.tempHold;
     const totalWageredAmount = _getTotalWageredAmount();
     playerBalance -= totalWageredAmount;
     $("#play-bet-chipstack").css("visibility", "hidden");
@@ -570,20 +542,19 @@ function rebet() {
 }
 
 function dealToPlayer() {
-    if (WAGER_COUNTERS.anteWager === 0 || isRoundActive) return;
+    if (BETS.ante.wager === 0 || isRoundActive) return;
 
-    _loadTemps();
     isRoundActive = true;
     $("#infoBox").html('Click "Play" or "Fold."');
     deck = _getShuffledDeck();
-    // playerHand = ["KH", "AS", "5C"];
-    playerHand = deck.slice(0, 3);
+    playerHand = ["KH", "AS", "KC"];
+    // playerHand = deck.slice(0, 3);
     _displayHand(playerHand, "player");
-    anteWinnings = 0;
-    playWinnings = 0;
-    anteBonusWinnings = 0;
-    pairPlusWinnings = 0;
-    sixCardBonusWinnings = 0;
+    BETS.ante.winnings = 0;
+    BETS.play.winnings = 0;
+    BETS.ante.bonus = 0;
+    BETS.pp.winnings = 0;
+    BETS.sixcb.winnings = 0;
 }
 
 function payout() {
@@ -614,62 +585,57 @@ function payout() {
         if (handType) {
             if (ANTE_BONUS_MULTIPLIER[handType]) {
                 _addHighlights(handType, "ante");
-                anteBonusWinnings = WAGER_COUNTERS.anteWager * ANTE_BONUS_MULTIPLIER[handType];
+                BETS.ante.bonus = BETS.ante.wager * ANTE_BONUS_MULTIPLIER[handType];
             }
-            if (WAGER_COUNTERS.pairPlusWager > 0) {
-                _addHighlights(handType, "pairPlus");
-                pairPlusWinnings = WAGER_COUNTERS.pairPlusWager + WAGER_COUNTERS.pairPlusWager * PAIR_PLUS_BONUS_MULTIPLIER[handType];
+            if (BETS.pp.wager > 0) {
+                _addHighlights(handType, "pp");
+                BETS.pp.winnings = BETS.pp.wager + BETS.pp.wager * PAIR_PLUS_BONUS_MULTIPLIER[handType];
             }
         }
         if (_doesDealerQualify(dealerHand)) {
             if (_didPlayerHaveBetterHand(playerHand, dealerHand)) {
-                anteWinnings = WAGER_COUNTERS.anteWager * 2;
-                playWinnings = WAGER_COUNTERS.playWager * 2;
+                BETS.ante.winnings = BETS.ante.wager * 2;
+                BETS.play.winnings = BETS.play.wager * 2;
             }
         } else {
-            anteWinnings = WAGER_COUNTERS.anteWager * 2;
-            playWinnings = WAGER_COUNTERS.playWager;
+            BETS.ante.winnings = BETS.ante.wager * 2;
+            BETS.play.winnings = BETS.play.wager;
         }
     }
-    if (WAGER_COUNTERS.sixCardBonusWager > 0) {
+    if (BETS.sixcb.wager > 0) {
         const sixCardHandType = _determineFiveCardHandType(playerHand, dealerHand);
         if (sixCardHandType) {
-            _addHighlights(sixCardHandType, "sixCB");
-            sixCardBonusWinnings = WAGER_COUNTERS.sixCardBonusWager + WAGER_COUNTERS.sixCardBonusWager * SIX_CARD_BONUS_MULTIPLIER[sixCardHandType];
+            _addHighlights(sixCardHandType, "sixcb");
+            BETS.sixcb.winnings = BETS.sixcb.wager + BETS.sixcb.wager * SIX_CARD_BONUS_MULTIPLIER[sixCardHandType];
         }
     }
-    _hideWagerChips();
-    totalWinnings = anteWinnings + playWinnings + pairPlusWinnings + anteBonusWinnings + sixCardBonusWinnings;
+    totalWinnings = BETS.ante.winnings + BETS.play.winnings + BETS.pp.winnings + BETS.ante.bonus + BETS.sixcb.winnings;
     playerBalance += totalWinnings;
+
+    _hideWagerChips();
     $("#player-balance-display").html(`$${playerBalance}`);
     $("#totalWinnings").html(`$${totalWinnings}`);
-    if (anteWinnings > 0 || anteBonusWinnings > 0) {
-        if (_doesDealerQualify(dealerHand)) {
-            setTimeout(() => {
-                _showWinChips("ante")
-            }, 250);
-        } else {
-            $("#ante-bet-winstack").css("visibility", "visible");
-            $("#ante-wintally").css("visibility", "visible");
-            $("#ante-wintally").html(`$${anteBonusWinnings + anteWinnings - WAGER_COUNTERS.anteWager}`);
-        }
+    if (BETS.ante.winnings > 0 || BETS.ante.bonus > 0) {
+        setTimeout(() => {
+            _showWinChips("ante")
+        }, 200);
     }
-    if (playWinnings > 0) {
+    if (BETS.play.winnings > 0) {
         if (_doesDealerQualify(dealerHand)) {
             setTimeout(() => {
                 _showWinChips("play")
-            }, 500)
+            }, 400)
         }
     }
-    if (pairPlusWinnings > 0) {
+    if (BETS.pp.winnings > 0) {
         setTimeout(() => {
             _showWinChips("pp")
-        }, 750);
+        }, 600);
     }
-    if (sixCardBonusWinnings > 0) {
+    if (BETS.sixcb.winnings > 0) {
         setTimeout(() => {
             _showWinChips("sixcb")
-        }, 1000);
+        }, 800);
     }
 }
 
@@ -680,8 +646,8 @@ function playGame() {
     isRoundActive = false;
     hasThePlayerRebet = false;
     playerFolded = false;
-    placeWager(WAGER_COUNTERS.anteWager, "PLAY");
-    TEMP_WAGER_HOLDER.playWager = WAGER_COUNTERS.playWager;
+    placeWager(BETS.ante.wager, "play");
+    BETS.play.tempHold = BETS.play.wager;
     $("#player-balance").html(`$${playerBalance}`);
     // dealerHand = ["TH", "3D", "QS"];
     dealerHand = deck.slice(3, 6);
@@ -698,7 +664,9 @@ function playGame() {
         $("#infoBox").html(infoBoxMessage);
     }, 500);
     payout();
-    _reset();
+    setTimeout(() => {
+        _reset();
+    }, 1000);
 }
 
 function fold() {
@@ -708,9 +676,9 @@ function fold() {
     playerFolded = true;
     dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
-    $("#anteWager").html(WAGER_COUNTERS.anteWager);
-    $("#pairPlusWager").html(WAGER_COUNTERS.pairPlusWager);
-    $("#sixCardBonusWager").html(WAGER_COUNTERS.sixCardBonusWager);
+    $("#anteWager").html(BETS.ante.wager);
+    $("#pairPlusWager").html(BETS.pp.wager);
+    $("#sixCardBonusWager").html(BETS.sixcb.wager);
     $("#infoBox").html("You folded.");
     $("#ante-bet-chipstack").css("visibility", "hidden");
     $("#ante-chiptally").css("visibility", "hidden");
@@ -722,9 +690,9 @@ function fold() {
 
 window.onload = () => {
     const CLICK_BEHAVIORS = {
-        "#ante-diamond": "ANTE",
-        "#pair-plus-wager-circle": "PAIR_PLUS",
-        "#six-card-wager-circle": "SIX_CARD_BONUS",
+        "#ante-diamond": "ante",
+        "#pair-plus-wager-circle": "pp",
+        "#six-card-wager-circle": "sixcb",
     };
     Object.keys(CLICK_BEHAVIORS).forEach(elementId => {
         $(elementId).click(function () {
