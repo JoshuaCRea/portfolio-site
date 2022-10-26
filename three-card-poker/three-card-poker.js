@@ -8,6 +8,7 @@ let hasThePlayerRebet = false;
 let playerFolded = false;
 let deck = [];
 
+
 class Counter {
     constructor(array) {
         array.forEach(val => this[val] = (this[val] || 0) + 1);
@@ -33,7 +34,7 @@ const CARD_RANKS = {
 const BETS = {
     ante: {
         wager: 0,
-        tempHold: 0,
+        rebetValue: 0,
         winnings: 0,
         bonus: 0,
         tableRows: {
@@ -44,13 +45,13 @@ const BETS = {
     },
     play: {
         wager: 0,
-        tempHold: 0,
+        rebetValue: 0,
         winnings: 0,
         bonus: 0,
     },
     pp: {
         wager: 0,
-        tempHold: 0,
+        rebetValue: 0,
         winnings: 0,
         bonus: 0,
         tableRows: {
@@ -63,7 +64,7 @@ const BETS = {
     },
     sixcb: {
         wager: 0,
-        tempHold: 0,
+        rebetValue: 0,
         winnings: 0,
         bonus: 0,
         tableRows: {
@@ -310,6 +311,36 @@ function _isTheHandAStraightFlush(hand) {
 
 // Functions that update the table
 
+function _updateDisplay() {
+    _hideWagerChips();
+    $("#player-balance-display").html(`$${playerBalance}`);
+    $("#totalWinnings").html(`$${BETS.ante.winnings + BETS.play.winnings + BETS.pp.winnings + BETS.ante.bonus + BETS.sixcb.winnings}`);
+    const shouldDisplayAnteWinChips = BETS.ante.winnings + BETS.ante.bonus - BETS.ante.wager > 0;
+    if (shouldDisplayAnteWinChips) {
+        const theAmountToDisplay = BETS.ante.winnings + BETS.ante.bonus - (_didPlayerHaveBetterHand(playerHand, dealerHand) ? BETS.ante.wager : 0);
+        setTimeout(() => {
+            _showWinChips("ante", theAmountToDisplay);
+        }, 200);
+    }
+    if (BETS.play.winnings > 0) {
+        if (_doesDealerQualify(dealerHand)) {
+            setTimeout(() => {
+                _showWinChips("play", BETS.play.winnings - BETS.play.wager)
+            }, 400)
+        }
+    }
+    if (BETS.pp.winnings > 0) {
+        setTimeout(() => {
+            _showWinChips("pp", BETS.pp.winnings - BETS.pp.wager)
+        }, 600);
+    }
+    if (BETS.sixcb.winnings > 0) {
+        setTimeout(() => {
+            _showWinChips("sixcb", BETS.sixcb.winnings - BETS.sixcb.wager)
+        }, 800);
+    }
+}
+
 function _displayHand(hand, person) {
     $(`#${person}-card-display`).css("visibility", "visible");
     const handDisplay = hand.map(card => `<img class='card' src='cards/${card}.svg'></img>`);
@@ -342,7 +373,7 @@ function _showWagerChips() {
 function _hideWagerChips() {
     let delay = 100;
     Object.keys(BETS).forEach((key) => {
-        delay += 200;
+        delay += 100;
         setTimeout(() => {
             if (BETS[key].winnings === 0) {
                 $(`#${key}-bet-chipstack`).css("visibility", "hidden");
@@ -353,12 +384,13 @@ function _hideWagerChips() {
     )
 }
 
-function _showWinChips(bet) {
+function _showWinChips(bet, amount) {
     $(`#${bet}-bet-winstack`).css("visibility", "visible");
     $(`#${bet}-wintally`).css("visibility", "visible");
-    $(`#${bet}-wintally`).html(`$${BETS[bet].winnings + BETS[bet].bonus - BETS[bet].wager}`);
-    // $(`#${bet}-wintally`).html(`$${BETS[bet].winnings + BETS[bet].bonus - BETS[bet].tempHold}`);
+    $(`#${bet}-wintally`).html(`$${amount}`);
 }
+
+// BETS[bet].winnings + BETS[bet].bonus - BETS[bet].wager
 
 function _hideWinChips() {
     $("#ante-bet-winstack").css("visibility", "hidden");
@@ -465,17 +497,19 @@ function _getSelectedWagerAmount() {
 }
 
 function _loadTemps() {
-    BETS.ante.tempHold = BETS.ante.wager;
-    BETS.pp.tempHold = BETS.pp.wager;
-    BETS.sixcb.tempHold = BETS.sixcb.wager;
+    BETS.ante.rebetValue = BETS.ante.wager;
+    BETS.pp.rebetValue = BETS.pp.wager;
+    BETS.sixcb.rebetValue = BETS.sixcb.wager;
 }
 
 function _reset() {
+    hasThePlayerRebet = false;
     isRoundActive = false;
     BETS.ante.wager = 0;
     BETS.play.wager = 0;
     BETS.pp.wager = 0;
     BETS.sixcb.wager = 0;
+
 }
 
 // Functions that respond to player actions. //
@@ -523,9 +557,9 @@ function rebet() {
     playerFolded = false;
     totalWagerAmount = 0;
     BETS.play.wager = 0;
-    BETS.ante.wager = BETS.ante.tempHold;
-    BETS.pp.wager = BETS.pp.tempHold;
-    BETS.sixcb.wager = BETS.sixcb.tempHold;
+    BETS.ante.wager = BETS.ante.rebetValue;
+    BETS.pp.wager = BETS.pp.rebetValue;
+    BETS.sixcb.wager = BETS.sixcb.rebetValue;
     const totalWageredAmount = _getTotalWageredAmount();
     playerBalance -= totalWageredAmount;
     $("#play-bet-chipstack").css("visibility", "hidden");
@@ -547,19 +581,13 @@ function dealToPlayer() {
     isRoundActive = true;
     $("#infoBox").html('Click "Play" or "Fold."');
     deck = _getShuffledDeck();
-    playerHand = ["KH", "AS", "KC"];
+    playerHand = ["TD", "TS", "TC"];
     // playerHand = deck.slice(0, 3);
     _displayHand(playerHand, "player");
-    BETS.ante.winnings = 0;
-    BETS.play.winnings = 0;
-    BETS.ante.bonus = 0;
-    BETS.pp.winnings = 0;
-    BETS.sixcb.winnings = 0;
 }
 
 function payout() {
     const handType = _determineHandType(playerHand);
-    let totalWinnings = 0;
     const ANTE_BONUS_MULTIPLIER = {
         "straightFlush": 5,
         "threeOfAKind": 4,
@@ -609,34 +637,7 @@ function payout() {
             BETS.sixcb.winnings = BETS.sixcb.wager + BETS.sixcb.wager * SIX_CARD_BONUS_MULTIPLIER[sixCardHandType];
         }
     }
-    totalWinnings = BETS.ante.winnings + BETS.play.winnings + BETS.pp.winnings + BETS.ante.bonus + BETS.sixcb.winnings;
-    playerBalance += totalWinnings;
-
-    _hideWagerChips();
-    $("#player-balance-display").html(`$${playerBalance}`);
-    $("#totalWinnings").html(`$${totalWinnings}`);
-    if (BETS.ante.winnings > 0 || BETS.ante.bonus > 0) {
-        setTimeout(() => {
-            _showWinChips("ante")
-        }, 200);
-    }
-    if (BETS.play.winnings > 0) {
-        if (_doesDealerQualify(dealerHand)) {
-            setTimeout(() => {
-                _showWinChips("play")
-            }, 400)
-        }
-    }
-    if (BETS.pp.winnings > 0) {
-        setTimeout(() => {
-            _showWinChips("pp")
-        }, 600);
-    }
-    if (BETS.sixcb.winnings > 0) {
-        setTimeout(() => {
-            _showWinChips("sixcb")
-        }, 800);
-    }
+    playerBalance += (BETS.ante.winnings + BETS.play.winnings + BETS.pp.winnings + BETS.ante.bonus + BETS.sixcb.winnings);
 }
 
 function playGame() {
@@ -644,13 +645,12 @@ function playGame() {
         return;
     }
     isRoundActive = false;
-    hasThePlayerRebet = false;
     playerFolded = false;
     placeWager(BETS.ante.wager, "play");
-    BETS.play.tempHold = BETS.play.wager;
+    BETS.play.rebetValue = BETS.play.wager;
     $("#player-balance").html(`$${playerBalance}`);
-    // dealerHand = ["TH", "3D", "QS"];
-    dealerHand = deck.slice(3, 6);
+    dealerHand = ["TH", "JH", "QH"];
+    // dealerHand = deck.slice(3, 6);
     setTimeout(() => {
         _displayHand(dealerHand, "dealer")
     }, 250);
@@ -664,6 +664,7 @@ function playGame() {
         $("#infoBox").html(infoBoxMessage);
     }, 500);
     payout();
+    _updateDisplay();
     setTimeout(() => {
         _reset();
     }, 1000);
@@ -672,9 +673,9 @@ function playGame() {
 function fold() {
     if (!isRoundActive) return;
 
-    hasThePlayerRebet = false;
     playerFolded = true;
-    dealerHand = deck.slice(3, 6);
+    dealerHand = ["TH", "JH", "QH"]
+    // dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
     $("#anteWager").html(BETS.ante.wager);
     $("#pairPlusWager").html(BETS.pp.wager);
@@ -685,6 +686,7 @@ function fold() {
     $("#pp-bet-chipstack").css("visibility", "hidden");
     $("#pp-chiptally").css("visibility", "hidden");
     payout();
+    _updateDisplay();
     _reset();
 }
 
@@ -808,4 +810,4 @@ window.onload = () => {
 
 
 
-    // playerHand = ["8H", "9H", "TH"]
+// playerHand = ["8H", "9H", "TH"]
