@@ -89,7 +89,7 @@ function _updateBoardToResultsView(winningWagerTypes) {
         }
     });
     winningWagerTypes.forEach((element) => {
-        if (!wagersMade.hasOwnProperty(element)) {
+        if (!Object.prototype.hasOwnProperty.call(wagersMade, element)) {
             $(`#${element}`).css("background-color", COLORS.UNWAGERED_WIN_BG_COLOR);
             $(`#${element}`).css("border-color", COLORS.UNWAGERED_WIN_BORDER_COLOR);
             $(`#${element}`).css("color", COLORS.UNWAGERED_WIN_TEXT_COLOR);
@@ -196,7 +196,7 @@ function placeWager(amount, wagerName) {
     $("#rolled-dice-images").css("visibility", "hidden");
     $("#display").html("Place your bets, then roll the dice.");
     _updatePlayerBalance(-amount);
-    if (wagersMade.hasOwnProperty(wagerName)) {
+    if (Object.prototype.hasOwnProperty.call(wagersMade, wagerName)) {
         wagersMade[wagerName] += amount;
     } else {
         wagersMade[wagerName] = amount;
