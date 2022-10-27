@@ -2,7 +2,6 @@ const initialPlayerBalance = 1000;
 let playerHand = [];
 let dealerHand = [];
 let playerBalance = initialPlayerBalance;
-let totalWagerAmount = 0;
 let isRoundActive = false;
 let hasThePlayerRebet = false;
 let playerFolded = false;
@@ -570,9 +569,8 @@ function payout() {
 }
 
 function playGame() {
-    if (!isRoundActive) {
-        return;
-    }
+    if (!isRoundActive) return;
+
     isRoundActive = false;
     playerFolded = false;
     placeWager(BETS.ante.wager, "play");
@@ -602,8 +600,7 @@ function fold() {
     if (!isRoundActive) return;
 
     playerFolded = true;
-    dealerHand = ["TH", "JH", "QH"]
-    // dealerHand = deck.slice(3, 6);
+    dealerHand = deck.slice(3, 6);
     _displayHand(dealerHand, "dealer");
     $("#anteWager").html(BETS.ante.wager);
     $("#pairPlusWager").html(BETS.pp.wager);
