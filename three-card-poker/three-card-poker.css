@@ -16,9 +16,18 @@ h1 {
     color: #FAF5E4;
 }
 
+@font-face {
+    font-family: 'Heffer';
+    src: url('Heffer.woff2') format('woff2'),
+        url('Heffer.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 .interactive-container>* {
     position: absolute;
-    border: 1px solid; 
+    border: 1px solid;
     border-color: black;
     border-style: solid;
     border-color: transparent;
@@ -74,7 +83,7 @@ h1 {
     left: 610px;
     font-size: 36pt;
 }
-  
+
 .wager-diamond {
     left: 737px;
     transform: rotate(45deg);
@@ -241,7 +250,8 @@ h1 {
 .payout-table {
     width: 251px;
     font-size: 0.9em;
-    font-family: 'Merriweather', serif;;
+    font-family: 'Merriweather', serif;
+    ;
     min-width: 175px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.797);
     border-collapse: collapse;
@@ -516,13 +526,35 @@ h1 {
     border-radius: 50%;
 }
 
-#wager-amount-slider label:hover::after {top: -65%; left: 34%; transform: translate(-93px, 40px) scale(1.25);}
-#wager-amount-slider input {display: none;}
-#wager-amount-slider input:checked:nth-child(1)~#wager-amount-tick {left: -2.6%;}
-#wager-amount-slider input:checked:nth-child(3)~#wager-amount-tick {left: 17.4%;}
-#wager-amount-slider input:checked:nth-child(5)~#wager-amount-tick {left: 37.4%;}
-#wager-amount-slider input:checked:nth-child(7)~#wager-amount-tick {left: 57.4%;}
-#wager-amount-slider input:checked:nth-child(9)~#wager-amount-tick {left: 77.4%;}
+#wager-amount-slider label:hover::after {
+    top: -65%;
+    left: 34%;
+    transform: translate(-93px, 40px) scale(1.25);
+}
+
+#wager-amount-slider input {
+    display: none;
+}
+
+#wager-amount-slider input:checked:nth-child(1)~#wager-amount-tick {
+    left: -2.6%;
+}
+
+#wager-amount-slider input:checked:nth-child(3)~#wager-amount-tick {
+    left: 17.4%;
+}
+
+#wager-amount-slider input:checked:nth-child(5)~#wager-amount-tick {
+    left: 37.4%;
+}
+
+#wager-amount-slider input:checked:nth-child(7)~#wager-amount-tick {
+    left: 57.4%;
+}
+
+#wager-amount-slider input:checked:nth-child(9)~#wager-amount-tick {
+    left: 77.4%;
+}
 
 #wager-amount-tick {
     position: absolute;
