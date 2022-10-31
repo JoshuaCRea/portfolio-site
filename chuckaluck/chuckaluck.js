@@ -1,5 +1,9 @@
 import { CHUCKALUCK_WAGER_OPTIONS } from "./chuckaluck_wager_option_params.js";
 
+let wagersMade = {};
+let lastRoundWagers = {};
+let playerBalance = 0;
+
 const COLORS = {
     "HIT_BG_COLOR": "#D6Af00",
     "HIT_TEXT_COLOR": "#820000",
@@ -12,15 +16,6 @@ const COLORS = {
     "UNWAGERED_WIN_BG_COLOR": "green",
     "UNWAGERED_WIN_TEXT_COLOR": "white",
     "UNWAGERED_WIN_BORDER_COLOR": "greenyellow",
-}
-
-let wagersMade = {};
-let lastRoundWagers = {};
-let playerBalance = 0;
-
-function _updatePlayerBalance(amount) {
-    playerBalance += amount;
-    $("#player-balance").html(`$${playerBalance}`);
 }
 
 function _createDieFaceSvg(dieResult) {
@@ -48,15 +43,20 @@ function _displayDiceImages(diceRollResult) {
     $("#rolled-dice-images").css("visibility", "visible");
 }
 
-function _hideChips() {
-    $(".chip-stack img").css("visibility", "hidden");
-    $(".chip-tally").css("visibility", "hidden");
-    $(".appearance-chip-stack img").css("visibility", "hidden");
-    $(".appearance-chip-tally").css("visibility", "hidden");
+function _rollThreeDice() {
+    const minInclusive = 1;
+    const maxExclusive = 7;
+    const diceRollResult = [
+        Math.floor(Math.random() * (maxExclusive - minInclusive) + minInclusive),
+        Math.floor(Math.random() * (maxExclusive - minInclusive) + minInclusive),
+        Math.floor(Math.random() * (maxExclusive - minInclusive) + minInclusive)
+    ];
+    _displayDiceImages(diceRollResult);
+    return diceRollResult;
 }
 
 function _resetWagerSquaresToDefault() {
-    ["non-appearance-bet", "appearance-bet"].forEach((element) => {
+    ["results-bet", "appearance-bet"].forEach((element) => {
         Array.from(document.getElementsByClassName(element)).forEach(
             (wagerOption) => {
                 $(wagerOption).css("background-color", "");
@@ -97,18 +97,6 @@ function _updateBoardToResultsView(winningWagerTypes) {
     });
 }
 
-function _rollThreeDice() {
-    const minInclusive = 1;
-    const maxExclusive = 7;
-    const diceRollResult = [
-        Math.floor(Math.random() * (maxExclusive - minInclusive) + minInclusive),
-        Math.floor(Math.random() * (maxExclusive - minInclusive) + minInclusive),
-        Math.floor(Math.random() * (maxExclusive - minInclusive) + minInclusive)
-    ];
-    _displayDiceImages(diceRollResult);
-    return diceRollResult;
-}
-
 function _tallyWinningWagers(diceRollResult) {
     const winningWagerTypes = [];
     Object.keys(CHUCKALUCK_WAGER_OPTIONS).forEach(wagerType => {
@@ -136,6 +124,11 @@ function _getPayoutMultiplier(wagerOption, diceRollResult) {
     return CHUCKALUCK_WAGER_OPTIONS[wagerOption].winningConditions[theTypeOfWonWager].payoutMultiplier;
 }
 
+function _increasePlayerBalance(amount) {
+    playerBalance += amount;
+    $("#player-balance").html(`$${playerBalance}`);
+}
+
 function _payout(diceRollResult, winningWagerTypes) {
     let totalPayoutAmount = 0;
     Object.keys(wagersMade).forEach((type) => {
@@ -147,12 +140,60 @@ function _payout(diceRollResult, winningWagerTypes) {
     const payoutMessage =
         totalPayoutAmount !== 0 ? `You won $${totalPayoutAmount}!` : "You lost.";
     document.getElementById("display").innerHTML = payoutMessage;
-    _updatePlayerBalance(totalPayoutAmount);
+    _increasePlayerBalance(totalPayoutAmount);
+}
+
+function _hideChips() {
+    $(".chip-stack img").css("visibility", "hidden");
+    $(".chip-tally").css("visibility", "hidden");
+    $(".appearance-chip-stack img").css("visibility", "hidden");
+    $(".appearance-chip-tally").css("visibility", "hidden");
+}
+
+function placeWager(amount, wagerName) {
+    $("#rolled-dice-images").css("visibility", "hidden");
+    $("#display").html("Place your bets, then roll the dice.");
+    _increasePlayerBalance(-amount);
+    if (Object.prototype.hasOwnProperty.call(wagersMade, wagerName)) {
+        wagersMade[wagerName] += amount;
+    } else {
+        wagersMade[wagerName] = amount;
+    }
+    const totalWagerAmount = Object.keys(wagersMade)
+        .map((key) => wagersMade[key])
+        .reduce((a, b) => a + b);
+    document.getElementById(
+        "total-wager-display"
+    ).innerHTML = `$${totalWagerAmount}`;
+    Object.keys(wagersMade).forEach((key) => {
+        $(`#${key}`).css("background-color", COLORS.PLACED_WAGER_BG_COLOR);
+    });
+    _hideChips();
+    Object.keys(wagersMade).forEach((key) => {
+        $(`#${key}-chipstack img`).css("visibility", "visible");
+        $(`#${key}-chiptally`).html(`$${wagersMade[key]}`);
+        $(`#${key}-chiptally`).css("visibility", "visible");
+    });
+}
+
+function _getSelectedWagerAmount() {
+    const radioButtons = document.getElementsByName("wager-amount");
+    const wagerValue = parseInt(Array.from(radioButtons).find((x) => x.checked).value, 10);
+    return wagerValue;
+}
+
+function _defineClickBehaviorOfWagerOptions() {
+    Object.keys(CHUCKALUCK_WAGER_OPTIONS).forEach((wagerType) => {
+        $(`#${wagerType}`).click(function () {
+            _resetWagerSquaresToDefault();
+            placeWager(_getSelectedWagerAmount(), $(this).attr("id"));
+        });
+    });
 }
 
 function clearAllWagers() {
     Object.keys(wagersMade).forEach(wagerName =>
-        _updatePlayerBalance(wagersMade[wagerName]));
+        _increasePlayerBalance(wagersMade[wagerName]));
     wagersMade = {};
     _resetWagerSquaresToDefault();
     _hideChips();
@@ -160,6 +201,12 @@ function clearAllWagers() {
     document.getElementById("display").innerHTML = "Place your bets, then roll the dice.";
     $("#rolled-dice-images").css("visibility", "hidden");
     lastRoundWagers = {};
+}
+
+function _defineClickBehaviorOfClearAllWagersButton() {
+    $("#clear-all-wagers-button").click(() => {
+        clearAllWagers();
+    });
 }
 
 function rebet() {
@@ -180,43 +227,19 @@ function rebet() {
         $(`#${key}`).css("background-color", COLORS.PLACED_WAGER_BG_COLOR);
         $(`#${key}`).css("color", "");
         $(`#${key}`).css("border-color", "");
-        const chipId = key.concat("-chipstack img");
-        $(`#${chipId}`).css("visibility", "visible");
-        const chipTallyId = key.concat("-chiptally");
-        $(`#${chipTallyId}`).html(`$${wagersMade[key]}`);
-        $(`#${chipTallyId}`).css("visibility", "visible");
+        $(`#${key}-chipstack img`).css("visibility", "visible");
+        $(`#${key}-chiptally`).html(`$${wagersMade[key]}`);
+        $(`#${key}-chiptally`).css("visibility", "visible");
         $(`#${key} .appearance-win-banner`).css("visibility", "hidden");
         $(`#${key} .top-square-win-banner`).css("visibility", "hidden");
     });
-    _updatePlayerBalance(-totalWagerAmount);
+    _increasePlayerBalance(-totalWagerAmount);
     lastRoundWagers = {};
 }
 
-function placeWager(amount, wagerName) {
-    $("#rolled-dice-images").css("visibility", "hidden");
-    $("#display").html("Place your bets, then roll the dice.");
-    _updatePlayerBalance(-amount);
-    if (Object.prototype.hasOwnProperty.call(wagersMade, wagerName)) {
-        wagersMade[wagerName] += amount;
-    } else {
-        wagersMade[wagerName] = amount;
-    }
-    const totalWagerAmount = Object.keys(wagersMade)
-        .map((key) => wagersMade[key])
-        .reduce((a, b) => a + b);
-    document.getElementById(
-        "total-wager-display"
-    ).innerHTML = `$${totalWagerAmount}`;
-    Object.keys(wagersMade).forEach((key) => {
-        $(`#${key}`).css("background-color", COLORS.PLACED_WAGER_BG_COLOR);
-    });
-    _hideChips();
-    Object.keys(wagersMade).forEach((key) => {
-        const chipId = key.concat("-chipstack img");
-        $(`#${chipId}`).css("visibility", "visible");
-        const chipTallyId = key.concat("-chiptally");
-        $(`#${chipTallyId}`).html(`$${wagersMade[key]}`);
-        $(`#${chipTallyId}`).css("visibility", "visible");
+function _defineClickBehaviorOfRebetButton() {
+    $("#rebet-button").click(() => {
+        rebet();
     });
 }
 
@@ -229,33 +252,6 @@ function executeAllWagers() {
     lastRoundWagers = {};
     lastRoundWagers = Object.assign(wagersMade);
     wagersMade = {};
-}
-
-function _getSelectedWagerAmount() {
-    const radioButtons = document.getElementsByName("wager-amount");
-    const wagerValue = parseInt(Array.from(radioButtons).find((x) => x.checked).value, 10);
-    return wagerValue;
-}
-
-function _defineClickBehaviorOfWagerOptions() {
-    Object.keys(CHUCKALUCK_WAGER_OPTIONS).forEach((wagerType) => {
-        $(`#${wagerType}`).click(function () {
-            _resetWagerSquaresToDefault();
-            placeWager(_getSelectedWagerAmount(), $(this).attr("id"));
-        });
-    });
-}
-
-function _defineClickBehaviorOfClearAllWagersButton() {
-    $("#clear-all-wagers-button").click(() => {
-        clearAllWagers();
-    });
-}
-
-function _defineClickBehaviorOfRebetButton() {
-    $("#rebet-button").click(() => {
-        rebet();
-    });
 }
 
 function _defineClickBehaviorOfRollDiceButton() {
@@ -275,7 +271,7 @@ function _defineClickBehaviorOfRollDiceButton() {
 
 window.onload = () => {
     const initialPlayerBalance = 1000;
-    _updatePlayerBalance(initialPlayerBalance);
+    _increasePlayerBalance(initialPlayerBalance);
     _defineClickBehaviorOfWagerOptions();
     _defineClickBehaviorOfRollDiceButton();
     _defineClickBehaviorOfClearAllWagersButton();

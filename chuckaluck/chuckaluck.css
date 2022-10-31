@@ -16,7 +16,7 @@ body {
     margin-bottom: 25px;
 }
 
-.non-appearance-bet {
+.results-bet {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
@@ -36,7 +36,7 @@ body {
     font-size: 14pt;
 }
 
-.non-appearance-bet:hover {
+.results-bet:hover {
     color: #533e85;
     border-color: coral;
     background-color: #c1f8cf;

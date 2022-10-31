@@ -17,3 +17,153 @@
 
 <body>
     <div class="title">Chuck-A-Luck!</div>
+
+    <div class="chuckaluck-board">
+        <div class="chuck-row" id="chuck-row-1">
+            <div class="results-bet" id="small-bet">
+                <div class="top-square-label">Small Bet</div>
+                <div class="wager-definition">(Total Between 4 and 10)</div>
+                <div class="info-text">Triples Lose</div>
+                <div class="chip-stack" id="small-bet-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="chip-tally" id="small-bet-chiptally">&nbsp;</div>
+                <div class="top-square-win-banner win-banner" id="small-bet-winbanner">Win!</div>
+            </div>
+
+            <div class="results-bet" id="big-bet">
+                <div class="top-square-label">Big Bet</div>
+                <div class="wager-definition">(Total Between 11 and 17)</div>
+                <div class="info-text">Triples Lose</div>
+                <div class="chip-stack" id="big-bet-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="chip-tally" id="big-bet-chiptally">&nbsp;</div>
+                <div class="top-square-win-banner win-banner" id="big-bet-winbanner">Win!</div>
+            </div>
+
+            <div class="results-bet" id="field-bet">
+                <div class="top-square-label">Field Bet</div>
+                <div class="wager-definition">(Total Below 8 / Above 12)</div>
+                <div class="info-text">Triples Win</div>
+                <div class="chip-stack" id="field-bet-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="chip-tally" id="field-bet-chiptally">&nbsp;</div>
+                <div class="top-square-win-banner win-banner" id="field-bet-winbanner">Win!</div>
+            </div>
+            <div class="loose-table-text">Payout 1:1</div>
+        </div>
+
+        <div class="chuck-row" id="chuck-row-2">
+            <div class="appearance-bet" id="appearance-bet-1">
+                <div class="appearance-bet-label">1</div>
+                <div class="appearance-chip-stack" id="appearance-bet-1-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="appearance-chip-tally" id="appearance-bet-1-chiptally"></div>
+                <div class="appearance-win-banner win-banner" id="appearance-1-winbanner">Win!</div>
+            </div>
+            <div class="appearance-bet" id="appearance-bet-2">
+                <div class="appearance-bet-label">2</div>
+                <div class="appearance-chip-stack" id="appearance-bet-2-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="appearance-chip-tally" id="appearance-bet-2-chiptally"></div>
+                <div class="appearance-win-banner win-banner" id="appearance-2-winbanner">Win!</div>
+            </div>
+            <div class="appearance-bet" id="appearance-bet-3">
+                <div class="appearance-bet-label">3</div>
+                <div class="appearance-chip-stack" id="appearance-bet-3-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="appearance-chip-tally" id="appearance-bet-3-chiptally"></div>
+                <div class="appearance-win-banner win-banner" id="appearance-3-winbanner">Win!</div>
+            </div>
+            <div class="appearance-bet" id="appearance-bet-4">
+                <div class="appearance-bet-label">4</div>
+                <div class="appearance-chip-stack" id="appearance-bet-4-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="appearance-chip-tally" id="appearance-bet-4-chiptally"></div>
+                <div class="appearance-win-banner win-banner" id="appearance-4-winbanner">Win!</div>
+            </div>
+            <div class="appearance-bet" id="appearance-bet-5">
+                <div class="appearance-bet-label">5</div>
+                <div class="appearance-chip-stack" id="appearance-bet-5-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="appearance-chip-tally" id="appearance-bet-5-chiptally"></div>
+                <div class="appearance-win-banner win-banner" id="appearance-5-winbanner">Win!</div>
+            </div>
+            <div class="appearance-bet" id="appearance-bet-6">
+                <div class="appearance-bet-label">6</div>
+                <div class="appearance-chip-stack" id="appearance-bet-6-chipstack">
+                    <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                </div>
+                <div class="appearance-chip-tally" id="appearance-bet-6-chiptally"></div>
+                <div class="appearance-win-banner win-banner" id="appearance-6-winbanner">Win!</div>
+            </div>
+            <div class="loose-table-text" id="LTT-appearance">
+                Payout: One Appearance - <span class="payout-number">1:1</span>, Two Appearances -
+                <span class="payout-number">2:1</span>, Three Appearances - <span class="payout-number">10:1</span>
+            </div>
+
+            <div class="chuck-row" id="chuck-row-3">
+                <div class="results-bet" id="any-triple">
+                    <div class="top-square-label" id="any-triple-label">Any Triple</div>
+                    <div class="chip-stack" id="any-triple-chipstack">
+                        <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
+                    </div>
+                    <div class="chip-tally" id="any-triple-chiptally"></div>
+                    <div class="loose-table-text" id="triples-payout-text">
+                        Payout 30:1
+                    </div>
+                    <div class="top-square-win-banner win-banner" id="any-triple-winbanner">Win!</div>
+                </div>
+            </div>
+            <button id="roll-dice-button">Roll Dice!</button>
+            <div class="chuck-row" id="rolled-dice-images">
+                <div class="rolled-die-image" id="rolled-die-image-0"></div>
+                <div class="rolled-die-image" id="rolled-die-image-1"></div>
+                <div class="rolled-die-image" id="rolled-die-image-2"></div>
+            </div>
+        </div>
+        <div>
+            <h2 id="display"></h2>
+        </div>
+    </div>
+
+    <div class="player-ui"></div>
+    <div id="wager-slider-wrapper">
+        <h1 id="wager-slider-title">Select Wager Amount</h1>
+        <div id="wager-amount-slider">
+            <input type="radio" name="wager-amount" id="1" value="1" required checked />
+            <label for="1" data-wager-amount="$1"></label>
+            <input type="radio" name="wager-amount" id="2" value="5" required />
+            <label for="2" data-wager-amount="$5"></label>
+            <input type="radio" name="wager-amount" id="3" value="10" required />
+            <label for="3" data-wager-amount="$10"></label>
+            <input type="radio" name="wager-amount" id="4" value="25" required />
+            <label for="4" data-wager-amount="$25"></label>
+            <input type="radio" name="wager-amount" id="5" value="100" required />
+            <label for="5" data-wager-amount="$100"></label>
+            <div id="wager-amount-tick"></div>
+        </div>
+    </div>
+    <div id="button-container">
+        <button id="clear-all-wagers-button">Clear All Wagers</button>
+        <button id="rebet-button">Rebet</button>
+    </div>
+    <div class="ui-tally">
+        Player Balance: <span id="player-balance"></span>
+    </div>
+    <div class="ui-tally" id="total-current-wager-display">
+        Total Amount Wagered: <span id="total-wager-display"></span>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="module" src="chuckaluck.js"></script>
+
+</html>
