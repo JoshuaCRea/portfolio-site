@@ -7,20 +7,20 @@ let playerBalance = 0;
 const COLORS = {
     "HIT_BG_COLOR": "#D6Af00",
     "HIT_TEXT_COLOR": "#820000",
-    "HIT_BORDER_COLOR": "greenyellow",
+    "HIT_BORDER_COLOR": "#B6E388",
     "HIT_INFO_COLOR": "#533E85",
     "PLACED_WAGER_BG_COLOR": "#63A974",
-    "MISS_BG_COLOR": "#0740078a",
+    "MISS_BG_COLOR": "#4E6C50",
     "MISS_TEXT_COLOR": "#EAF376",
     "MISS_BORDER_COLOR": "#AB2D00",
-    "UNWAGERED_WIN_BG_COLOR": "green",
-    "UNWAGERED_WIN_TEXT_COLOR": "white",
-    "UNWAGERED_WIN_BORDER_COLOR": "greenyellow",
+    "UNWAGERED_WIN_BG_COLOR": "#379237",
+    "UNWAGERED_WIN_TEXT_COLOR": "#F0EBCE",
+    "UNWAGERED_WIN_BORDER_COLOR": "#82CD47",
 }
 
 function _createDieFaceSvg(dieResult) {
-    const DIE_FACE_SVG_DATA_PREFIX = String.raw`<svg style="height: 128px; width: 128px; border-radius: 15%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 0h512v512H0z" fill="#fff" fill-opacity="1"></path><g class="" style="" transform="translate(0,0)"><path d="`;
-    const DIE_FACE_SVG_DATA_SUFFIX = String.raw`" fill="#000" fill-opacity="1"></path></g></svg>`;
+    const DIE_FACE_SVG_DATA_PREFIX = String.raw`<svg style="height: 128px; width: 128px; border-radius: 15%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 0h512v512H0z" fill="#F0EBCE" fill-opacity="1"></path><g class="" style="" transform="translate(0,0)"><path d="`;
+    const DIE_FACE_SVG_DATA_SUFFIX = String.raw`" fill="#404258" fill-opacity="1"></path></g></svg>`;
     const DIE_FACE_SVG_DATA_DIE_FACE = {
         1: "M302.87 255.5a47.37 47.37 0 1 1-47.37-47.37 47.37 47.37 0 0 1 47.37 47.37zM484.5 428.02a56.48 56.48 0 0 1-56.48 56.48h-344a56.48 56.48 0 0 1-56.52-56.48v-344A56.48 56.48 0 0 1 83.98 27.5h344a56.48 56.48 0 0 1 56.52 56.48zm-20-344a36.48 36.48 0 0 0-36.48-36.52h-344A36.48 36.48 0 0 0 47.5 83.98v344a36.48 36.48 0 0 0 36.48 36.52h344a36.48 36.48 0 0 0 36.52-36.48z",
         2: "M383 81.68A47.37 47.37 0 1 1 335.58 129 47.37 47.37 0 0 1 383 81.68zM81.67 383A47.37 47.37 0 1 0 129 335.59 47.37 47.37 0 0 0 81.67 383zM428 47.57H84A36.48 36.48 0 0 0 47.57 84v344A36.48 36.48 0 0 0 84 464.43h344A36.48 36.48 0 0 0 464.43 428V84A36.48 36.48 0 0 0 428 47.57m0-20A56.54 56.54 0 0 1 484.43 84v344A56.54 56.54 0 0 1 428 484.43H84A56.54 56.54 0 0 1 27.57 428V84A56.54 56.54 0 0 1 84 27.57z",
