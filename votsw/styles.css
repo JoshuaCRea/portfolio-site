@@ -1,0 +1,326 @@
+body {
+   background-color: #D3DEDC;
+}
+
+.map {
+   width: 301px;
+   height: 301px;
+   border-radius: 50%;
+   background: hsla(130, 39%, 23%, 0);
+   position: relative;
+   margin: 25px 25px 25px 50px;
+   display: inline-block;
+}
+
+#valley-map {
+   width: 601px;
+   height: 601px;
+   position: relative;
+   display: inline-block;
+   margin-bottom: 50px;
+}
+
+.location {
+   display: block;
+   position: absolute;
+  top: 51%;
+   left: 51%;
+   margin: -51px;
+   background: rgb(165, 143, 106);
+   border-radius: 51%;
+   text-align: center;
+}
+
+.overlay {
+   position: absolute;
+   width: 100px;
+   height: 100px;
+}
+
+.road {
+   width: 50px;
+   height: 50px;
+   line-height: 50px;
+}
+
+table,
+th,
+td {
+   margin: 75px auto auto auto;
+   font-family: 'Crimson Text', serif;
+   font-size: 20px;
+   left: 0px;
+
+}
+
+.town {
+   width: 100px;
+   height: 100px;
+   line-height: 100px;
+}
+
+.mountain {
+   width: 300px;
+   height: 300px;
+   position: absolute;
+   display: inline-block;
+   transform: rotate(38deg) translate(125px) rotate(-37.5deg);
+}
+
+#Leap-Creek {
+   transform: translate(251px);
+}
+
+#Blackstone {
+   transform: rotate(72deg) translate(251px) rotate(-72deg);
+}
+
+#Fangmarsh {
+   transform: rotate(144deg) translate(251px) rotate(-144deg);
+}
+
+#Underclaw {
+   transform: rotate(216deg) translate(251px) rotate(-216deg);
+}
+
+#Pouch {
+   transform: rotate(288deg) translate(251px) rotate(-288deg);
+}
+
+#roadLCBS {
+   transform: rotate(38deg) translate(277px) rotate(-36deg);
+}
+
+#roadBSFM {
+   transform: rotate(108deg) translate(265px) rotate(-108deg);
+}
+
+#roadFMUC {
+   transform: rotate(180deg) translate(228px) rotate(-180deg);
+}
+
+#roadUCP {
+   transform: rotate(252deg) translate(218px) rotate(-252deg);
+}
+
+#roadPLC {
+   transform: rotate(324deg) translate(255px) rotate(-324deg);
+}
+
+.pip {
+   width: 100px;
+   height: 100px;
+   display: inline-block;
+   position: relative;
+   position: absolute;
+   margin: -51px;
+   visibility: hidden;
+}
+
+.pip-lc {top: 49%; left: 49%;}
+.pip-bs {top: 47%; left: 50%;}
+.pip-fm {top: 46%; left: 51%;}
+.pip-uc {top: 49%; left: 53%;}
+.pip-p {top: 49%; left: 51%;}
+
+.title {
+   font-family: 'Berkshire Swash', cursive;
+   text-align: center;
+   margin-bottom: 60px;
+   font-size: 300%;
+   color: #7C99AC;
+}
+
+.btn {
+   -webkit-border-radius: 28;
+   -moz-border-radius: 28;
+   border-radius: 28px;
+   font-family: 'Crimson Text', serif;
+   color: #ffffff;
+   font-size: 20px;
+   padding: 10px 20px 10px 20px;
+   text-decoration: none;
+   text-align: center;
+}
+
+#p1MoveCwButton {
+   background: #3498db;
+   background-image: -webkit-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: -moz-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: -ms-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: -o-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: linear-gradient(to bottom, #4bb7fa, #3498db);
+}
+
+#p1MoveCwButton:hover {
+   background: #7eb9de;
+   background-image: -webkit-linear-gradient(top, #a8dcff, #7eb9de);
+   background-image: -moz-linear-gradient(top, #a8dcff,  #7eb9de);
+   background-image: -ms-linear-gradient(top, #a8dcff, #7eb9de);
+   background-image: -o-linear-gradient(top, #a8dcff, #7eb9de);
+   background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
+}
+
+#p1MoveCcwButton {
+   background: #3498db;
+   background-image: -webkit-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: -moz-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: -ms-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: -o-linear-gradient(top, #4bb7fa, #3498db);
+   background-image: linear-gradient(to bottom, #4bb7fa, #3498db);
+}
+
+#p1MoveCcwButton:hover {
+   background: #7eb9de;
+   background-image: -webkit-linear-gradient(top, #a8dcff, #7eb9de);
+   background-image: -moz-linear-gradient(top, #a8dcff,  #7eb9de);
+   background-image: -ms-linear-gradient(top, #a8dcff, #7eb9de);
+   background-image: -o-linear-gradient(top, #a8dcff, #7eb9de);
+   background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
+}
+
+#p2MoveCwButton {
+   background: #000000;
+   background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
+   background-image: -moz-linear-gradient(top, #7d7d7d,#000000);
+   background-image: -ms-linear-gradient(top, #7d7d7d, #000000);
+   background-image: -o-linear-gradient(top, #7d7d7d, #000000);
+   background-image: linear-gradient(to bottom, #7d7d7d, #000000);
+ }
+ 
+#p2MoveCwButton:hover {
+   background: #919191;
+   background-image: -webkit-linear-gradient(top, #dedede, #919191);
+   background-image: -moz-linear-gradient(top, #dedede, #919191);
+   background-image: -ms-linear-gradient(top, #dedede, #919191);
+   background-image: -o-linear-gradient(top, #dedede, #919191);
+   background-image: linear-gradient(to bottom, #dedede, #919191);
+ }
+
+#p2MoveCcwButton {
+   background: #000000;
+   background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
+   background-image: -moz-linear-gradient(top, #7d7d7d,#000000);
+   background-image: -ms-linear-gradient(top, #7d7d7d, #000000);
+   background-image: -o-linear-gradient(top, #7d7d7d, #000000);
+   background-image: linear-gradient(to bottom, #7d7d7d, #000000);
+ }
+ 
+ #p2MoveCcwButton:hover {
+   background: #919191;
+   background-image: -webkit-linear-gradient(top, #dedede, #919191);
+   background-image: -moz-linear-gradient(top, #dedede, #919191);
+   background-image: -ms-linear-gradient(top, #dedede, #919191);
+   background-image: -o-linear-gradient(top, #dedede, #919191);
+   background-image: linear-gradient(to bottom, #dedede, #919191);
+   text-decoration: none;
+   text-align: center;
+ }
+
+ #p3MoveCwButton {
+   background: #ff0000;
+   background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
+   background-image: -moz-linear-gradient(top, #ff0000, #a10000);
+   background-image: -ms-linear-gradient(top, #ff0000, #a10000);
+   background-image: -o-linear-gradient(top, #ff0000, #a10000);
+   background-image: linear-gradient(to bottom, #ff0000, #a10000);
+ }
+ 
+ #p3MoveCwButton:hover {
+   background: #ffabab;
+   background-image: -webkit-linear-gradient(top, #ffabab, #ff5454);
+   background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
+   background-image: -ms-linear-gradient(top, #ffabab, #ff5454);
+   background-image: -o-linear-gradient(top, #ffabab, #ff5454);
+   background-image: linear-gradient(to bottom, #ffabab, #ff5454);
+ }
+
+ #p3MoveCcwButton {
+   background: #ff0000;
+   background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
+   background-image: -moz-linear-gradient(top, #ff0000, #a10000);
+   background-image: -ms-linear-gradient(top, #ff0000, #a10000);
+   background-image: -o-linear-gradient(top, #ff0000, #a10000);
+   background-image: linear-gradient(to bottom, #ff0000, #a10000);
+ }
+ 
+ #p3MoveCcwButton:hover {
+   background: #ffabab;
+   background-image: -webkit-linear-gradient(top, #ffabab, #ff5454);
+   background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
+   background-image: -ms-linear-gradient(top, #ffabab, #ff5454);75
+   background-image: -o-linear-gradient(top, #ffabab, #ff5454);
+   background-image: linear-gradient(to bottom, #ffabab, #ff5454);
+ }
+
+ #p4MoveCwButton {
+   background: #4fed3d;
+   background-image: -webkit-linear-gradient(top, #13a403, #145700);
+   background-image: -moz-linear-gradient(top, #13a403, #145700);
+   background-image: -ms-linear-gradient(top, #13a403, #145700);
+   background-image: -o-linear-gradient(top, #13a403, #145700);
+   background-image: linear-gradient(to bottom, #13a403, #145700);
+ }
+ 
+ #p4MoveCwButton:hover {
+   background: #c6f7c6;
+   background-image: -webkit-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: -moz-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: -ms-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: -o-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
+ }
+
+ #p4MoveCcwButton {
+   background: #4fed3d;
+   background-image: -webkit-linear-gradient(top, #13a403, #145700);
+   background-image: -moz-linear-gradient(top, #13a403, #145700);
+   background-image: -ms-linear-gradient(top, #13a403, #145700);
+   background-image: -o-linear-gradient(top, #13a403, #145700);
+   background-image: linear-gradient(to bottom, #13a403, #145700);
+ }
+ 
+ #p4MoveCcwButton:hover {
+   background: #c6f7c6;
+   background-image: -webkit-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: -moz-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: -ms-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: -o-linear-gradient(top, #c6f7c6, #8cc771);
+   background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
+ }
+
+ #p5MoveCwButton {
+   background: #7d60e8;
+   background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: -moz-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: -ms-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: -o-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: linear-gradient(to bottom, #7d60e8, #5136a3);
+ }
+ 
+ #p5MoveCwButton:hover {
+   background: #cebcf7;
+   background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: -ms-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: -o-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: linear-gradient(to bottom, #cebcf7, #9678fa);
+ }
+
+ #p5MoveCcwButton {
+   background: #7d60e8;
+   background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: -moz-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: -ms-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: -o-linear-gradient(top, #7d60e8, #5136a3);
+   background-image: linear-gradient(to bottom, #7d60e8, #5136a3);
+ }
+ 
+ #p5MoveCcwButton:hover {
+   background: #cebcf7;
+   background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: -ms-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: -o-linear-gradient(top, #cebcf7, #9678fa);
+   background-image: linear-gradient(to bottom, #cebcf7, #9678fa);
+ }
