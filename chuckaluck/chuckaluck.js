@@ -5,17 +5,17 @@ let lastRoundWagers = {};
 let playerBalance = 0;
 
 const COLORS = {
-    "HIT_BG_COLOR": "#D6Af00",
+    "HIT_BG_COLOR": "#379237",
     "HIT_TEXT_COLOR": "#820000",
-    "HIT_BORDER_COLOR": "#B6E388",
+    "HIT_BORDER_COLOR": "#54B435",
     "HIT_INFO_COLOR": "#533E85",
     "PLACED_WAGER_BG_COLOR": "#63A974",
     "MISS_BG_COLOR": "#4E6C50",
     "MISS_TEXT_COLOR": "#EAF376",
-    "MISS_BORDER_COLOR": "#AB2D00",
+    "MISS_BORDER_COLOR": "#FF884B",
     "UNWAGERED_WIN_BG_COLOR": "#379237",
     "UNWAGERED_WIN_TEXT_COLOR": "#F0EBCE",
-    "UNWAGERED_WIN_BORDER_COLOR": "#82CD47",
+    "UNWAGERED_WIN_BORDER_COLOR": "#54B435",
 }
 
 function _createDieFaceSvg(dieResult) {

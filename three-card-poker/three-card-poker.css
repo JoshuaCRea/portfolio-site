@@ -20,7 +20,7 @@ h1 {
     font-family: 'Heffer';
     src: url('Heffer.woff2') format('woff2'),
         url('Heffer.woff') format('woff');
-    font-weight: 900;
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -469,17 +469,19 @@ h1 {
 }
 
 #wager-slider-title {
-    top: 830px;
-    left: 635px;
+    top: 820px;
+    left: 580px;
     font-weight: 400;
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Heffer', Times, serif;
     color: #FAF5E4;
-    font-size: 36pt;
+    font-size: 46pt;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 #wager-amount-slider {
-    top: 910px;
+    top: 920px;
     left: 500px;
     display: flex;
     position: relative;
@@ -522,7 +524,7 @@ h1 {
     width: 30px;
     height: 30px;
     border: 2px solid #000;
-    background: #fff;
+    background: #FAF5E4;
     border-radius: 50%;
 }
 
@@ -569,6 +571,7 @@ h1 {
 }
 
 .ui-tally {
+    margin-top: 15px;
     font-family: "Merriweather", serif;
     font-size: 16pt;
     color: #FAF5E4;
@@ -643,36 +646,6 @@ h1 {
 #total-winnings-display {
     top: 1043px;
     left: 635px;
-}
-
-#anteWinnings {
-    color: #ffdda6;
-    font-family: "Arvo", serif;
-    font-size: 16pt;
-}
-
-#playWinnings {
-    color: #ffdda6;
-    font-family: "Arvo", serif;
-    font-size: 16pt;
-}
-
-#anteBonusWinnings {
-    color: #ffdda6;
-    font-family: "Arvo", serif;
-    font-size: 16pt;
-}
-
-#pairPlusBonusWinnings {
-    color: #f1c5c5;
-    font-family: "Arvo", serif;
-    font-size: 16pt;
-}
-
-#sixCardBonusWinnings {
-    color: #a3f6e8;
-    font-family: "Arvo", serif;
-    font-size: 16pt;
 }
 
 #totalWinnings {

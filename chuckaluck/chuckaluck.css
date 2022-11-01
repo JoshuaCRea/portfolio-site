@@ -7,12 +7,12 @@ body {
     display: inline-block;
     width: 1200px;
     height: 725px;
-    border-radius: 15%;
+    border-radius: 275px;
     background-color: #395144;
     background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
     border-style: solid;
-    border-color: #AA8B56;
-    border-width: 25px;
+    border-color: #e0a33b;
+    border-width: 12px;
     margin-bottom: 25px;
 }
 
@@ -25,7 +25,7 @@ body {
     border-style: solid;
     color: #FCFFB2;
     border-color: #FF884B;
-    border-radius: 35%;
+    border-radius: 100px;
     border-width: 5px;
     line-height: 10px;
     margin: 10px 10px 0px 10px;
@@ -52,7 +52,7 @@ body {
     border-style: solid;
     color: #FCFFB2;
     border-color: #FF884B;
-    border-radius: 35%;
+    border-radius: 50px;
     border-width: 5px;
     padding: 15px;
     font-family: "Merriweather", serif;
@@ -188,7 +188,7 @@ body {
 
 .rolled-die-image {
     display: inline-block;
-    transform: translate(20px, -150px);
+    transform: translate(60px, -170px);
 }
 
 .top-square-win-banner {
