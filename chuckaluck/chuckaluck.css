@@ -100,7 +100,7 @@ body {
 .info-text {
     font-family: "Merriweather", serif;
     font-size: large;
-    padding-top: 25px;
+    padding-top: 20px;
 }
 
 .loose-table-text {
@@ -278,7 +278,7 @@ body {
 }
 
 #wager-slider-title {
-    margin-top: 10px;
+    margin-top: 0px;
     font-size: 32pt;
     font-weight: 400;
     text-align: center;
@@ -287,6 +287,7 @@ body {
 }
 
 #wager-amount-slider {
+    margin-top: -20px;
     display: flex;
     position: relative;
     width: 50%;
@@ -402,4 +403,4 @@ body {
 }
 
 
-#E1FFB1 #C7F2A4 #B6E388 #FCFFB2 #395144 #4E6C50 #AA8B56 #F0EBCE #FF577F #FF884B #FFD384 #FFF9B0 #F0FF42 #82CD47 #54B435 #379237 #404258
+/* #E1FFB1 #C7F2A4 #B6E388 #FCFFB2 #395144 #4E6C50 #AA8B56 #F0EBCE #FF577F #FF884B #FFD384 #FFF9B0 #F0FF42 #82CD47 #54B435 #379237 #404258 */
