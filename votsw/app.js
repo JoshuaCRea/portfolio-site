@@ -88,6 +88,7 @@ function updateLocationIndex(directionValue, player) {
     player.locationIndex = (((player.locationIndex + directionValue) % LOCATION_IDS.length) + LOCATION_IDS.length) % LOCATION_IDS.length;
     updatePips();
     updateTownInfo()
+    displayActionOptions(player);
 }
 
 function updatePips() {
@@ -99,8 +100,8 @@ function updatePips() {
 }
 
 function updateTownInfo() {
-    Object.keys(playerInfo).forEach(player => {
-        var playerLocationId = LOCATION_IDS[playerInfo[player].locationIndex];
+    ["p1", "p2", "p3", "p4", "p5"].forEach(player => {
+        var playerLocationId = LOCATION_IDS[player.locationIndex];
         var townInfo = TOWN_DESCRIPTIONS[playerLocationId];
         const locationDescription = townInfo ? townInfo.nickname : "The Valley of the Star";
         const locationSchoolName = townInfo ? townInfo['School name'] : "Wilderness";
@@ -111,6 +112,12 @@ function updateTownInfo() {
 
 function resetPips() {
     $(".pip").css("visibility", "hidden");
+}
+
+function displayActionOptions(player) {
+    const inCity = player.locationIndex % 2 === 0;
+    const displayStatus = inCity ? "visible" : "hidden";
+    $(`#${player.townCode}HealButton`).css("visibility", displayStatus);
 }
 
 window.onload = () => {

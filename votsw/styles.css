@@ -205,6 +205,24 @@ td {
     background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
 }
 
+#lcHealButton {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #4bb7fa, #3498db);
+    background-image: -moz-linear-gradient(top, #4bb7fa, #3498db);
+    background-image: -ms-linear-gradient(top, #4bb7fa, #3498db);
+    background-image: -o-linear-gradient(top, #4bb7fa, #3498db);
+    background-image: linear-gradient(to bottom, #4bb7fa, #3498db);
+}
+
+#lcHealButton:hover {
+    background: #7eb9de;
+    background-image: -webkit-linear-gradient(top, #a8dcff, #7eb9de);
+    background-image: -moz-linear-gradient(top, #a8dcff, #7eb9de);
+    background-image: -ms-linear-gradient(top, #a8dcff, #7eb9de);
+    background-image: -o-linear-gradient(top, #a8dcff, #7eb9de);
+    background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
+}
+
 #bsPCMoveCwButton {
     background: #000000;
     background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
@@ -243,6 +261,24 @@ td {
     text-align: center;
 }
 
+#bsHealButton {
+    background: #000000;
+    background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
+    background-image: -moz-linear-gradient(top, #7d7d7d, #000000);
+    background-image: -ms-linear-gradient(top, #7d7d7d, #000000);
+    background-image: -o-linear-gradient(top, #7d7d7d, #000000);
+    background-image: linear-gradient(to bottom, #7d7d7d, #000000);
+}
+
+#bsHealButton:hover {
+    background: #919191;
+    background-image: -webkit-linear-gradient(top, #dedede, #919191);
+    background-image: -moz-linear-gradient(top, #dedede, #919191);
+    background-image: -ms-linear-gradient(top, #dedede, #919191);
+    background-image: -o-linear-gradient(top, #dedede, #919191);
+    background-image: linear-gradient(to bottom, #dedede, #919191);
+}
+
 #fmPCMoveCwButton {
     background: #ff0000;
     background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
@@ -276,6 +312,24 @@ td {
     background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
     background-image: -ms-linear-gradient(top, #ffabab, #ff5454);
     75 background-image: -o-linear-gradient(top, #ffabab, #ff5454);
+    background-image: linear-gradient(to bottom, #ffabab, #ff5454);
+}
+
+#fmHealButton {
+    background: #ff0000;
+    background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
+    background-image: -moz-linear-gradient(top, #ff0000, #a10000);
+    background-image: -ms-linear-gradient(top, #ff0000, #a10000);
+    background-image: -o-linear-gradient(top, #ff0000, #a10000);
+    background-image: linear-gradient(to bottom, #ff0000, #a10000);
+}
+
+#fmHealButton:hover {
+    background: #ffabab;
+    background-image: -webkit-linear-gradient(top, #ffabab, #ff5454);
+    background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
+    background-image: -ms-linear-gradient(top, #ffabab, #ff5454);
+    background-image: -o-linear-gradient(top, #ffabab, #ff5454);
     background-image: linear-gradient(to bottom, #ffabab, #ff5454);
 }
 
@@ -315,6 +369,24 @@ td {
     background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
 }
 
+#ucHealButton {
+    background: #4fed3d;
+    background-image: -webkit-linear-gradient(top, #13a403, #145700);
+    background-image: -moz-linear-gradient(top, #13a403, #145700);
+    background-image: -ms-linear-gradient(top, #13a403, #145700);
+    background-image: -o-linear-gradient(top, #13a403, #145700);
+    background-image: linear-gradient(to bottom, #13a403, #145700);
+}
+
+#ucHealButton:hover {
+    background: #c6f7c6;
+    background-image: -webkit-linear-gradient(top, #c6f7c6, #8cc771);
+    background-image: -moz-linear-gradient(top, #c6f7c6, #8cc771);
+    background-image: -ms-linear-gradient(top, #c6f7c6, #8cc771);
+    background-image: -o-linear-gradient(top, #c6f7c6, #8cc771);
+    background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
+}
+
 #pxPCMoveCwButton {
     background: #7d60e8;
     background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
@@ -343,6 +415,24 @@ td {
 }
 
 #pxPCMoveCcwButton:hover {
+    background: #cebcf7;
+    background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
+    background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);
+    background-image: -ms-linear-gradient(top, #cebcf7, #9678fa);
+    background-image: -o-linear-gradient(top, #cebcf7, #9678fa);
+    background-image: linear-gradient(to bottom, #cebcf7, #9678fa);
+}
+
+#pxHealButton {
+    background: #7d60e8;
+    background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
+    background-image: -moz-linear-gradient(top, #7d60e8, #5136a3);
+    background-image: -ms-linear-gradient(top, #7d60e8, #5136a3);
+    background-image: -o-linear-gradient(top, #7d60e8, #5136a3);
+    background-image: linear-gradient(to bottom, #7d60e8, #5136a3);
+}
+
+#pxHealButton:hover {
     background: #cebcf7;
     background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
     background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);
