@@ -169,7 +169,7 @@ td {
     text-align: center;
 }
 
-#p1MoveCwButton {
+#lcPCMoveCwButton {
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #4bb7fa, #3498db);
     background-image: -moz-linear-gradient(top, #4bb7fa, #3498db);
@@ -178,7 +178,7 @@ td {
     background-image: linear-gradient(to bottom, #4bb7fa, #3498db);
 }
 
-#p1MoveCwButton:hover {
+#lcPCMoveCwButton:hover {
     background: #7eb9de;
     background-image: -webkit-linear-gradient(top, #a8dcff, #7eb9de);
     background-image: -moz-linear-gradient(top, #a8dcff, #7eb9de);
@@ -187,7 +187,7 @@ td {
     background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
 }
 
-#p1MoveCcwButton {
+#lcPCMoveCcwButton {
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #4bb7fa, #3498db);
     background-image: -moz-linear-gradient(top, #4bb7fa, #3498db);
@@ -196,7 +196,7 @@ td {
     background-image: linear-gradient(to bottom, #4bb7fa, #3498db);
 }
 
-#p1MoveCcwButton:hover {
+#lcPCMoveCcwButton:hover {
     background: #7eb9de;
     background-image: -webkit-linear-gradient(top, #a8dcff, #7eb9de);
     background-image: -moz-linear-gradient(top, #a8dcff, #7eb9de);
@@ -205,7 +205,7 @@ td {
     background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
 }
 
-#p2MoveCwButton {
+#bsPCMoveCwButton {
     background: #000000;
     background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
     background-image: -moz-linear-gradient(top, #7d7d7d, #000000);
@@ -214,7 +214,7 @@ td {
     background-image: linear-gradient(to bottom, #7d7d7d, #000000);
 }
 
-#p2MoveCwButton:hover {
+#bsPCMoveCwButton:hover {
     background: #919191;
     background-image: -webkit-linear-gradient(top, #dedede, #919191);
     background-image: -moz-linear-gradient(top, #dedede, #919191);
@@ -223,7 +223,7 @@ td {
     background-image: linear-gradient(to bottom, #dedede, #919191);
 }
 
-#p2MoveCcwButton {
+#bsPCMoveCcwButton {
     background: #000000;
     background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
     background-image: -moz-linear-gradient(top, #7d7d7d, #000000);
@@ -232,7 +232,7 @@ td {
     background-image: linear-gradient(to bottom, #7d7d7d, #000000);
 }
 
-#p2MoveCcwButton:hover {
+#bsPCMoveCcwButton:hover {
     background: #919191;
     background-image: -webkit-linear-gradient(top, #dedede, #919191);
     background-image: -moz-linear-gradient(top, #dedede, #919191);
@@ -243,7 +243,7 @@ td {
     text-align: center;
 }
 
-#p3MoveCwButton {
+#fmPCMoveCwButton {
     background: #ff0000;
     background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
     background-image: -moz-linear-gradient(top, #ff0000, #a10000);
@@ -252,7 +252,7 @@ td {
     background-image: linear-gradient(to bottom, #ff0000, #a10000);
 }
 
-#p3MoveCwButton:hover {
+#fmPCMoveCwButton:hover {
     background: #ffabab;
     background-image: -webkit-linear-gradient(top, #ffabab, #ff5454);
     background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
@@ -261,7 +261,7 @@ td {
     background-image: linear-gradient(to bottom, #ffabab, #ff5454);
 }
 
-#p3MoveCcwButton {
+#fmPCMoveCcwButton {
     background: #ff0000;
     background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
     background-image: -moz-linear-gradient(top, #ff0000, #a10000);
@@ -270,7 +270,7 @@ td {
     background-image: linear-gradient(to bottom, #ff0000, #a10000);
 }
 
-#p3MoveCcwButton:hover {
+#fmPCMoveCcwButton:hover {
     background: #ffabab;
     background-image: -webkit-linear-gradient(top, #ffabab, #ff5454);
     background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
@@ -279,7 +279,7 @@ td {
     background-image: linear-gradient(to bottom, #ffabab, #ff5454);
 }
 
-#p4MoveCwButton {
+#ucPCMoveCwButton {
     background: #4fed3d;
     background-image: -webkit-linear-gradient(top, #13a403, #145700);
     background-image: -moz-linear-gradient(top, #13a403, #145700);
@@ -288,7 +288,7 @@ td {
     background-image: linear-gradient(to bottom, #13a403, #145700);
 }
 
-#p4MoveCwButton:hover {
+#ucPCMoveCwButton:hover {
     background: #c6f7c6;
     background-image: -webkit-linear-gradient(top, #c6f7c6, #8cc771);
     background-image: -moz-linear-gradient(top, #c6f7c6, #8cc771);
@@ -297,7 +297,7 @@ td {
     background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
 }
 
-#p4MoveCcwButton {
+#ucPCMoveCcwButton {
     background: #4fed3d;
     background-image: -webkit-linear-gradient(top, #13a403, #145700);
     background-image: -moz-linear-gradient(top, #13a403, #145700);
@@ -306,7 +306,7 @@ td {
     background-image: linear-gradient(to bottom, #13a403, #145700);
 }
 
-#p4MoveCcwButton:hover {
+#ucPCMoveCcwButton:hover {
     background: #c6f7c6;
     background-image: -webkit-linear-gradient(top, #c6f7c6, #8cc771);
     background-image: -moz-linear-gradient(top, #c6f7c6, #8cc771);
@@ -315,7 +315,7 @@ td {
     background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
 }
 
-#p5MoveCwButton {
+#pxPCMoveCwButton {
     background: #7d60e8;
     background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
     background-image: -moz-linear-gradient(top, #7d60e8, #5136a3);
@@ -324,7 +324,7 @@ td {
     background-image: linear-gradient(to bottom, #7d60e8, #5136a3);
 }
 
-#p5MoveCwButton:hover {
+#pxPCMoveCwButton:hover {
     background: #cebcf7;
     background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
     background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);
@@ -333,7 +333,7 @@ td {
     background-image: linear-gradient(to bottom, #cebcf7, #9678fa);
 }
 
-#p5MoveCcwButton {
+#pxPCMoveCcwButton {
     background: #7d60e8;
     background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
     background-image: -moz-linear-gradient(top, #7d60e8, #5136a3);
@@ -342,7 +342,7 @@ td {
     background-image: linear-gradient(to bottom, #7d60e8, #5136a3);
 }
 
-#p5MoveCcwButton:hover {
+#pxPCMoveCcwButton:hover {
     background: #cebcf7;
     background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
     background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);
