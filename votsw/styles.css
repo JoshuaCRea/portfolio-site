@@ -146,7 +146,6 @@ td {
 .pip-px {
     top: 49%;
     left: 51%;
-    /* transform: translate(-50px, -50px) */
 }
 
 .title {
@@ -167,6 +166,31 @@ td {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     text-align: center;
+}
+
+#lcSchoolButton {
+    padding: 13px 20px 13px 20px;
+    font-size: 12pt;
+}
+
+#bsSchoolButton {
+    padding: 13px 20px 13px 20px;
+    font-size: 12pt;
+}
+
+#fmSchoolButton {
+    padding: 13px 20px 13px 20px;
+    font-size: 12pt;
+}
+
+#ucSchoolButton {
+    padding: 13px 20px 13px 20px;
+    font-size: 12pt;
+}
+
+#pxSchoolButton {
+    padding: 13px 20px 13px 20px;
+    font-size: 12pt;
 }
 
 #lcPCMoveCwButton {
@@ -205,7 +229,7 @@ td {
     background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
 }
 
-#lcHealButton {
+.lclocation-action-btn {
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #4bb7fa, #3498db);
     background-image: -moz-linear-gradient(top, #4bb7fa, #3498db);
@@ -214,7 +238,7 @@ td {
     background-image: linear-gradient(to bottom, #4bb7fa, #3498db);
 }
 
-#lcHealButton:hover {
+.lclocation-action-btn:hover {
     background: #7eb9de;
     background-image: -webkit-linear-gradient(top, #a8dcff, #7eb9de);
     background-image: -moz-linear-gradient(top, #a8dcff, #7eb9de);
@@ -261,7 +285,7 @@ td {
     text-align: center;
 }
 
-#bsHealButton {
+.bslocation-action-btn {
     background: #000000;
     background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
     background-image: -moz-linear-gradient(top, #7d7d7d, #000000);
@@ -270,7 +294,7 @@ td {
     background-image: linear-gradient(to bottom, #7d7d7d, #000000);
 }
 
-#bsHealButton:hover {
+.bslocation-action-btn:hover {
     background: #919191;
     background-image: -webkit-linear-gradient(top, #dedede, #919191);
     background-image: -moz-linear-gradient(top, #dedede, #919191);
@@ -315,7 +339,7 @@ td {
     background-image: linear-gradient(to bottom, #ffabab, #ff5454);
 }
 
-#fmHealButton {
+.fmlocation-action-btn {
     background: #ff0000;
     background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
     background-image: -moz-linear-gradient(top, #ff0000, #a10000);
@@ -324,7 +348,7 @@ td {
     background-image: linear-gradient(to bottom, #ff0000, #a10000);
 }
 
-#fmHealButton:hover {
+.fmlocation-action-btn:hover {
     background: #ffabab;
     background-image: -webkit-linear-gradient(top, #ffabab, #ff5454);
     background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
@@ -369,7 +393,7 @@ td {
     background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
 }
 
-#ucHealButton {
+.uclocation-action-btn {
     background: #4fed3d;
     background-image: -webkit-linear-gradient(top, #13a403, #145700);
     background-image: -moz-linear-gradient(top, #13a403, #145700);
@@ -378,7 +402,7 @@ td {
     background-image: linear-gradient(to bottom, #13a403, #145700);
 }
 
-#ucHealButton:hover {
+.uclocation-action-btn:hover {
     background: #c6f7c6;
     background-image: -webkit-linear-gradient(top, #c6f7c6, #8cc771);
     background-image: -moz-linear-gradient(top, #c6f7c6, #8cc771);
@@ -423,7 +447,7 @@ td {
     background-image: linear-gradient(to bottom, #cebcf7, #9678fa);
 }
 
-#pxHealButton {
+.pxlocation-action-btn {
     background: #7d60e8;
     background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
     background-image: -moz-linear-gradient(top, #7d60e8, #5136a3);
@@ -432,7 +456,7 @@ td {
     background-image: linear-gradient(to bottom, #7d60e8, #5136a3);
 }
 
-#pxHealButton:hover {
+.pxlocation-action-btn:hover {
     background: #cebcf7;
     background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
     background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);

@@ -7,23 +7,23 @@ const CCW_DIR_VALUE = -1
 const TOWN_DESCRIPTIONS = {
     '#Leap-Creek': {
         nickname: "The Water Temple",
-        'School name': "Temple of T'ai Chi Chuan",
+        schoolName: "Temple of T'ai Chi Chuan",
     },
     '#Blackstone': {
         nickname: "The Iron Fortress",
-        'School name': "School of Hong Quan",
+        schoolName: "School of Hong Quan",
     },
     '#Fangmarsh': {
         nickname: "The Bog That Burns",
-        'School name': "Kwoon of Pai Tong Long",
+        schoolName: "Kwoon of Pai Tong Long",
     },
     '#Underclaw': {
         nickname: "The Hidden City",
-        'School name': "Kwoon of Changquan",
+        schoolName: "Kwoon of Changquan",
     },
     '#Pouch': {
         nickname: "Forest of Wine and Shadow",
-        'School name': "School of Zui Quan",
+        schoolName: "School of Zui Quan",
     }
 }
 
@@ -77,12 +77,13 @@ class PC {
     };
 }
 
-const p1 = new PC('p1');
-const p2 = new PC('p2');
-const p3 = new PC('p3');
-const p4 = new PC('p4');
-const p5 = new PC('p5');
-const playerList = [p1, p2, p3, p4, p5];
+const playerList = [
+    new PC('p1'),
+    new PC('p2'),
+    new PC('p3'),
+    new PC('p4'),
+    new PC('p5')
+];
 
 function updateLocationIndex(directionValue, player) {
     player.locationIndex = (((player.locationIndex + directionValue) % LOCATION_IDS.length) + LOCATION_IDS.length) % LOCATION_IDS.length;
@@ -104,10 +105,10 @@ function updateTownInfo() {
         var playerLocationId = LOCATION_IDS[player.locationIndex];
         var townInfo = TOWN_DESCRIPTIONS[playerLocationId];
         const locationDescription = townInfo ? townInfo.nickname : "The Valley of the Star";
-        const locationSchoolName = townInfo ? townInfo['School name'] : "Wilderness";
+        const locationSchoolName = townInfo ? townInfo[schoolName] : "Wilderness";
         $(playerInfo[player].townInfoId).html(locationDescription);
         $(playerInfo[player].townSchoolId).html(locationSchoolName);
-    })
+    });
 }
 
 function resetPips() {
@@ -117,13 +118,15 @@ function resetPips() {
 function displayActionOptions(player) {
     const inCity = player.locationIndex % 2 === 0;
     const displayStatus = inCity ? "visible" : "hidden";
-    $(`#${player.townCode}HealButton`).css("visibility", displayStatus);
+    $(`.${player.townCode}location-action-btn`).css("visibility", displayStatus);
+    $(`#${player.townCode}SchoolButton`).html((`Visit ${TOWN_DESCRIPTIONS[LOCATION_IDS[player.locationIndex]].schoolName}`))
 }
 
 window.onload = () => {
     updatePips();
     updateTownInfo();
     playerList.forEach(player => {
+        displayActionOptions(player);
         $(`#${player.townCode}PCMoveCwButton`).click(() => updateLocationIndex(CW_DIR_VALUE, player));
         $(`#${player.townCode}PCMoveCcwButton`).click(() => updateLocationIndex(CCW_DIR_VALUE, player));
     })
