@@ -1,16 +1,25 @@
+.title {
+    font-family: 'Berkshire Swash', cursive;
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 300%;
+    color: #7C99AC;
+}
+
 body {
     background-color: #D3DEDC;
 }
 
 .map {
-    top: -50px;
+    top: -300px;
+    left: -25px;
     width: 301px;
     height: 301px;
     border-radius: 50%;
     background: #24522b00;
-    position: relative;
-    margin: 0px 25px 25px 50px;
-    display: inline-block;
+    position: absolute;
+    margin: 0px 25px 25px 25px;
+    display: absolute;
 }
 
 #valley-map {
@@ -18,7 +27,7 @@ body {
     height: 601px;
     position: relative;
     display: inline-block;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .location {
@@ -30,12 +39,6 @@ body {
     background: rgb(165, 143, 106);
     border-radius: 51%;
     text-align: center;
-}
-
-.overlay {
-    position: absolute;
-    width: 100px;
-    height: 100px;
 }
 
 .road {
@@ -50,8 +53,24 @@ th,
 td {
     font-family: 'Crimson Text', serif;
     font-size: 20px;
-    left: 0px;
+    display: relative;
+    position: relative;
+    top: 0px;
+    left: 500px;
+}
 
+#infoBoxHeader {
+    text-align: center;
+}
+
+#playerName {
+    font-family: 'Berkshire Swash', cursive;
+    text-align: right;
+}
+
+#playerTitle {
+    font-family: 'Berkshire Swash', cursive;
+    text-align: right;
 }
 
 .town {
@@ -147,14 +166,6 @@ td {
 .pip-px {
     top: 49%;
     left: 51%;
-}
-
-.title {
-    font-family: 'Berkshire Swash', cursive;
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 300%;
-    color: #7C99AC;
 }
 
 .btn {

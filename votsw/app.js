@@ -1,5 +1,3 @@
-
-
 const LOCATION_IDS = ["#Leap-Creek", "#roadLCBS", "#Blackstone", "#roadBSFM", "#Fangmarsh", "#roadFMUC", "#Underclaw", "#roadUCP", "#Pouch", "#roadPLC"];
 const UNOCCUPIED_LOCATION_COLOR = 'rgb(165, 143, 106)';
 const CW_DIR_VALUE = 1
@@ -26,8 +24,8 @@ const TOWN_DESCRIPTIONS = {
         schoolName: "School of Zui Quan",
     }
 }
-
-// Create something to track turns
+// Create an InfoBox
+// Create turn tracker
 
 
 const playerInfo = {
