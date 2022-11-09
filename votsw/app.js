@@ -74,7 +74,14 @@ class PC {
     constructor(playerNumber) {
         this.locationIndex = playerInfo[playerNumber].startingLocationIndex;
         this.townCode = playerInfo[playerNumber].townCode;
+        this.injured = false;
     };
+    _loseFight() {
+        this.injured = true;
+    }
+    _heal() {
+        this.injured = false;
+    }
 }
 
 const playerList = [
@@ -88,15 +95,21 @@ const playerList = [
 function updateLocationIndex(directionValue, player) {
     player.locationIndex = (((player.locationIndex + directionValue) % LOCATION_IDS.length) + LOCATION_IDS.length) % LOCATION_IDS.length;
     updatePips();
-    updateTownInfo()
+    updateTownInfo();
     displayActionOptions(player);
 }
 
 function updatePips() {
     resetPips();
     playerList.forEach(player => {
-        let pipId = player.townCode.concat("-uninjured-pip-", (player.locationIndex));
-        $(`#${pipId}`).css("visibility", "visible");
+        if (player.injured === false) {
+            let pipId = player.townCode.concat("-uninjured-pip-", (player.locationIndex));
+            $(`#${pipId}`).css("visibility", "visible");
+        }
+        if (player.injured === true) {
+            let pipId = player.townCode.concat("-injured-pip-", (player.locationIndex));
+            $(`#${pipId}`).css("visibility", "visible");
+        }
     })
 }
 
@@ -119,7 +132,7 @@ function displayActionOptions(player) {
     const inCity = player.locationIndex % 2 === 0;
     const displayStatus = inCity ? "visible" : "hidden";
     $(`.${player.townCode}location-action-btn`).css("visibility", displayStatus);
-    $(`#${player.townCode}SchoolButton`).html((`Visit ${TOWN_DESCRIPTIONS[LOCATION_IDS[player.locationIndex]].schoolName}`))
+    $(`#${player.townCode}SchoolButton`).html((`Visit ${TOWN_DESCRIPTIONS[LOCATION_IDS[player.locationIndex]].schoolName}`));
 }
 
 window.onload = () => {
@@ -131,3 +144,9 @@ window.onload = () => {
         $(`#${player.townCode}PCMoveCcwButton`).click(() => updateLocationIndex(CCW_DIR_VALUE, player));
     })
 }
+
+console.log(playerList[3].injured);
+playerList[3]._loseFight();
+console.log(playerList[3].injured);
+playerList[3]._heal();
+console.log(playerList[3].injured);

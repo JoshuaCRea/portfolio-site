@@ -121,6 +121,7 @@ td {
     position: absolute;
     margin: -51px;
     visibility: hidden;
+    z-index: 2;
 }
 
 .pip-lc {
@@ -166,6 +167,7 @@ td {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     text-align: center;
+    cursor: pointer;
 }
 
 #lcSchoolButton {
