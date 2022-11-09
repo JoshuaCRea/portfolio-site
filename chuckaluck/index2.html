@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Chuck-A-Luck</title>
-    <link rel="icon" href="https://ucarecdn.com/0073b141-6b5b-4d94-b15f-ee72826d0218/casino.png">
+    <link rel="icon" href="/casino.png">
     <link rel="stylesheet" href="chuckaluck.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +20,7 @@
 
     <div class="chuckaluck-board">
         <div class="chuck-row" id="chuck-row-1">
-            <div class="results-bet" id="small-bet">
+            <div class="non-appearance-bet" id="small-bet">
                 <div class="top-square-label">Small Bet</div>
                 <div class="wager-definition">(Total Between 4 and 10)</div>
                 <div class="info-text">Triples Lose</div>
@@ -31,7 +31,7 @@
                 <div class="top-square-win-banner win-banner" id="small-bet-winbanner">Win!</div>
             </div>
 
-            <div class="results-bet" id="big-bet">
+            <div class="non-appearance-bet" id="big-bet">
                 <div class="top-square-label">Big Bet</div>
                 <div class="wager-definition">(Total Between 11 and 17)</div>
                 <div class="info-text">Triples Lose</div>
@@ -42,7 +42,7 @@
                 <div class="top-square-win-banner win-banner" id="big-bet-winbanner">Win!</div>
             </div>
 
-            <div class="results-bet" id="field-bet">
+            <div class="non-appearance-bet" id="field-bet">
                 <div class="top-square-label">Field Bet</div>
                 <div class="wager-definition">(Total Below 8 / Above 12)</div>
                 <div class="info-text">Triples Win</div>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="chuck-row" id="chuck-row-3">
-                <div class="results-bet" id="any-triple">
+                <div class="non-appearance-bet" id="any-triple">
                     <div class="top-square-label" id="any-triple-label">Any Triple</div>
                     <div class="chip-stack" id="any-triple-chipstack">
                         <img src="https://ucarecdn.com/b4930b78-640c-46cc-bf9b-d65cc1cf1451/" alt="pokerchip.png" />
@@ -152,8 +152,8 @@
         </div>
     </div>
     <div id="button-container">
-        <button id="clear-all-wagers-button" class="wager-button">Clear All Wagers</button>
-        <button id="rebet-button" class="wager-button">Rebet</button>
+        <button id="clear-all-wagers-button">Clear All Wagers</button>
+        <button id="rebet-button">Rebet</button>
     </div>
     <div class="ui-tally">
         Player Balance: <span id="player-balance"></span>

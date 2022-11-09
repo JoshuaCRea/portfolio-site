@@ -1,5 +1,5 @@
 body {
-    background-color: gainsboro;
+    background-color: #404258;
     text-align: center;
 }
 
@@ -7,25 +7,25 @@ body {
     display: inline-block;
     width: 1200px;
     height: 725px;
-    border-radius: 15%;
-    background-color: #086100;
+    border-radius: 275px;
+    background-color: #395144;
     background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
     border-style: solid;
-    border-color: sienna;
-    border-width: 25px;
+    border-color: #e0a33b;
+    border-width: 12px;
     margin-bottom: 25px;
 }
 
-.non-appearance-bet {
+.results-bet {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
     height: 100px;
     width: 200px;
     border-style: solid;
-    color: #eaf376;
-    border-color: orange;
-    border-radius: 35%;
+    color: #FCFFB2;
+    border-color: #FF884B;
+    border-radius: 100px;
     border-width: 5px;
     line-height: 10px;
     margin: 10px 10px 0px 10px;
@@ -36,10 +36,10 @@ body {
     font-size: 14pt;
 }
 
-.non-appearance-bet:hover {
-    color: #533e85;
-    border-color: coral;
-    background-color: #c1f8cf;
+.results-bet:hover {
+    color: #395144;
+    border-color: #FF577F;
+    background-color: #C7F2A4;
     background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
 }
 
@@ -50,24 +50,24 @@ body {
     display: inline-flex;
     flex-direction: column;
     border-style: solid;
-    color: #eaf376;
-    border-color: orange;
-    border-radius: 35%;
+    color: #FCFFB2;
+    border-color: #FF884B;
+    border-radius: 50px;
     border-width: 5px;
     padding: 15px;
     font-family: "Merriweather", serif;
 }
 
 .appearance-bet:hover {
-    color: #533e85;
-    border-color: coral;
-    background-color: #c1f8cf;
+    color: #395144;
+    border-color: #FF577F;
+    background-color: #C7F2A4;
     background-image: url("https://ucarecdn.com/105c73f7-13c7-4a5d-8fcd-012b1b406c45/felt.png");
 }
 
 .top-square-label {
     font-family: "Arvo", serif;
-    color: white;
+    color: #F0EBCE;
     padding-top: 25px;
     margin-bottom: 10px;
     font-size: 24pt;
@@ -76,13 +76,13 @@ body {
 .appearance-bet-label {
     margin-top: 25px;
     font-family: "Arvo", serif;
-    color: white;
+    color: #F0EBCE;
     font-size: xx-large;
 }
 
 .title {
     font-size: 50pt;
-    color: black;
+    color: #F0EBCE;
     margin: 25px;
     font-family: "Satisfy", monospace;
 }
@@ -93,21 +93,21 @@ body {
 }
 
 .payout-number {
-    color: orange;
+    color: #FF884B;
     font-size: 20pt;
 }
 
 .info-text {
     font-family: "Merriweather", serif;
     font-size: large;
-    padding-top: 25px;
+    padding-top: 20px;
 }
 
 .loose-table-text {
     font-family: "Merriweather", serif;
     font-size: large;
     padding-top: 5px;
-    color: #eaf376;
+    color: #FCFFB2;
 }
 
 .chip-stack img {
@@ -133,7 +133,7 @@ body {
     font-size: 24pt;
     transform: translate(25px, 0px);
     font-family: "Arvo", serif;
-    color: whitesmoke;
+    color: #F0EBCE;
 }
 
 .appearance-chip-tally {
@@ -141,29 +141,25 @@ body {
     font-size: 16pt;
     transform: translate(20px, -10px);
     font-family: "Arvo", serif;
-    color: whitesmoke;
+    color: #F0EBCE;
 }
 
 .ui-tally {
-    margin-top: 10px;
     font-family: "Merriweather", serif;
     font-size: 18pt;
+    color: #F0EBCE;
 }
 
 #total-wager-display {
-    color: green;
+    color: #82CD47;
     font-family: "Satisfy", serif;
     font-size: 24pt;
 }
 
 #player-balance {
-    color: green;
+    color: #82CD47;
     font-family: "Satisfy", serif;
     font-size: 24pt;
-}
-
-#button-container {
-    margin-top: 50px;
 }
 
 .chuck-row {
@@ -186,18 +182,18 @@ body {
 }
 
 .info-text {
-    color: orange;
+    color: #FF884B;
     margin-top: 10px;
 }
 
 .rolled-die-image {
     display: inline-block;
-    transform: translate(20px, -150px);
+    transform: translate(60px, -170px);
 }
 
 .top-square-win-banner {
     font-size: 100pt;
-    color: rgba(172, 255, 47, 0.66);
+    color: #F0FF42;
     margin: 25px 50px 25px 25px;
     font-family: "Satisfy", cursive;
     transform: rotate(-20deg) translate(-15px, -150px);
@@ -223,7 +219,7 @@ body {
     transform: translate(0px, 120px);
     font-family: "Barlow Condensed", sans-serif;
     font-size: 35pt;
-    color: whitesmoke;
+    color: #F0EBCE;
 }
 
 #chuck-row-4 {
@@ -264,7 +260,7 @@ body {
 
 .appearance-win-banner {
     font-size: 50pt;
-    color: rgb(172, 255, 47);
+    color: #F0FF42;
     margin: 25px 50px 25px 25px;
     font-family: "Satisfy", cursive;
     transform: rotate(-15deg) translate(-20px, -90px);
@@ -282,14 +278,16 @@ body {
 }
 
 #wager-slider-title {
-    margin-top: 0;
+    margin-top: 0px;
+    font-size: 32pt;
     font-weight: 400;
     text-align: center;
-    font-family: "Merriweather", serif;
-    color: black;
+    font-family: "Satisfy", monospace;
+    color: #F0EBCE;
 }
 
 #wager-amount-slider {
+    margin-top: -20px;
     display: flex;
     position: relative;
     width: 50%;
@@ -300,12 +298,11 @@ body {
     content: "";
     position: absolute;
     height: 2px;
-    /* width calculation based on total of 5 radio buttons */
     width: calc(100% * (4 / 5));
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #000;
+    background: black;
 }
 
 #wager-amount-slider label {
@@ -321,6 +318,7 @@ body {
     transform: translate(-50%, 45px);
     font-size: 20px;
     font-family: monospace;
+    color: whitesmoke;
 }
 
 #wager-amount-slider label::after {
@@ -330,8 +328,8 @@ body {
     transform: translate(-50%, -50%);
     width: 30px;
     height: 30px;
-    border: 2px solid #000;
-    background: #fff;
+    border: 2px solid black;
+    background: #C7F2A4;
     border-radius: 50%;
 }
 
@@ -372,22 +370,37 @@ body {
     border-radius: 50%;
     transition: all 0.15s ease-in-out;
     transform: translate(-50%, -50%);
-    border: 2px solid #fff;
+    border: 2px solid #F0EBCE;
     z-index: 2;
 }
 
-#total-current-wager-display {
-    margin-top: 0px;
-}
-
 #rolled-dice-images {
-    transform: translate(-200px, -200px)
+    transform: translate(-200px, -175px)
 }
 
-#clear-all-wagers-button {
-    margin-right: 10px;
+#button-container {
+    margin-top: 50px;
+    margin-bottom: 5px;
 }
 
-#rebet-button {
-    margin-left: 10px;
+.wager-button {
+    top: 900px;
+    left: 500px;
+    background: #8758FF;
+    background-image: linear-gradient(to bottom, #8758FF, #5C2E7E);
+    border-radius: 28px;
+    font-family: "Arvo", serif;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border: solid #8758FF 4px;
+    margin-bottom: 10px;
 }
+
+.wager-button:hover {
+    background: #5CB8E4;
+    background-image: linear-gradient(to bottom, #5CB8E4, #8758FF);
+}
+
+
+/* #E1FFB1 #C7F2A4 #B6E388 #FCFFB2 #395144 #4E6C50 #AA8B56 #F0EBCE #FF577F #FF884B #FFD384 #FFF9B0 #F0FF42 #82CD47 #54B435 #379237 #404258 */
