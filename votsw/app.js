@@ -27,6 +27,9 @@ const TOWN_DESCRIPTIONS = {
     }
 }
 
+// Create something to track turns
+
+
 const playerInfo = {
     p1: {
         color: '#47c3ed',
@@ -142,11 +145,6 @@ window.onload = () => {
         displayActionOptions(player);
         $(`#${player.townCode}PCMoveCwButton`).click(() => updateLocationIndex(CW_DIR_VALUE, player));
         $(`#${player.townCode}PCMoveCcwButton`).click(() => updateLocationIndex(CCW_DIR_VALUE, player));
+        $(`#${player.townCode}SchoolButton`).click(() => drawQuests());
     })
 }
-
-console.log(playerList[3].injured);
-playerList[3]._loseFight();
-console.log(playerList[3].injured);
-playerList[3]._heal();
-console.log(playerList[3].injured);
