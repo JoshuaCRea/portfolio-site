@@ -36,7 +36,7 @@ body {
     top: 51%;
     left: 51%;
     margin: -51px;
-    background: rgb(165, 143, 106);
+    background: #a58f6a;
     border-radius: 51%;
     text-align: center;
 }
@@ -56,11 +56,14 @@ td {
     display: relative;
     position: relative;
     top: 0px;
-    left: 500px;
+    left: 400px;
+    padding: 5px;
+    outline: solid 1px black;
 }
 
 #infoBoxHeader {
     text-align: center;
+    outline: transparent;
 }
 
 #playerName {
@@ -73,6 +76,14 @@ td {
     text-align: right;
 }
 
+#repRank {
+    background-color: brown;
+}
+
+.playerData {
+    text-align: right;
+}
+
 .town {
     width: 100px;
     height: 100px;
@@ -81,6 +92,7 @@ td {
 
 #locations-table {
     visibility: hidden;
+    border-color: transparent;
 }
 
 .mountain {
