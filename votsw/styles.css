@@ -30,6 +30,14 @@ body {
     margin-bottom: 25px;
 }
 
+.stat-name {
+    outline: solid 1px black;
+}
+
+.playerData {
+    outline: solid 1px black;
+}
+
 .location {
     display: block;
     position: absolute;
@@ -56,9 +64,10 @@ td {
     display: relative;
     position: relative;
     top: 0px;
-    left: 400px;
+    left: 450px;
     padding: 5px;
     outline: solid 1px black;
+    outline: transparent;
 }
 
 #infoBoxHeader {
@@ -82,6 +91,15 @@ td {
 
 .playerData {
     text-align: right;
+}
+
+.button-container {
+    top: 500px;
+    left: 935px;
+    max-width: 300px;
+    display: absolute;
+    position: absolute;
+    visibility: hidden;
 }
 
 .town {
@@ -187,6 +205,7 @@ td {
     font-family: 'Crimson Text', serif;
     color: #ffffff;
     font-size: 20px;
+    margin-bottom: 5px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     text-align: center;
@@ -254,7 +273,7 @@ td {
     background-image: linear-gradient(to bottom, #a8dcff, #7eb9de);
 }
 
-.lclocation-action-btn {
+.lc-btn {
     background: #3498db;
     background-image: -webkit-linear-gradient(top, #4bb7fa, #3498db);
     background-image: -moz-linear-gradient(top, #4bb7fa, #3498db);
@@ -263,7 +282,7 @@ td {
     background-image: linear-gradient(to bottom, #4bb7fa, #3498db);
 }
 
-.lclocation-action-btn:hover {
+.lc-btn:hover {
     background: #7eb9de;
     background-image: -webkit-linear-gradient(top, #a8dcff, #7eb9de);
     background-image: -moz-linear-gradient(top, #a8dcff, #7eb9de);
@@ -310,7 +329,7 @@ td {
     text-align: center;
 }
 
-.bslocation-action-btn {
+.bs-btn {
     background: #000000;
     background-image: -webkit-linear-gradient(top, #7d7d7d, #000000);
     background-image: -moz-linear-gradient(top, #7d7d7d, #000000);
@@ -319,7 +338,7 @@ td {
     background-image: linear-gradient(to bottom, #7d7d7d, #000000);
 }
 
-.bslocation-action-btn:hover {
+.bs-btn:hover {
     background: #919191;
     background-image: -webkit-linear-gradient(top, #dedede, #919191);
     background-image: -moz-linear-gradient(top, #dedede, #919191);
@@ -364,7 +383,7 @@ td {
     background-image: linear-gradient(to bottom, #ffabab, #ff5454);
 }
 
-.fmlocation-action-btn {
+.fm-btn {
     background: #ff0000;
     background-image: -webkit-linear-gradient(top, #ff0000, #a10000);
     background-image: -moz-linear-gradient(top, #ff0000, #a10000);
@@ -373,7 +392,7 @@ td {
     background-image: linear-gradient(to bottom, #ff0000, #a10000);
 }
 
-.fmlocation-action-btn:hover {
+.fm-btn:hover {
     background: #ffabab;
     background-image: -webkit-linear-gradient(top, #ffabab, #ff5454);
     background-image: -moz-linear-gradient(top, #ffabab, #ff5454);
@@ -418,7 +437,7 @@ td {
     background-image: linear-gradient(to bottom, #c6f7c6, #8cc771);
 }
 
-.uclocation-action-btn {
+.uc-btn {
     background: #4fed3d;
     background-image: -webkit-linear-gradient(top, #13a403, #145700);
     background-image: -moz-linear-gradient(top, #13a403, #145700);
@@ -427,7 +446,7 @@ td {
     background-image: linear-gradient(to bottom, #13a403, #145700);
 }
 
-.uclocation-action-btn:hover {
+.uc-btn:hover {
     background: #c6f7c6;
     background-image: -webkit-linear-gradient(top, #c6f7c6, #8cc771);
     background-image: -moz-linear-gradient(top, #c6f7c6, #8cc771);
@@ -472,7 +491,7 @@ td {
     background-image: linear-gradient(to bottom, #cebcf7, #9678fa);
 }
 
-.pxlocation-action-btn {
+.px-btn {
     background: #7d60e8;
     background-image: -webkit-linear-gradient(top, #7d60e8, #5136a3);
     background-image: -moz-linear-gradient(top, #7d60e8, #5136a3);
@@ -481,7 +500,7 @@ td {
     background-image: linear-gradient(to bottom, #7d60e8, #5136a3);
 }
 
-.pxlocation-action-btn:hover {
+.px-btn:hover {
     background: #cebcf7;
     background-image: -webkit-linear-gradient(top, #cebcf7, #9678fa);
     background-image: -moz-linear-gradient(top, #cebcf7, #9678fa);

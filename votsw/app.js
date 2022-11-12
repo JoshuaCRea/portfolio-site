@@ -25,7 +25,7 @@ const TOWN_DESCRIPTIONS = {
         schoolName: "School of Zui Quan",
     }
 }
-// Create an InfoBox
+
 // Create turn tracker
 
 const playerInfo = {
@@ -33,7 +33,6 @@ const playerInfo = {
         color: '#47c3ed',
         startingLocationIndex: 0,
         townCode: "lc",
-        homeTown: "Leap-Creek",
         townInfoId: "#p1TownInfo",
         townSchoolId: "#p1TownSchool",
     },
@@ -41,7 +40,6 @@ const playerInfo = {
         color: "gray",
         startingLocationIndex: 2,
         townCode: "bs",
-        homeTown: "Blackstone",
         townInfoId: "#p2TownInfo",
         townSchoolId: "#p2TownSchool",
     },
@@ -49,7 +47,6 @@ const playerInfo = {
         color: "crimson",
         startingLocationIndex: 4,
         townCode: "fm",
-        homeTown: "Fangmarsh",
         townInfoId: "#p3TownInfo",
         townSchoolId: "#p3TownSchool",
     },
@@ -57,7 +54,6 @@ const playerInfo = {
         color: "green",
         startingLocationIndex: 6,
         townCode: "uc",
-        homeTown: "Underclaw",
         townInfoId: "#p4TownInfo",
         townSchoolId: "#p4TownSchool",
     },
@@ -65,7 +61,6 @@ const playerInfo = {
         color: "blueviolet",
         startingLocationIndex: 8,
         townCode: "px",
-        homeTown: "Pouch",
         townInfoId: "#p5TownInfo",
         townSchoolId: "#p5TownSchool",
     },
@@ -115,10 +110,14 @@ playerList[4].sta += 1;
 
 let currentPlayerIndex = 0;
 
+console.log(Object.keys(TOWN_DESCRIPTIONS));
+
 function _updateInfoBox() {
+    const currentTurn = playerList[currentPlayerIndex]
     let currentPlayer = Object.keys(playerInfo)[currentPlayerIndex];
     $("#playerName").html((`${currentPlayer.toUpperCase()}`));
-    $("#playerTitle").html((`The Light of ${playerInfo[currentPlayer].homeTown}`));
+    console.log(Object.keys(TOWN_DESCRIPTIONS)[currentPlayerIndex].slice(1));
+    $("#playerTitle").html((`The Light of ${Object.keys(TOWN_DESCRIPTIONS)[currentPlayerIndex].slice(1)}`));
     $("#playerName").css("background-color", `${playerInfo[currentPlayer].color}`);
     $("#playerTitle").css("background-color", `${playerInfo[currentPlayer].color}`);
     $("#powerRank").html((`${playerList[currentPlayerIndex].pow}`));
@@ -126,7 +125,6 @@ function _updateInfoBox() {
     $("#agilityRank").html((`${playerList[currentPlayerIndex].agi}`));
     $("#chiRank").html((`${playerList[currentPlayerIndex].chi}`));
     $("#witRank").html((`${playerList[currentPlayerIndex].wit}`));
-    $("#townName").html((`${playerInfo[currentPlayer].homeTown}`));
     $("#nextPlayer").html((`${Object.keys(playerInfo)[currentPlayerIndex + 1]}`));
     $("#techAmount").html((`${playerList[currentPlayerIndex].techniques.length}`));
     if (playerList[currentPlayerIndex].repRank <= 2) {
@@ -141,15 +139,32 @@ function _updateInfoBox() {
     if (playerList[currentPlayerIndex].injured === true) {
         $("#healthy-injured").html("Injured");
     }
+    if (currentTurn.locationIndex % 2 === 0) {
+        $("#townName").html(`${LOCATION_IDS[currentTurn.locationIndex].slice(1)}`);
+    } else {
+        $("#townName").html("Wilderness");
+    }
 }
 
-_updateInfoBox();
+function passTurn() {
+    Object.keys(playerInfo).forEach(player => {
+        $(`#${playerInfo[player].townCode + "-button-container"}`).css("visibility", "hidden");
+    });
+    if (currentPlayerIndex === 4) {
+        currentPlayerIndex = 0;
+    } else {
+        currentPlayerIndex += 1;
+    }
+    _updateInfoBox();
+    let buttonContainerId = playerList[currentPlayerIndex].townCode + ("-button-container");
+    $(`#${buttonContainerId}`).css("visibility", "visible");
+}
 
 function updateLocationIndex(directionValue, player) {
     player.locationIndex = (((player.locationIndex + directionValue) % LOCATION_IDS.length) + LOCATION_IDS.length) % LOCATION_IDS.length;
     updatePips();
-    updateTownInfo();
     displayActionOptions(player);
+    _updateInfoBox();
 }
 
 function updatePips() {
@@ -166,17 +181,6 @@ function updatePips() {
     })
 }
 
-function updateTownInfo() {
-    ["p1", "p2", "p3", "p4", "p5"].forEach(player => {
-        var playerLocationId = LOCATION_IDS[player.locationIndex];
-        var townInfo = TOWN_DESCRIPTIONS[playerLocationId];
-        const locationDescription = townInfo ? townInfo.nickname : "The Valley of the Star";
-        const locationSchoolName = townInfo ? townInfo[schoolName] : "Wilderness";
-        $(playerInfo[player].townInfoId).html(locationDescription);
-        $(playerInfo[player].townSchoolId).html(locationSchoolName);
-    });
-}
-
 function resetPips() {
     $(".pip").css("visibility", "hidden");
 }
@@ -190,11 +194,14 @@ function displayActionOptions(player) {
 
 window.onload = () => {
     updatePips();
-    updateTownInfo();
     playerList.forEach(player => {
         displayActionOptions(player);
         $(`#${player.townCode}PCMoveCwButton`).click(() => updateLocationIndex(CW_DIR_VALUE, player));
         $(`#${player.townCode}PCMoveCcwButton`).click(() => updateLocationIndex(CCW_DIR_VALUE, player));
         $(`#${player.townCode}SchoolButton`).click(() => drawQuests());
+        $(`#${player.townCode}PassTurnButton`).click(() => passTurn());
     })
+    _updateInfoBox();
+    let buttonContainerId = playerList[currentPlayerIndex].townCode + ("-button-container");
+    $(`#${buttonContainerId}`).css("visibility", "visible");
 }

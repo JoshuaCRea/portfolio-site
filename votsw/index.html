@@ -538,149 +538,92 @@
             </div>
         </div>
     </div>
-    <table>
-        <tr>
-            <td>
-                <div class="btn" id="lcPCMoveCwButton">
-                    <btn-lc>Move Clockwise</btn-lc>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="bsPCMoveCwButton">
-                    <btn-bs>Move Clockwise</btn-b>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="fmPCMoveCwButton">
-                    <btn-fm>Move Clockwise</btn-fm>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="ucPCMoveCwButton">
-                    <btn-uc>Move Clockwise</btn-uc>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="pxPCMoveCwButton">
-                    <btn-p>Move Clockwise</btn-p>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="btn" id="lcPCMoveCcwButton">
-                    <btn2-lc>Move Counter-Clockwise</btn2-lc>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="bsPCMoveCcwButton">
-                    <btn2-bs>Move Counter-Clockwise</btn2-b>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="fmPCMoveCcwButton">
-                    <btn2-fm>Move Counter-Clockwise</btn2-fm>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="ucPCMoveCcwButton">
-                    <btn2-uc>Move Counter-Clockwise</btn2-uc>
-                </div>
-            </td>
-            <td>
-                <div class="btn" id="pxPCMoveCcwButton">
-                    <btn2-p>Move Counter-Clockwise</btn2-p>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="btn lclocation-action-btn" id="lcHealButton">
-                    <btn3-lc>Visit Healers</btn3-lc>
-                </div>
-            </td>
-            <td>
-                <div class="btn bslocation-action-btn" id="bsHealButton">
-                    <btn3-bs>Visit Healers</btn3-b>
-                </div>
-            </td>
-            <td>
-                <div class="btn fmlocation-action-btn" id="fmHealButton">
-                    <btn3-fm>Visit Healers</btn3-fm>
-                </div>
-            </td>
-            <td>
-                <div class="btn uclocation-action-btn" id="ucHealButton">
-                    <btn3-uc>Visit Healers</btn3-uc>
-                </div>
-            </td>
-            <td>
-                <div class="btn pxlocation-action-btn" id="pxHealButton">
-                    <btn3-px>Visit Healers</btn3-px>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="btn lclocation-action-btn" id="lcSchoolButton">
-                    <btn4-lc>Visit School</btn4-lc>
-                </div>
-            </td>
-            <td>
-                <div class="btn bslocation-action-btn" id="bsSchoolButton">
-                    <btn4-bs>Visit School</btn4-b>
-                </div>
-            </td>
-            <td>
-                <div class="btn fmlocation-action-btn" id="fmSchoolButton">
-                    <btn4-fm>Visit School</btn4-fm>
-                </div>
-            </td>
-            <td>
-                <div class="btn uclocation-action-btn" id="ucSchoolButton">
-                    <btn4-uc>Visit School</btn4-uc>
-                </div>
-            </td>
-            <td>
-                <div class="btn pxlocation-action-btn" id="pxSchoolButton">
-                    <btn4-p>Visit School</btn4-p>
-                </div>
-            </td>
-        </tr>
-    </table>
+    <div class="button-container" id="lc-button-container">
+        <div class="btn lc-btn" id="lcPCMoveCwButton">
+            <btn-lc>Move Clockwise</btn-lc>
+        </div>
+        <div class="btn lc-btn" id="lcPCMoveCcwButton">
+            <btn2-lc>Move Counter-Clockwise</btn2-lc>
+        </div>
+        <div class="btn location-option location-option lc-btn" id="lcHealButton">
+            <btn3-lc>Visit Healers</btn3-lc>
+        </div>
+        <div class="btn location-option location-option lc-btn" id="lcSchoolButton">
+            <btn4-lc>Visit School</btn4-lc>
+        </div>
+        <div class="btn location-option location-option lc-btn" id="lcPassTurnButton">
+            <btn4-lc>Pass Turn</btn5-lc>
+        </div>
+    </div>
+    <div class="button-container" id="bs-button-container">
+        <div class="btn bs-btn" id="bsPCMoveCwButton">
+            <btn-bs>Move Clockwise</btn-bs>
+        </div>
+        <div class="btn bs-btn" id="bsPCMoveCcwButton">
+            <btn2-bs>Move Counter-Clockwise</btn2-bs>
+        </div>
+        <div class="btn location-option bs-btn" id="bsHealButton">
+            <btn3-bs>Visit Healers</btn3-bs>
+        </div>
+        <div class="btn location-option bs-btn" id="bsSchoolButton">
+            <btn4-bs>Visit School</btn4-bs>
+        </div>
+        <div class="btn location-option bs-btn" id="bsPassTurnButton">
+            <btn4-bs>Pass Turn</btn5-bs>
+        </div>
+    </div>
+    <div class="button-container" id="fm-button-container">
+        <div class="btn fm-btn" id="fmPCMoveCwButton">
+            <btn-fm>Move Clockwise</btn-fm>
+        </div>
+        <div class="btn fm-btn" id="fmPCMoveCcwButton">
+            <btn2-fm>Move Counter-Clockwise</btn2-fm>
+        </div>
+        <div class="btn location-option fm-btn" id="fmHealButton">
+            <btn3-fm>Visit Healers</btn3-fm>
+        </div>
+        <div class="btn location-option fm-btn" id="fmSchoolButton">
+            <btn4-fm>Visit School</btn4-fm>
+        </div>
+        <div class="btn location-option fm-btn" id="fmPassTurnButton">
+            <btn4-fm>Pass Turn</btn5-fm>
+        </div>
+    </div>
+    <div class="button-container" id="uc-button-container">
+        <div class="btn uc-btn" id="ucPCMoveCwButton">
+            <btn-uc>Move Clockwise</btn-uc>
+        </div>
+        <div class="btn uc-btn" id="ucPCMoveCcwButton">
+            <btn2-uc>Move Counter-Clockwise</btn2-uc>
+        </div>
+        <div class="btn location-option uc-btn" id="ucHealButton">
+            <btn3-uc>Visit Healers</btn3-uc>
+        </div>
+        <div class="btn location-option uc-btn" id="ucSchoolButton">
+            <btn4-uc>Visit School</btn4-uc>
+        </div>
+        <div class="btn location-option uc-btn" id="ucPassTurnButton">
+            <btn4-uc>Pass Turn</btn5-uc>
+        </div>
+    </div>
+    <div class="button-container" id="px-button-container">
+        <div class="btn px-btn" id="pxPCMoveCwButton">
+            <btn-p>Move Clockwise</btn-p>
+        </div>
+        <div class="btn px-btn" id="pxPCMoveCcwButton">
+            <btn2-p>Move Counter-Clockwise</btn2-p>
+        </div>
+        <div class="btn location-option px-btn" id="pxHealButton">
+            <btn3-px>Visit Healers</btn3-px>
+        </div>
+        <div class="btn location-option px-btn" id="pxSchoolButton">
+            <btn4-p>Visit School</btn4-p>
+        </div>
+        <div class="btn location-option px-btn" id="pxPassTurnButton">
+            <btn4-p>Pass Turn</btn5-p>
+        </div>
+    </div>
 
-    <table id="locations-table">
-        <tr>
-            <th>Player</th>
-            <th>Town Info</th>
-            <th>School</th>
-        </tr>
-        <tr>
-            <td>P1</td>
-            <td id="p1TownInfo"></td>
-            <td id="p1TownSchool"></td>
-        </tr>
-        <tr>
-            <td>P2</td>
-            <td id="p2TownInfo"></td>
-            <td id="p2TownSchool"></td>
-        </tr>
-        <tr>
-            <td>P3</td>
-            <td id="p3TownInfo"></td>
-            <td id="p3TownSchool"></td>
-        </tr>
-        <tr>
-            <td>P4</td>
-            <td id="p4TownInfo"></td>
-            <td id="p4TownSchool"></td>
-        </tr>
-        <tr>
-            <td>P5</td>
-            <td id="p5TownInfo"></td>
-            <td id="p5TownSchool"></td>
-        </tr>
-    </table>
 </body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript" src="app.js"></script>
