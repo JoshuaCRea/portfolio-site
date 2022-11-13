@@ -24,7 +24,7 @@ const TOWN_DESCRIPTIONS = {
 // DisplayActionOptions is not disappearing buttons, and is also looking for SchoolName in the wilderness locations
 // 
 
-const playerInfo = {
+const playerConfig = {
     p1: {
         color: '#47c3ed',
         startingLocationIndex: 0,
@@ -54,16 +54,18 @@ const playerInfo = {
 
 class PC {
     constructor(playerNumber) {
-        this.locationIndex = playerInfo[playerNumber].startingLocationIndex;
-        this.townCode = playerInfo[playerNumber].townCode;
+        this.locationIndex = playerConfig[playerNumber].startingLocationIndex;
+        this.townCode = playerConfig[playerNumber].townCode;
         this.injured = false;
         this.actions = 2;
         this.repRank = 3;
-        this.pow = 0;
-        this.sta = 0;
-        this.agi = 0;
-        this.chi = 0;
-        this.wit = 0;
+        this.stats = {
+            pow: 0,
+            sta: 0,
+            agi: 0,
+            chi: 0,
+            wit: 0.
+        }
         this.techniques = [];
     };
     _loseFight() {
@@ -83,32 +85,32 @@ const playerList = [
     new PC('p5')
 ];
 
-playerList[0].chi += 2;
-playerList[0].agi += 1;
-playerList[1].sta += 2;
-playerList[1].chi += 1;
-playerList[2].pow += 2;
-playerList[2].wit += 1;
-playerList[3].agi += 2;
-playerList[3].pow += 1;
-playerList[4].wit += 2;
-playerList[4].sta += 1;
+playerList[0].stats.chi += 2;
+playerList[0].stats.agi += 1;
+playerList[1].stats.sta += 2;
+playerList[1].stats.chi += 1;
+playerList[2].stats.pow += 2;
+playerList[2].stats.wit += 1;
+playerList[3].stats.agi += 2;
+playerList[3].stats.pow += 1;
+playerList[4].stats.wit += 2;
+playerList[4].stats.sta += 1;
 
 let currentPlayerIndex = 0;
 
 function _updateInfoBox() {
     const currentTurn = playerList[currentPlayerIndex]
-    let currentPlayer = Object.keys(playerInfo)[currentPlayerIndex];
+    let currentPlayer = Object.keys(playerConfig)[currentPlayerIndex];
     $("#playerName").html((`${currentPlayer.toUpperCase()}`));
     $("#playerTitle").html((`The Light of ${Object.keys(TOWN_DESCRIPTIONS)[currentPlayerIndex].slice(1)}`));
-    $("#playerName").css("background-color", `${playerInfo[currentPlayer].color}`);
-    $("#playerTitle").css("background-color", `${playerInfo[currentPlayer].color}`);
-    $("#powerRank").html((`${playerList[currentPlayerIndex].pow}`));
-    $("#staminaRank").html((`${playerList[currentPlayerIndex].sta}`));
-    $("#agilityRank").html((`${playerList[currentPlayerIndex].agi}`));
-    $("#chiRank").html((`${playerList[currentPlayerIndex].chi}`));
-    $("#witRank").html((`${playerList[currentPlayerIndex].wit}`));
-    $("#nextPlayer").html((`${Object.keys(playerInfo)[currentPlayerIndex + 1]}`));
+    $("#playerName").css("background-color", `${playerConfig[currentPlayer].color}`);
+    $("#playerTitle").css("background-color", `${playerConfig[currentPlayer].color}`);
+    $("#powerRank").html((`${playerList[currentPlayerIndex].stats.pow}`));
+    $("#staminaRank").html((`${playerList[currentPlayerIndex].stats.sta}`));
+    $("#agilityRank").html((`${playerList[currentPlayerIndex].stats.agi}`));
+    $("#chiRank").html((`${playerList[currentPlayerIndex].stats.chi}`));
+    $("#witRank").html((`${playerList[currentPlayerIndex].stats.wit}`));
+    $("#nextPlayer").html((`${Object.keys(playerConfig)[currentPlayerIndex + 1]}`));
     $("#techAmount").html((`${playerList[currentPlayerIndex].techniques.length}`));
     if (playerList[currentPlayerIndex].repRank <= 2) {
         $("#repRank").css("background-color", "#000000");
@@ -131,8 +133,8 @@ function _updateInfoBox() {
 }
 
 function passTurn() {
-    playerList.forEach(player => {
-        $(`#${playerInfo[player].townCode + "-button-container"}`).css("visibility", "hidden");
+    Object.keys(playerConfig).forEach(player => {
+        $(`#${playerConfig[player].townCode + "-button-container"}`).css("visibility", "hidden");
     });
     if (currentPlayerIndex === 4) {
         currentPlayerIndex = 0;
