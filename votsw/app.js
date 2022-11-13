@@ -26,7 +26,8 @@ const TOWN_DESCRIPTIONS = {
     }
 }
 
-// Create turn tracker
+// DisplayActionOptions is not disappearing buttons, and is also looking for SchoolName in the wilderness locations
+// 
 
 const playerInfo = {
     p1: {
@@ -110,13 +111,10 @@ playerList[4].sta += 1;
 
 let currentPlayerIndex = 0;
 
-console.log(Object.keys(TOWN_DESCRIPTIONS));
-
 function _updateInfoBox() {
     const currentTurn = playerList[currentPlayerIndex]
     let currentPlayer = Object.keys(playerInfo)[currentPlayerIndex];
     $("#playerName").html((`${currentPlayer.toUpperCase()}`));
-    console.log(Object.keys(TOWN_DESCRIPTIONS)[currentPlayerIndex].slice(1));
     $("#playerTitle").html((`The Light of ${Object.keys(TOWN_DESCRIPTIONS)[currentPlayerIndex].slice(1)}`));
     $("#playerName").css("background-color", `${playerInfo[currentPlayer].color}`);
     $("#playerTitle").css("background-color", `${playerInfo[currentPlayer].color}`);
@@ -139,15 +137,16 @@ function _updateInfoBox() {
     if (playerList[currentPlayerIndex].injured === true) {
         $("#healthy-injured").html("Injured");
     }
+    if (currentTurn.locationIndex % 2 > 0) {
+        $("#townName").html("Wilderness");
+    }
     if (currentTurn.locationIndex % 2 === 0) {
         $("#townName").html(`${LOCATION_IDS[currentTurn.locationIndex].slice(1)}`);
-    } else {
-        $("#townName").html("Wilderness");
     }
 }
 
 function passTurn() {
-    Object.keys(playerInfo).forEach(player => {
+    playerList.forEach(player => {
         $(`#${playerInfo[player].townCode + "-button-container"}`).css("visibility", "hidden");
     });
     if (currentPlayerIndex === 4) {
@@ -163,7 +162,7 @@ function passTurn() {
 function updateLocationIndex(directionValue, player) {
     player.locationIndex = (((player.locationIndex + directionValue) % LOCATION_IDS.length) + LOCATION_IDS.length) % LOCATION_IDS.length;
     updatePips();
-    displayActionOptions(player);
+    displayActionOptions(playerList[currentPlayerIndex]);
     _updateInfoBox();
 }
 
@@ -188,8 +187,8 @@ function resetPips() {
 function displayActionOptions(player) {
     const inCity = player.locationIndex % 2 === 0;
     const displayStatus = inCity ? "visible" : "hidden";
-    $(`.${player.townCode}location-action-btn`).css("visibility", displayStatus);
-    $(`#${player.townCode}SchoolButton`).html((`Visit ${TOWN_DESCRIPTIONS[LOCATION_IDS[player.locationIndex]].schoolName}`));
+    $(`.${player.townCode}-location-option`).css("visibility", displayStatus);
+    $(`#${player.townCode}SchoolButton`).html("Visit " + `${TOWN_DESCRIPTIONS[LOCATION_IDS[player.locationIndex]].schoolName}`);
 }
 
 window.onload = () => {
