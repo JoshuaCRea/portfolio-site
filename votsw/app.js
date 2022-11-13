@@ -154,14 +154,8 @@ function updateLocationIndex(directionValue, player) {
 function updatePips() {
     resetPips();
     playerList.forEach(player => {
-        if (player.injured === false) {
-            let pipId = player.townCode.concat("-uninjured-pip-", (player.locationIndex));
-            $(`#${pipId}`).css("visibility", "visible");
-        }
-        if (player.injured === true) {
-            let pipId = player.townCode.concat("-injured-pip-", (player.locationIndex));
-            $(`#${pipId}`).css("visibility", "visible");
-        }
+        const whichPip = player.injured ? "-injured-pip-" : "-uninjured-pip-";
+        $(`#${player.townCode.concat(whichPip, player.locationIndex)}`).css("visibility", "visible");
     })
 }
 
