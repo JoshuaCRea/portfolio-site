@@ -5,23 +5,18 @@ const CCW_DIR_VALUE = -1;
 
 const TOWN_DESCRIPTIONS = {
     '#Leap-Creek': {
-        nickname: "The Water Temple",
         schoolName: "Temple of T'ai Chi Chuan",
     },
     '#Blackstone': {
-        nickname: "The Iron Fortress",
         schoolName: "School of Hong Quan",
     },
     '#Fangmarsh': {
-        nickname: "The Bog That Burns",
         schoolName: "Kwoon of Pai Tong Long",
     },
     '#Underclaw': {
-        nickname: "The Hidden City",
         schoolName: "Kwoon of Changquan",
     },
     '#Pouch': {
-        nickname: "The Shadow Forest",
         schoolName: "School of Zui Quan",
     }
 }
@@ -34,36 +29,26 @@ const playerInfo = {
         color: '#47c3ed',
         startingLocationIndex: 0,
         townCode: "lc",
-        townInfoId: "#p1TownInfo",
-        townSchoolId: "#p1TownSchool",
     },
     p2: {
         color: "gray",
         startingLocationIndex: 2,
         townCode: "bs",
-        townInfoId: "#p2TownInfo",
-        townSchoolId: "#p2TownSchool",
     },
     p3: {
         color: "crimson",
         startingLocationIndex: 4,
         townCode: "fm",
-        townInfoId: "#p3TownInfo",
-        townSchoolId: "#p3TownSchool",
     },
     p4: {
         color: "green",
         startingLocationIndex: 6,
         townCode: "uc",
-        townInfoId: "#p4TownInfo",
-        townSchoolId: "#p4TownSchool",
     },
     p5: {
         color: "blueviolet",
         startingLocationIndex: 8,
         townCode: "px",
-        townInfoId: "#p5TownInfo",
-        townSchoolId: "#p5TownSchool",
     },
 }
 
@@ -188,13 +173,14 @@ function displayActionOptions(player) {
     const inCity = player.locationIndex % 2 === 0;
     const displayStatus = inCity ? "visible" : "hidden";
     $(`.${player.townCode}-location-option`).css("visibility", displayStatus);
-    $(`#${player.townCode}SchoolButton`).html("Visit " + `${TOWN_DESCRIPTIONS[LOCATION_IDS[player.locationIndex]].schoolName}`);
+    if (inCity) {
+        $(`#${player.townCode}SchoolButton`).html("Visit " + `${TOWN_DESCRIPTIONS[LOCATION_IDS[player.locationIndex]].schoolName}`);
+    }
 }
 
 window.onload = () => {
     updatePips();
     playerList.forEach(player => {
-        displayActionOptions(player);
         $(`#${player.townCode}PCMoveCwButton`).click(() => updateLocationIndex(CW_DIR_VALUE, player));
         $(`#${player.townCode}PCMoveCcwButton`).click(() => updateLocationIndex(CCW_DIR_VALUE, player));
         $(`#${player.townCode}SchoolButton`).click(() => drawQuests());
