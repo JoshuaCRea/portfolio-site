@@ -29,26 +29,36 @@ const playerConfig = {
         color: '#47c3ed',
         startingLocationIndex: 0,
         townCode: "lc",
+        primaryStat: "chi",
+        secondaryStat: "agi",
     },
     p2: {
         color: "gray",
         startingLocationIndex: 2,
         townCode: "bs",
+        primaryStat: "sta",
+        secondaryStat: "chi",
     },
     p3: {
         color: "crimson",
         startingLocationIndex: 4,
         townCode: "fm",
+        primaryStat: "pow",
+        secondaryStat: "wit",
     },
     p4: {
         color: "green",
         startingLocationIndex: 6,
         townCode: "uc",
+        primaryStat: "agi",
+        secondaryStat: "pow",
     },
     p5: {
         color: "blueviolet",
         startingLocationIndex: 8,
         townCode: "px",
+        primaryStat: "wit",
+        secondaryStat: "sta",
     },
 }
 
@@ -67,7 +77,13 @@ class PC {
             wit: 0.
         }
         this.techniques = [];
+        this._configureStats(playerNumber);
     };
+    _configureStats(playerNumber) {
+        this.stats[playerConfig[playerNumber].primaryStat] += 2;
+        this.stats[playerConfig[playerNumber].secondaryStat] += 1;
+    }
+
     _loseFight() {
         this.injured = true;
         this.repRank -= 1;
@@ -85,16 +101,16 @@ const playerList = [
     new PC('p5')
 ];
 
-playerList[0].stats.chi += 2;
-playerList[0].stats.agi += 1;
-playerList[1].stats.sta += 2;
-playerList[1].stats.chi += 1;
-playerList[2].stats.pow += 2;
-playerList[2].stats.wit += 1;
-playerList[3].stats.agi += 2;
-playerList[3].stats.pow += 1;
-playerList[4].stats.wit += 2;
-playerList[4].stats.sta += 1;
+// playerList[0].stats.chi += 2;
+// playerList[0].stats.agi += 1;
+// playerList[1].stats.sta += 2;
+// playerList[1].stats.chi += 1;
+// playerList[2].stats.pow += 2;
+// playerList[2].stats.wit += 1;
+// playerList[3].stats.agi += 2;
+// playerList[3].stats.pow += 1;
+// playerList[4].stats.wit += 2;
+// playerList[4].stats.sta += 1;
 
 let currentPlayerIndex = 0;
 
