@@ -21,9 +21,6 @@ const TOWN_DESCRIPTIONS = {
     }
 }
 
-// DisplayActionOptions is not disappearing buttons, and is also looking for SchoolName in the wilderness locations
-// 
-
 const playerConfig = {
     p1: {
         color: '#47c3ed',
@@ -83,14 +80,6 @@ class PC {
         this.stats[playerConfig[playerNumber].primaryStat] += 2;
         this.stats[playerConfig[playerNumber].secondaryStat] += 1;
     }
-
-    _loseFight() {
-        this.injured = true;
-        this.repRank -= 1;
-    }
-    _heal() {
-        this.injured = false;
-    }
 }
 
 const playerList = [
@@ -100,17 +89,6 @@ const playerList = [
     new PC('p4'),
     new PC('p5')
 ];
-
-// playerList[0].stats.chi += 2;
-// playerList[0].stats.agi += 1;
-// playerList[1].stats.sta += 2;
-// playerList[1].stats.chi += 1;
-// playerList[2].stats.pow += 2;
-// playerList[2].stats.wit += 1;
-// playerList[3].stats.agi += 2;
-// playerList[3].stats.pow += 1;
-// playerList[4].stats.wit += 2;
-// playerList[4].stats.sta += 1;
 
 let currentPlayerIndex = 0;
 
@@ -158,7 +136,8 @@ function passTurn() {
         currentPlayerIndex += 1;
     }
     _updateInfoBox();
-    let buttonContainerId = playerList[currentPlayerIndex].townCode + ("-button-container");
+    let buttonContainerId = playerConfig[Object.keys(playerConfig)[currentPlayerIndex]].townCode + "-button-container";
+    console.log(buttonContainerId);
     $(`#${buttonContainerId}`).css("visibility", "visible");
 }
 
