@@ -126,6 +126,14 @@ function _updateInfoBox() {
     }
 }
 
+function drawQuests(schoolName) {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function dropOverlay() {
+    document.getElementById("overlay").style.display = "none";
+}
+
 function passTurn() {
     Object.keys(playerConfig).forEach(player => {
         $(`#${playerConfig[player].townCode + "-button-container"}`).css("visibility", "hidden");
@@ -137,7 +145,6 @@ function passTurn() {
     }
     _updateInfoBox();
     let buttonContainerId = playerConfig[Object.keys(playerConfig)[currentPlayerIndex]].townCode + "-button-container";
-    console.log(buttonContainerId);
     $(`#${buttonContainerId}`).css("visibility", "visible");
 }
 
