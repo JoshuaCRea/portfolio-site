@@ -108,19 +108,21 @@ td {
     border: 10px solid black;
     text-align: center;
     line-height: 100px;
+    border-radius: 10%;
+    font-family: "Crimson Text", serif;
 }
 
 #card-one {
-    left: 20%;
+    left: 22%;
     border: 10px solid #a58f6a;
 }
 
 #card-two {
-    left: 40%;
+    left: 42%;
 }
 
 #card-three {
-    left: 60%;
+    left: 62%;
     border: 10px solid #e2b155
 }
 
