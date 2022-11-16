@@ -81,6 +81,11 @@ class PC {
         this.stats[playerConfig[playerNumber].secondaryStat] += 1;
     }
 }
+// class QuestCard {
+//     constructor() {
+
+//     }
+// }
 
 const playerList = [
     new PC('p1'),
@@ -138,11 +143,7 @@ function passTurn() {
     Object.keys(playerConfig).forEach(player => {
         $(`#${playerConfig[player].townCode + "-button-container"}`).css("visibility", "hidden");
     });
-    if (currentPlayerIndex === 4) {
-        currentPlayerIndex = 0;
-    } else {
-        currentPlayerIndex += 1;
-    }
+    currentPlayerIndex = (currentPlayerIndex + 1) % 5;
     _updateInfoBox();
     let buttonContainerId = playerConfig[Object.keys(playerConfig)[currentPlayerIndex]].townCode + "-button-container";
     $(`#${buttonContainerId}`).css("visibility", "visible");
