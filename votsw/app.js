@@ -79,13 +79,8 @@ class PC {
     _configureStats(playerNumber) {
         this.stats[playerConfig[playerNumber].primaryStat] += 2;
         this.stats[playerConfig[playerNumber].secondaryStat] += 1;
-    }
+    };
 }
-// class QuestCard {
-//     constructor() {
-
-//     }
-// }
 
 const playerList = [
     new PC('p1'),
@@ -100,35 +95,29 @@ let currentPlayerIndex = 0;
 function _updateInfoBox() {
     const currentTurn = playerList[currentPlayerIndex]
     let currentPlayer = Object.keys(playerConfig)[currentPlayerIndex];
-    $("#playerName").html((`${currentPlayer.toUpperCase()}`));
-    $("#playerTitle").html((`The Light of ${Object.keys(TOWN_DESCRIPTIONS)[currentPlayerIndex].slice(1)}`));
-    $("#playerName").css("background-color", `${playerConfig[currentPlayer].color}`);
-    $("#playerTitle").css("background-color", `${playerConfig[currentPlayer].color}`);
-    $("#powerRank").html((`${playerList[currentPlayerIndex].stats.pow}`));
-    $("#staminaRank").html((`${playerList[currentPlayerIndex].stats.sta}`));
-    $("#agilityRank").html((`${playerList[currentPlayerIndex].stats.agi}`));
-    $("#chiRank").html((`${playerList[currentPlayerIndex].stats.chi}`));
-    $("#witRank").html((`${playerList[currentPlayerIndex].stats.wit}`));
-    $("#nextPlayer").html((`${Object.keys(playerConfig)[currentPlayerIndex + 1]}`));
-    $("#techAmount").html((`${playerList[currentPlayerIndex].techniques.length}`));
-    if (playerList[currentPlayerIndex].repRank <= 2) {
+    $("#playerName").html(currentPlayer.toUpperCase());
+    $("#playerTitle").html(`The Light of ${Object.keys(TOWN_DESCRIPTIONS)[currentPlayerIndex].slice(1)}`);
+    $("#playerName").css("background-color", playerConfig[currentPlayer].color);
+    $("#playerTitle").css("background-color", playerConfig[currentPlayer].color);
+    $("#powerRank").html(currentTurn.stats.pow);
+    $("#staminaRank").html(currentTurn.stats.sta);
+    $("#agilityRank").html(currentTurn.stats.agi);
+    $("#chiRank").html(currentTurn.stats.chi);
+    $("#witRank").html(currentTurn.stats.wit);
+    $("#nextPlayer").html(Object.keys(playerConfig)[currentPlayerIndex + 1]);
+    $("#techAmount").html(currentTurn.techniques.length);
+    if (currentTurn.repRank <= 2) {
         $("#repRank").css("background-color", "#000000");
-    }
-    if (playerList[currentPlayerIndex].repRank === 5) {
+    } else if (currentTurn.repRank === 5) {
         $("#repRank").css("background-color", "#e2b155");
     } else { $("#repRank").css("background-color", "#a58f6a"); }
-    if (playerList[currentPlayerIndex].injured === false) {
-        $("#healthy-injured").html("Healthy");
-    }
-    if (playerList[currentPlayerIndex].injured === true) {
-        $("#healthy-injured").html("Injured");
-    }
-    if (currentTurn.locationIndex % 2 > 0) {
-        $("#townName").html("Wilderness");
-    }
-    if (currentTurn.locationIndex % 2 === 0) {
-        $("#townName").html(`${LOCATION_IDS[currentTurn.locationIndex].slice(1)}`);
-    }
+    const injuryStatus = currentTurn.injured ? "Injured" : "Healthy";
+    $("#healthy-injured").html(injuryStatus);
+    $("#townName").html(
+        currentTurn.locationIndex % 2 === 0
+            ? LOCATION_IDS[currentTurn.locationIndex].slice(1)
+            : "Wilderness"
+    );
 }
 
 function drawQuests(schoolName) {
@@ -142,11 +131,14 @@ function dropOverlay() {
 function passTurn() {
     Object.keys(playerConfig).forEach(player => {
         $(`#${playerConfig[player].townCode + "-button-container"}`).css("visibility", "hidden");
+        $(`.${playerConfig[player].townCode + "-location-option"}`).css("visibility", "hidden");
     });
     currentPlayerIndex = (currentPlayerIndex + 1) % 5;
     _updateInfoBox();
-    let buttonContainerId = playerConfig[Object.keys(playerConfig)[currentPlayerIndex]].townCode + "-button-container";
+    const buttonContainerId = playerConfig[Object.keys(playerConfig)[currentPlayerIndex]].townCode + "-button-container";
+    const locationOptionId = playerConfig[Object.keys(playerConfig)[currentPlayerIndex]].townCode + "-location-option";
     $(`#${buttonContainerId}`).css("visibility", "visible");
+    $(`.${locationOptionId}`).css("visibility", "visible");
 }
 
 function updateLocationIndex(directionValue, player) {
